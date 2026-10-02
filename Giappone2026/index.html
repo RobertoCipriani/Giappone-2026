@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#17263d"><meta name="description" content="Il viaggio di Roberto in Giappone, dal 28 ottobre al 12 novembre 2026. Programma, prenotazioni e budget sempre a portata di mano."><meta name="robots" content="noindex,nofollow">
+<title>Giappone 2026 · Il nostro viaggio</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-192.png"><link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="masthead"><div class="brand"><span class="flag" aria-hidden="true"></span><div><span class="brand-name">Giappone <b>2026</b></span><span class="brand-dates">28 ottobre — 12 novembre</span></div></div><div class="head-actions"><span id="save-state" class="save-state" role="status">Programma pronto</span><button id="edit-toggle" class="edit-toggle" aria-pressed="false">Modifica</button><button id="menu-toggle" class="icon-button" aria-label="Apri strumenti" aria-expanded="false">⋯</button></div></header>
+<div id="tools-menu" class="tools-menu" hidden><button data-action="export">Esporta una copia del programma</button><button data-action="import">Importa un programma</button><button data-action="undo">Annulla ultima modifica</button><button data-action="print">Stampa il programma</button><button data-action="reset" class="danger-text">Ripristina il programma iniziale</button></div>
+<nav class="main-tabs" aria-label="Sezioni"><button data-view="program" class="active" aria-current="page"><span aria-hidden="true">▤</span> Programma</button><button data-view="bookings"><span aria-hidden="true">▣</span> Prenotazioni <span id="pending-count" class="nav-count"></span></button><button data-view="budget"><span aria-hidden="true">€</span> Budget</button><button data-view="info"><span aria-hidden="true">ⓘ</span> Info utili</button></nav>
+<div id="storage-warning" class="storage-warning" hidden></div>
+<main id="main" tabindex="-1"></main>
+<footer class="app-footer"><span>Il nostro viaggio, una giornata alla volta.</span><span id="footer-date">Dal programma del 2 ottobre 2026</span></footer>
+<div id="toast" class="toast" role="status" hidden></div>
+<dialog id="editor"><form id="edit-form"><div class="dialog-heading"><h2 id="dialog-title">Modifica attività</h2><button type="button" class="icon-button" data-action="close" aria-label="Chiudi">×</button></div><div id="editor-fields"></div><p id="form-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" class="secondary" data-action="close">Annulla</button><button type="submit" class="primary">Salva modifiche</button></div></form></dialog>
+<dialog id="confirmation"><div class="dialog-heading"><h2 id="confirm-title">Conferma</h2></div><p id="confirm-message"></p><div class="dialog-actions"><button id="confirm-no" class="secondary">Annulla</button><button id="confirm-yes" class="primary">Conferma</button></div></dialog>
+<input id="import-file" type="file" accept="application/json,.json" hidden>
+<noscript>Attiva JavaScript per consultare e modificare il programma.</noscript>
+<script src="data.js"></script><script src="app.js"></script>
+</body></html>
