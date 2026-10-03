@@ -1,9 +1,9 @@
 {
   "format": "giappone-programma-condiviso-v1",
   "published": true,
-  "revision": "88f2152e-691f-4ee9-bb4e-bfc18e7b42f0",
-  "updatedAt": "2026-10-03T11:10:56.974Z",
-  "editor": "Roberto",
+  "revision": "a15f77c9-fba5-4180-8b3b-af65c8357944",
+  "updatedAt": "2026-10-03T13:11:32.961Z",
+  "editor": "Leonardo",
   "program": {
     "appId": "roberto-giappone-2026",
     "schemaVersion": 1,
@@ -27,11 +27,11 @@
         "events": [
           {
             "id": "e2-33",
-            "title": "Volo ITAirways",
-            "subtitle": "",
-            "time": "15:00",
+            "title": "Volo ITAirways AZ792",
+            "subtitle": "Partenza 15:05 - Durata 12:30h",
+            "time": "15:05",
             "kind": "trasporto",
-            "notes": "Partenza 15:05 - Durata 12:30h",
+            "notes": "",
             "links": [],
             "bookingId": null,
             "done": false
@@ -50,85 +50,6 @@
         "activityCost": 12.4,
         "transportCost": 12.208,
         "events": [
-          {
-            "id": "e3-27",
-            "title": "Controlli e dogana\nQR Code pronto (vjw.digital.go.jp/)",
-            "subtitle": "",
-            "time": "12:00",
-            "kind": "nota",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e3-29",
-            "title": "🚇 40m – Keikyū Airport Line - 12 stop - 550¥\nHaneda T3 station ➡️ Asakusabashi (oppure Higashi-Nihombashi) \nPartenze ogni 15m circa, un treno si ferma a Asakusa e il successivo a Higashi in modo alternato.",
-            "subtitle": "",
-            "time": "13:00",
-            "kind": "trasporto",
-            "notes": "",
-            "links": [
-              "https://www.google.com/maps/dir/Aeroporto+di+Tokyo-Haneda,+Hanedakuko,+Ota+City,+Tokyo+144-0041,+Giappone/Toyoko+INN+Akihabara+Kanda,+2+Chome-2-4+Nihonbashibakurocho,+Chuo+City,+Tokyo+103-0002,+Giappone/@35.6183072,139.6734115,30506m/data=!3m2!1e3!4b1!4m14!4m13!1m5!1m1!1s0x6018640ba43192e3:0xd32c3a9d146f8df!2m2!1d139.7779951!2d35.5482964!1m5!1m1!1s0x60188eb278b64dad:0xbf78f5ed8ba661c6!2m2!1d139.7831729!2d35.6954149!3e3?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D"
-            ],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e3-37",
-            "title": "🚇 7m – Asakusa Line - 4 stop – ¥ alla fine\r\nOshiage Sta.(SKYTREE) ➡️ Asakusabashi\r\n\r\nCambio treno\r\n🚇 3m – Chūō-Sōbu Line - 1 stop - 340¥\r\nAsakusabashi ➡️ Akihabara",
-            "subtitle": "",
-            "time": "17:00",
-            "kind": "trasporto",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e3-26",
-            "title": "Arrivo 11:20",
-            "subtitle": "",
-            "time": "11:20",
-            "kind": "trasporto",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e3-31",
-            "title": "🚇 20m – Asakusa Line - 2 stop - 180¥Asakusabashi ➡️ Asakusa",
-            "subtitle": "",
-            "time": "14:00",
-            "kind": "trasporto",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e3-30",
-            "title": "Hotel Toyoko INN Akihabara Kanda (Deposito bagagli)",
-            "subtitle": "",
-            "time": "13:40",
-            "kind": "nota",
-            "notes": "Facciamo deposito bagagli, \nCheck in dalle 15:00 Check out entro le 10:00",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e3-32",
-            "title": "Pranzo Bancarelle Nakamise-dori",
-            "subtitle": "",
-            "time": "14:30",
-            "kind": "pasto",
-            "notes": "🍡 Snack Dolci\n• Age-Manju: Tortine pastellate e fritte al momento, ripiene di fagioli rossi o matcha. Prezzo: ¥150 – ¥200 l'uno\n• Ningyo-yaki: Dolcetti di pan di spagna caldi a forma di lanterna o pagoda, ripieni di fagioli rossi. Prezzo: ¥100 – ¥150 l'uno (spesso venduti in piccoli sacchetti da 4-8 pezzi per ¥500-¥1000)\n• Kibi-dango: Spiedini di piccoli gnocchi di miglio caldi ricoperti di farina di soia tostata. Prezzo: ¥400 – ¥450 (per una confezione da 5 spiedini)\n• Kaminari Okoshi: Riso soffiato croccante unito da sciroppo di zucchero e arachidi. Prezzo: ¥500 – ¥800 a sacchetto\n\n🍘 Snack Salati\n• Senbei: Grandi cracker di riso grigliati al carbone sul momento e spennellati di salsa di soia. Prezzo: ¥100 – ¥200 l'uno\n• Mitarashi Dango: Spiedini di gnocchi di riso grigliati e coperti da una glassa lucida di soia dolce. Prezzo: ¥150 – ¥200 a spiedino",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
           {
             "id": "e3-34",
             "title": "20m a piedi - Senso Ji ➡️ Skytree",
@@ -154,17 +75,6 @@
             "done": false
           },
           {
-            "id": "e3-38",
-            "title": "Akihabara",
-            "subtitle": "",
-            "time": "17:30",
-            "kind": "attivita",
-            "notes": "Nota anche come Electric Town (Akiba), è il cuore pulsante della cultura otaku, dei manga, degli anime e dell'elettronica a Tokyo.\n\n• Esplorare i templi della cultura Otaku: Entra da Radio Kaikan (subito fuori dalla stazione) o da Mandarake Complex, palazzi di oltre 8 piani straripanti di action figure, manga rari, carte collezionabili e gadget.\n• Fare acquisti di elettronica: Visita l'immenso Yodobashi Camera Akihabara, uno dei negozi di elettronica e tecnologia più grandi al mondo, oppure caccia componenti retrò da Hardoff, bookoff, o rare item studio.\n• Giocare nelle sale giochi (Arcade): Prova i videogiochi musicali, i simulatori o i famosi \"artigli\" (UFO Catchers) nei multipiani di GiGO Akihabara o nei centri dedicati al retrogaming come Super Potato.",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e3-35",
             "title": "Tokyo Skytree",
             "subtitle": "Vedere il tramonto su Tokyo a 350m di altezza",
@@ -173,6 +83,96 @@
             "notes": "I nostri ingressi:\n4 Persone 16/16:29\n7 Persone 16:30/17",
             "links": [],
             "bookingId": "b2",
+            "done": false
+          },
+          {
+            "id": "e3-27",
+            "title": "Controlli e dogana",
+            "subtitle": "QR Code pronto (vjw.digital.go.jp/)",
+            "time": "12:00",
+            "kind": "nota",
+            "notes": "",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-37",
+            "title": "🚇 7m – Asakusa Line - 4 stop – ¥ alla fineOshiage Sta.(SKYTREE) ➡️ AsakusabashiCambio treno🚇 3m – Chūō-Sōbu Line - 1 stop - 340¥Asakusabashi ➡️ Akihabara",
+            "subtitle": "",
+            "time": "17:00",
+            "kind": "trasporto",
+            "notes": "",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-29",
+            "title": "Keikyū Airport Line - 40m",
+            "subtitle": "12 stop - 550¥",
+            "time": "13:00",
+            "kind": "trasporto",
+            "notes": "Haneda T3 station ➡️ Asakusabashi oppure Higashi-Nihombashi (sono 2 stazioni vicine) \n\nPartenze ogni 15m circa, un treno si ferma a Asakusa e il successivo a Higashi in modo alternato.",
+            "links": [
+              "https://www.google.com/maps/dir/Aeroporto+di+Tokyo-Haneda,+Hanedakuko,+Ota+City,+Tokyo+144-0041,+Giappone/Toyoko+INN+Akihabara+Kanda,+2+Chome-2-4+Nihonbashibakurocho,+Chuo+City,+Tokyo+103-0002,+Giappone/@35.6183072,139.6734115,30506m/data=!3m2!1e3!4b1!4m14!4m13!1m5!1m1!1s0x6018640ba43192e3:0xd32c3a9d146f8df!2m2!1d139.7779951!2d35.5482964!1m5!1m1!1s0x60188eb278b64dad:0xbf78f5ed8ba661c6!2m2!1d139.7831729!2d35.6954149!3e3?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D"
+            ],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-30",
+            "title": "Hotel Toyoko INN Akihabara Kanda",
+            "subtitle": "Facciamo deposito bagagli",
+            "time": "13:40",
+            "kind": "nota",
+            "notes": "Check in dalle 15:00 \nCheck out entro le 10:00",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-31",
+            "title": "Asakusa Line - 20m",
+            "subtitle": "2 stop - 180¥",
+            "time": "14:00",
+            "kind": "trasporto",
+            "notes": "Asakusabashi ➡️ Asakusa",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-32",
+            "title": "Pranzo Bancarelle Nakamise-dori",
+            "subtitle": "Street food dolce e salato nei pressi del Senso-Ji",
+            "time": "14:30",
+            "kind": "pasto",
+            "notes": "🍡 Snack Dolci\n• Age-Manju: Tortine pastellate e fritte al momento, ripiene di fagioli rossi o matcha. Prezzo: ¥150 – ¥200 l'uno\n• Ningyo-yaki: Dolcetti di pan di spagna caldi a forma di lanterna o pagoda, ripieni di fagioli rossi. Prezzo: ¥100 – ¥150 l'uno (spesso venduti in piccoli sacchetti da 4-8 pezzi per ¥500-¥1000)\n• Kibi-dango: Spiedini di piccoli gnocchi di miglio caldi ricoperti di farina di soia tostata. Prezzo: ¥400 – ¥450 (per una confezione da 5 spiedini)\n• Kaminari Okoshi: Riso soffiato croccante unito da sciroppo di zucchero e arachidi. Prezzo: ¥500 – ¥800 a sacchetto\n\n🍘 Snack Salati\n• Senbei: Grandi cracker di riso grigliati al carbone sul momento e spennellati di salsa di soia. Prezzo: ¥100 – ¥200 l'uno\n• Mitarashi Dango: Spiedini di gnocchi di riso grigliati e coperti da una glassa lucida di soia dolce. Prezzo: ¥150 – ¥200 a spiedino",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-38",
+            "title": "Akihabara (Electric Town)",
+            "subtitle": "Quartiere simbolo della cultura otaku, dei manga, degli anime e dell'elettronica a Tokyo.",
+            "time": "17:30",
+            "kind": "attivita",
+            "notes": "• Esplorare i templi della cultura Otaku: Entra da Radio Kaikan (subito fuori dalla stazione) o da Mandarake Complex, palazzi di oltre 8 piani straripanti di action figure, manga rari, carte collezionabili e gadget.\n• Fare acquisti di elettronica: Visita l'immenso Yodobashi Camera Akihabara, uno dei negozi di elettronica e tecnologia più grandi al mondo, oppure caccia componenti retrò da Hardoff, bookoff, o rare item studio.\n• Giocare nelle sale giochi (Arcade): Prova i videogiochi musicali, i simulatori o i famosi \"artigli\" (UFO Catchers) e gatchapon nei multipiani di GiGO Akihabara o nei centri dedicati al retrogaming come Super Potato.",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-26",
+            "title": "Atterraggio a Tokyo Haneda",
+            "subtitle": "",
+            "time": "11:20",
+            "kind": "trasporto",
+            "notes": "",
+            "links": [],
+            "bookingId": null,
             "done": false
           }
         ]
@@ -227,17 +227,6 @@
             "done": false
           },
           {
-            "id": "e4-31",
-            "title": "altri negozi",
-            "subtitle": "",
-            "time": "14:00",
-            "kind": "attivita",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e4-33",
             "title": "Ginza ➡️ Hotel 16min",
             "subtitle": "",
@@ -247,17 +236,6 @@
             "links": [
               "https://www.google.com/maps/dir/Toyoko+INN+Akihabara+Kanda,+2+Chome-2-4+Nihonbashibakurocho,+Chuo+City,+Tokyo+103-0002,+Giappone/Ginza+Station,+7+Ginza,+Chuo+City,+Tokyo+104-0061,+Giappone/@35.6836683,139.7542543,5411m/data=!3m1!1e3!4m14!4m13!1m5!1m1!1s0x60188eb278b64dad:0xbf78f5ed8ba661c6!2m2!1d139.7831729!2d35.6954149!1m5!1m1!1s0x60188be67cd18827:0x908c96f389166eda!2m2!1d139.7650154!2d35.6712254!3e3?authuser=1&entry=ttu&g_ep=EgoyMDI2MDUxMi4wIKXMDSoASAFQAw%3D%3D"
             ],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e4-34",
-            "title": "Hotel",
-            "subtitle": "",
-            "time": "15:30",
-            "kind": "nota",
-            "notes": "",
-            "links": [],
             "bookingId": null,
             "done": false
           },
@@ -275,17 +253,6 @@
             "done": false
           },
           {
-            "id": "e4-37",
-            "title": "Shibuya",
-            "subtitle": "",
-            "time": "17:00",
-            "kind": "attivita",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e4-43",
             "title": "Cena a Ichiran",
             "subtitle": "",
@@ -299,23 +266,45 @@
             "done": false
           },
           {
-            "id": "e4-26",
-            "title": "Passeggiata e shopping a Ginza",
-            "subtitle": "",
-            "time": "11:30",
+            "id": "e4-22",
+            "title": "Passeggiata intorno alla Tokyo Tower",
+            "subtitle": "Parchi e templi intorno all’iconica torre radio di Tokyo",
+            "time": "09:36",
             "kind": "attivita",
-            "notes": "Elegante quartiere dello shopping di Tokyo, famoso per i grandi magazzini, le boutique e l'architettura contemporanea.\n\n- UNIQLO Ginza — Grande flagship store del celebre marchio giapponese di abbigliamento, distribuito su numerosi piani.\n- Kyukyodo — Storica bottega fondata nel 1663, specializzata in profumi tradizionali, carta giapponese, calligrafia e articoli d'arte.\n- Ginza Itoya — Storica cartoleria giapponese di 12 piani, con penne, quaderni, articoli per la scrittura e oggetti di design.\n- MUJI Ginza — Flagship store di MUJI con abbigliamento, articoli per la casa, cancelleria e prodotti dal caratteristico design minimalista giapponese.\n- Ginza Six — Grande complesso commerciale contemporaneo con negozi, ristoranti e una terrazza panoramica con vista sulla città.",
+            "notes": "– Zojo-ji — Visita del grande tempio buddhista legato alla famiglia Tokugawa, con la caratteristica porta Sangedatsumon e la Tokyo Tower sullo sfondo.\n– Shiba Park — Passeggiata nel verde tra alberi, piccoli santuari e scorci particolarmente belli sulla Tokyo Tower.\n– Shiba Toshogu — Piccolo santuario dedicato a Tokugawa Ieyasu, immerso nel parco e caratterizzato da un grande ginkgo secolare.\n– Tokyo Tower — Passeggiata fino alla base della torre, con tempo per fotografie e per ammirare da vicino i suoi 333 metri.\n– Akabanebashi / vista sulla Tokyo Tower — Ultime fotografie dalla zona dell'incrocio di Akabanebashi, indicato anche dalla Tokyo Tower come uno dei punti fotografici d'accesso alla torre.",
             "links": [],
             "bookingId": null,
             "done": false
           },
           {
-            "id": "e4-22",
-            "title": "Passeggiata intorno alla Tokyo Tower",
-            "subtitle": "",
-            "time": "09:36",
+            "id": "e4-26",
+            "title": "Ginza",
+            "subtitle": "Quartiere dello shopping di Tokyo, famoso per i grandi magazzini e i negozi",
+            "time": "11:30",
             "kind": "attivita",
-            "notes": "– Zojo-ji — Visita del grande tempio buddhista legato alla famiglia Tokugawa, con la caratteristica porta Sangedatsumon e la Tokyo Tower sullo sfondo.\n– Shiba Park — Passeggiata nel verde tra alberi, piccoli santuari e scorci particolarmente belli sulla Tokyo Tower.\n– Shiba Toshogu — Piccolo santuario dedicato a Tokugawa Ieyasu, immerso nel parco e caratterizzato da un grande ginkgo secolare.\n– Tokyo Tower — Passeggiata fino alla base della torre, con tempo per fotografie e per ammirare da vicino i suoi 333 metri.\n– Akabanebashi / vista sulla Tokyo Tower — Ultime fotografie dalla zona dell'incrocio di Akabanebashi, indicato anche dalla Tokyo Tower come uno dei punti fotografici d'accesso alla torre.",
+            "notes": "I negozi aprono alle 11:00\n\n- UNIQLO Ginza — Grande flagship store del celebre marchio giapponese di abbigliamento, distribuito su numerosi piani.\n- Kyukyodo — Storica bottega fondata nel 1663, specializzata in profumi tradizionali, carta giapponese, calligrafia e articoli d'arte.\n- Ginza Itoya — Storica cartoleria giapponese di 12 piani, con penne, quaderni, articoli per la scrittura e oggetti di design.\n- MUJI Ginza — Flagship store di MUJI con abbigliamento, articoli per la casa, cancelleria e prodotti dal caratteristico design minimalista giapponese.\n- Ginza Six — Grande complesso commerciale contemporaneo con negozi, ristoranti e una terrazza panoramica con vista sulla città.",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e4-34",
+            "title": "Rientro in Hotel",
+            "subtitle": "Lasciare buste shopping",
+            "time": "15:30",
+            "kind": "nota",
+            "notes": "",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e4-37",
+            "title": "Shibuya",
+            "subtitle": "Quartiere moderno e movimentato, celebre per l’incrocio pedonale e la statua di Haciko",
+            "time": "17:00",
+            "kind": "attivita",
+            "notes": "",
             "links": [],
             "bookingId": null,
             "done": false
@@ -326,7 +315,7 @@
         "id": "d3",
         "date": "2026-10-31",
         "title": "Kyoto e una sera a Osaka",
-        "from": "Tokyo",
+        "from": "Kyoto",
         "to": "Kyoto",
         "hotel": "b7",
         "notes": "",
@@ -747,7 +736,7 @@
         "id": "d6",
         "date": "2026-11-03",
         "title": "Kanazawa e la cerimonia del tè",
-        "from": "Kyoto",
+        "from": "Kanazawa",
         "to": "Kanazawa",
         "hotel": "b8",
         "notes": "",
@@ -873,7 +862,7 @@
         "id": "d7",
         "date": "2026-11-04",
         "title": "Shirakawa-go e Takayama",
-        "from": "Kanazawa",
+        "from": "Takayama",
         "to": "Takayama",
         "hotel": "b9",
         "notes": "",
@@ -1286,7 +1275,7 @@
         "id": "d10",
         "date": "2026-11-07",
         "title": "Verso il Monte Fuji",
-        "from": "Takayama",
+        "from": "Kawaguchiko",
         "to": "Kawaguchiko",
         "hotel": "b10",
         "notes": "",
@@ -1642,8 +1631,8 @@
         "id": "d13",
         "date": "2026-11-10",
         "title": "Una giornata a Kamakura",
-        "from": "Tokyo",
-        "to": "Tokyo",
+        "from": "Kamakura",
+        "to": "Kamakura",
         "hotel": "b11",
         "notes": "",
         "nightCost": 47.66666666666667,
@@ -2390,7 +2379,7 @@
       "exchange": 0.0056,
       "notes": ""
     },
-    "updatedAt": "2026-10-03T11:10:56.974Z",
+    "updatedAt": "2026-10-03T13:11:32.961Z",
     "cityCovers": {}
   }
 }
