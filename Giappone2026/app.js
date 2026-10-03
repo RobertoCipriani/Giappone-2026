@@ -219,7 +219,7 @@ function restoreReading(state){
  for(const el of main.querySelectorAll('details')){const key=el.dataset.readingKey||('event:'+el.closest('[data-event]')?.dataset.event);if(state.opened.includes(key)){el.open=true;const past=el.closest('.past-timeline');if(past)past.open=true}}
  if(!state.anchor)return;
  const anchor=state.anchor==='today-focus'?main.querySelector('[data-today-focus]'):[...main.querySelectorAll('[data-event]')].find(el=>el.dataset.event===state.anchor);
- if(anchor){const past=anchor.closest('.past-timeline');if(past)past.open=true}if(anchor&&anchor.getClientRects().length){const diff=anchor.getBoundingClientRect().top-state.offset;if(Math.abs(diff)>1)window.scrollTo({top:Math.max(0,window.scrollY+diff),behavior:'instant'})}
+ if(anchor){const past=anchor.closest('.past-timeline');if(past)past.open=true}if(anchor&&anchor.getClientRects().length){const diff=anchor.getBoundingClientRect().top-state.offset;if(Math.abs(diff)>1)window.scrollTo({top:Math.max(0,window.scrollY+diff),behavior:'auto'})}
 }
 let renderedView=null;
 function focusToday(){const target=main.querySelector('[data-today-focus]');if(target&&target.getBoundingClientRect().top>window.innerHeight*.55)target.scrollIntoView({block:'start',behavior:'smooth'})}
