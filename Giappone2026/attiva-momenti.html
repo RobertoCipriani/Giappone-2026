@@ -1,0 +1,165 @@
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex,nofollow"><title>Momenti su Google Drive · Guida passo passo</title><style>*{box-sizing:border-box}body{font-family:system-ui,sans-serif;background:#f8f5ef;color:#192b38;max-width:850px;margin:auto;padding:38px 30px;line-height:1.8}.back{display:block;margin-bottom:30px;font-size:12px}.eyebrow{font-size:10px;letter-spacing:1.6px;color:#ae4e41}h1,h2{font-family:Georgia,serif;font-weight:400;line-height:1.25}h1{font-size:54px;margin:18px 0 20px;letter-spacing:-1.5px}h2{font-size:29px;margin-top:46px;scroll-margin-top:20px}.lead{font-size:17px;color:#6a797d;max-width:600px}.primary{background:#b84339;color:white;border:0;border-radius:10px;padding:14px 20px;font:inherit;cursor:pointer}pre{background:white;padding:22px;border:1px solid #e9e3d9;border-radius:12px;white-space:pre-wrap;word-break:break-word;font-size:11px;line-height:1.5;max-height:460px;overflow:auto}a{color:#ae4e41}li{margin:16px 0}ol,ul{padding-left:25px}.note{background:#eee7db;border-left:3px solid #b84339;padding:20px 24px;border-radius:0 12px 12px 0;font-size:14px;margin:25px 0}.small{font-size:12px;color:#6b797e;line-height:1.9}.steps{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0}.steps a{background:#fffdf9;border:1px solid #e4ddd2;border-radius:20px;padding:6px 12px;font-size:11px;text-decoration:none}.code-details{margin-top:12px}.code-details summary{font-size:12px;cursor:pointer}#copy-status{min-height:28px;color:#61777a;font-size:12px}@media(max-width:450px){body{padding:24px 20px}h1{font-size:40px}h2{font-size:26px}.lead{font-size:15px}li{font-size:14px}.note{padding:18px;font-size:13px}}</style></head><body><a class="back" href="./">← Torna al viaggio</a>
+<span class="eyebrow">GIAPPONE 2026 · MOMENTI SU GOOGLE DRIVE</span>
+<h1>Le nostre foto.<br>Nel tuo Drive.</h1>
+<p class="lead">Una sola configurazione per Roberto. Gli amici entrano dall’invito e iniziano a raccontare il viaggio.</p>
+<div class="note"><strong>Usa questa versione completa.</strong> Non hai ancora caricato la funzione Momenti su GitHub: questo pacchetto contiene già l’app con le copertine delle città, il programma, le prenotazioni, il budget, il collegamento al foglio Google e Momenti su Drive.</div>
+<nav class="steps" aria-label="Passaggi della guida"><a href="#github">1 · GitHub</a><a href="#script">2 · Script Google</a><a href="#inizializza">3 · Archivio</a><a href="#pubblica">4 · Collegamento</a><a href="#amici">5 · Amici</a></nav>
+<h2 id="github">1. Carica l’app su GitHub</h2>
+<ol><li>Sul computer apri il pacchetto <strong>Giappone2026_GoogleDrive.zip</strong> e scegli <strong>Estrai tutto</strong>. Troverai una cartella <strong>Giappone2026</strong> e un file <strong>index.html</strong> accanto. Se usi la cartella già preparata sul computer non serve scaricare né estrarre lo ZIP.</li>
+<li>Apri <a href="https://github.com/RobertoCipriani/Giappone-2026" target="_blank" rel="noopener">il tuo repository GitHub</a> e torna alla pagina principale, dove vedi la cartella <strong>Giappone2026</strong>. Il ramo deve essere <strong>main</strong>.</li>
+<li>Scegli <strong>Add file → Upload files</strong>. Trascina nella pagina <strong>la cartella Giappone2026 e il file index.html che le sta accanto</strong>. Non trascinare lo ZIP e non trascinare la cartella esterna con il nome del pacchetto.</li>
+<li>Scorri in fondo. Messaggio suggerito: <strong>Aggiunge Momenti con Google Drive</strong>. Scegli <strong>Commit directly to the main branch</strong> e premi <strong>Commit changes</strong>. I file con lo stesso percorso sostituiscono quelli precedenti; non eliminare a mano la cartella del sito.</li>
+<li>Attendi che il caricamento di GitHub Pages sia terminato, poi apri <a href="https://robertocipriani.github.io/Giappone-2026/Giappone2026/" target="_blank" rel="noopener">l’app del viaggio</a>. Deve comparire <strong>Momenti</strong> nella barra delle sezioni. Budget e Info sono dentro <strong>Altro</strong>. Se vedi ancora il sito precedente, ricarica la pagina due volte o chiudi e riapri la scheda.</li></ol>
+<p class="small">Questa guida è disponibile anche dall’app: <strong>Momenti → Apri la guida passo passo</strong>.</p>
+<h2 id="script">2. Crea il servizio nel tuo account Google</h2>
+<ol><li>Apri <a href="https://script.google.com/home/start" target="_blank" rel="noopener">Google Apps Script</a> con l’account che possiede i 6–7 GB liberi su Drive. Crea un <strong>Nuovo progetto</strong> e chiamalo <strong>Momenti Giappone 2026</strong>.</li>
+<li>Lascia aperto il file iniziale <strong>Codice.gs</strong> / <strong>Code.gs</strong>. Seleziona tutto il contenuto iniziale e sostituiscilo con il codice copiato dal pulsante qui sotto. Salva con <strong>Ctrl+S</strong>.</li>
+<li>Usa un progetto nuovo: il servizio di Momenti e il servizio che legge il programma del viaggio sono separati. Non incollare questo codice sopra uno script Google già usato per altre attività.</li></ol>
+<button id="copy-code" class="primary">Copia tutto il codice Google</button><p id="copy-status" role="status"></p>
+<details class="code-details"><summary>Mostra il codice da copiare</summary><pre id="google-code">/* MOMENTI / Giappone 2026. Google Apps Script, eseguito come il proprietario.
+ * Foto PRIVATE su Drive. Nessun token OAuth viene inviato al browser.
+ * Incollare in un NUOVO progetto Apps Script, poi eseguire inizializzaMomenti_.
+ */
+var MOMENTI_ORIGIN = 'https://robertocipriani.github.io';
+var MOMENTI_LIMITS = {photoBytes:350000,posts:5000,members:30,daily:20};
+var MOMENTI_MEMBER_HEADERS = ['id','hash_accesso','nome_JSON','creato_UTC','ruolo','revocato'];
+var MOMENTI_POST_HEADERS = ['id','autore_id','nome_JSON','descrizione_JSON','foto_Drive_id','foto_UTC','pubblicato_UTC','latitudine','longitudine','luogo_JSON','origine_foto','dimensione_byte','eliminato_UTC'];
+
+// Il suffisso _ impedisce l’esecuzione dal browser: solo dall’editor dello script.
+function inizializzaMomenti_() {
+ var lock=LockService.getScriptLock();lock.waitLock(25000);
+ try {
+  var props=PropertiesService.getScriptProperties();
+  var folderId=props.getProperty('mom_folder');
+  var folder=folderId?DriveApp.getFolderById(folderId):DriveApp.createFolder('Giappone 2026 - Momenti');
+  if(folder.isTrashed())throw new Error('Ripristina la cartella Momenti dal cestino di Drive.');
+  props.setProperty('mom_folder',folder.getId());
+  var sheetId=props.getProperty('mom_sheet');
+  var book=sheetId?SpreadsheetApp.openById(sheetId):SpreadsheetApp.create('Giappone 2026 - Registro Momenti');
+  if(!sheetId){DriveApp.getFileById(book.getId()).moveTo(folder);props.setProperty('mom_sheet',book.getId());}
+  ['Partecipanti','Momenti'].forEach(function(name){var s=book.getSheetByName(name)||book.insertSheet(name);var headers=name==='Momenti'?MOMENTI_POST_HEADERS:MOMENTI_MEMBER_HEADERS;if(s.getLastRow()===0){s.getRange(1,1,1,headers.length).setValues([headers]).setFontWeight('bold').setBackground('#192b38').setFontColor('#ffffff');s.setFrozenRows(1);s.getRange(1,1,s.getMaxRows(),headers.length).setNumberFormat('@');}});
+  if(!props.getProperty('mom_group'))props.setProperty('mom_group',Utilities.getUuid());
+  if(!props.getProperty('mom_owner'))props.setProperty('mom_owner',Utilities.getUuid());
+  if(!props.getProperty('mom_name'))props.setProperty('mom_name','Giappone 2026');
+  if(!props.getProperty('mom_rev'))props.setProperty('mom_rev','1');
+  var code=momentToken_();props.setProperty('mom_activation_hash',momentHash_(code));props.setProperty('mom_activation_expires',String(Date.now()+7*86400000));
+  // Il codice privato è mostrato SOLO a chi esegue nell’editor, non inserito nel sorgente.
+  Logger.log('CODICE PRIVATO DI ATTIVAZIONE (non inviarlo agli amici):\n'+code);
+  Logger.log('Cartella foto: '+folder.getUrl());Logger.log('Registro: '+book.getUrl());
+  Logger.log('Ora pubblica come App web: Esegui come Me; accesso Chiunque. Usa /exec nell’app del viaggio.');
+ }finally{lock.releaseLock();}
+}
+
+function doGet(e) {
+ var channel=String((e&amp;&amp;e.parameter&amp;&amp;e.parameter.channel)||'');
+ if(!/^[a-zA-Z0-9_-]{20,80}$/.test(channel))return HtmlService.createHtmlOutput('&lt;!doctype html&gt;&lt;html lang="it"&gt;&lt;meta charset="utf-8"&gt;&lt;meta name="viewport" content="width=device-width,initial-scale=1"&gt;&lt;body style="font:16px system-ui;padding:30px;color:#192b38"&gt;&lt;h1&gt;Momenti è collegabile.&lt;/h1&gt;&lt;p&gt;Copia questo URL che termina con /exec e incollalo nell’app del viaggio, nella sezione Momenti. Non serve aprire questa pagina per vedere le foto.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;');
+ var html='&lt;!doctype html&gt;&lt;html&gt;&lt;head&gt;&lt;meta charset="utf-8"&gt;&lt;meta name="referrer" content="no-referrer"&gt;&lt;/head&gt;&lt;body&gt;&lt;script&gt;'+momentBridgeCode_(channel)+'&lt;\/script&gt;&lt;/body&gt;&lt;/html&gt;';
+ return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}
+function momentBridgeCode_(channel) {
+ return "(()=&gt;{'use strict';const channel="+JSON.stringify(channel)+",origin="+JSON.stringify(MOMENTI_ORIGIN)+";const send=(target,data)=&gt;target.postMessage(Object.assign({channel,kind:'momenti-drive'},data),origin);window.addEventListener('message',e=&gt;{const m=e.data;if(e.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request')return;google.script.run.withSuccessHandler(result=&gt;send(e.source,{type:'response',id:m.id,result})).withFailureHandler(()=&gt;send(e.source,{type:'response',id:m.id,result:{ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'}})).momentiRpc(m.payload);});send(window.top,{type:'ready'});})();";
+}
+
+// Unica funzione pubblica di dati. Tutte le operazioni hanno controlli lato server.
+function momentiRpc(request) {
+ try {
+  if(!request||typeof request!=='object')throw momentError_('INVALID','Richiesta non valida.');
+  var op=String(request.op||''),data=request.data||{};
+  if(['activate','join','rename','publish','delete','rotate','removeMember'].indexOf(op)&gt;=0){var lock=LockService.getScriptLock();if(!lock.tryLock(25000))throw momentError_('BUSY','Il diario sta ricevendo altri momenti. Attendi qualche secondo e riprova.');try{return {ok:true,data:momentWrite_(op,data,request.token)}}finally{lock.releaseLock();}}
+  var member=momentMember_(request.token);
+  if(op==='feed')return {ok:true,data:momentFeed_(member,data)};
+  if(op==='photo')return {ok:true,data:momentPhoto_(member,data)};
+  if(op==='members'){if(member.role!=='owner')throw momentError_('DENIED','Solo l’organizzatore può gestire i partecipanti.');return {ok:true,data:momentRows_('Partecipanti').filter(function(r){return r[5]!=='1'}).map(function(r){return {id:r[0],name:momentParseText_(r[2]),role:r[4]};})};}
+  throw momentError_('INVALID','Operazione non disponibile.');
+ }catch(error){return {ok:false,code:error.momentCode||'GOOGLE_ERROR',message:error.momentCode?error.message:'Google non ha completato la richiesta. Verifica la configurazione, lo spazio Drive e riprova tra poco.'};}
+}
+function momentError_(code,message){var error=new Error(message);error.momentCode=code;return error;}
+function momentProps_(){var p=PropertiesService.getScriptProperties();if(!p.getProperty('mom_folder')||!p.getProperty('mom_sheet'))throw momentError_('NOT_READY','Esegui prima inizializzaMomenti_ nell’editor Apps Script.');return p;}
+function momentToken_(){return (Utilities.getUuid()+Utilities.getUuid()).replace(/-/g,'');}
+function momentHash_(value){return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256,String(value),Utilities.Charset.UTF_8).map(function(b){return ('0'+(b&amp;255).toString(16)).slice(-2)}).join('');}
+function momentSame_(a,b){a=String(a||'');b=String(b||'');if(a.length!==b.length)return false;var diff=0;for(var i=0;i&lt;a.length;i++)diff|=a.charCodeAt(i)^b.charCodeAt(i);return diff===0;}
+function momentText_(value,max,required){if(typeof value!=='string')value='';value=value.trim();if(value.length&gt;max||required&amp;&amp;!value)throw momentError_('INVALID','Controlla i campi: nome, descrizione o luogo troppo lunghi.');return value;}
+function momentParseText_(value){try{return JSON.parse(String(value))}catch{return ''}}
+function momentSheet_(name){var s=SpreadsheetApp.openById(momentProps_().getProperty('mom_sheet')).getSheetByName(name);if(!s)throw momentError_('NOT_READY','Il registro Momenti non è completo. Esegui inizializzaMomenti_ nell’editor.');return s;}
+function momentRows_(name){var s=momentSheet_(name);return s.getLastRow()&lt;2?[]:s.getRange(2,1,s.getLastRow()-1,name==='Momenti'?MOMENTI_POST_HEADERS.length:MOMENTI_MEMBER_HEADERS.length).getValues();}
+function momentRev_(){var p=momentProps_();p.setProperty('mom_rev',String(Number(p.getProperty('mom_rev')||0)+1));}
+function momentTrip_(){var p=momentProps_();return {id:p.getProperty('mom_group'),name:p.getProperty('mom_name'),owner_id:p.getProperty('mom_owner')};}
+function momentMember_(token){if(typeof token!=='string'||!/^[a-f0-9]{64}$/.test(token))throw momentError_('ACCESS','Accesso non valido. Riapri il tuo invito.');var hash=momentHash_(token),cache=CacheService.getScriptCache(),key='member:'+hash,cached=cache.get(key);if(cached)return JSON.parse(cached);var row=momentRows_('Partecipanti').find(function(r){return momentSame_(r[1],hash)&amp;&amp;r[5]!=='1'});if(!row)throw momentError_('ACCESS','Accesso revocato o non valido. Chiedi all’organizzatore un nuovo invito.');var result={id:row[0],name:momentParseText_(row[2]),role:row[4],hash:hash};cache.put(key,JSON.stringify(result),30);return result;}
+function momentRotate_(){var token=momentToken_();momentProps_().setProperty('mom_invite_hash',momentHash_(token));return token;}
+function momentWrite_(op,d,token){
+ var p=momentProps_(),members=momentRows_('Partecipanti'),ms=momentSheet_('Partecipanti');
+ if(op==='activate'){
+  if(typeof d.code!=='string'||!/^[a-f0-9]{64}$/.test(d.code)||!momentSame_(momentHash_(d.code),p.getProperty('mom_activation_hash'))||Number(p.getProperty('mom_activation_expires'))&lt;Date.now())throw momentError_('ACTIVATION','Codice di attivazione non valido, già usato o scaduto. Esegui inizializzaMomenti_ nell’editor per ottenerne uno nuovo.');
+  var name=momentText_(d.name,40,true),owner=p.getProperty('mom_owner'),memberToken=momentToken_(),row=members.findIndex(function(r){return r[0]===owner}),now=new Date().toISOString();
+  if(row&gt;=0){CacheService.getScriptCache().remove('member:'+members[row][1]);ms.getRange(row+2,1,1,6).setValues([[owner,momentHash_(memberToken),JSON.stringify(name),members[row][3],'owner','0']]);}else ms.appendRow([owner,momentHash_(memberToken),JSON.stringify(name),now,'owner','0']);
+  var invite=momentRotate_();p.deleteProperty('mom_activation_hash');p.deleteProperty('mom_activation_expires');momentRev_();return {member:{id:owner,name:name,role:'owner'},token:memberToken,trip:momentTrip_(),invite:invite};
+ }
+ if(op==='join'){
+  if(typeof d.invite!=='string'||!/^[a-f0-9]{64}$/.test(d.invite)||!momentSame_(momentHash_(d.invite),p.getProperty('mom_invite_hash')))throw momentError_('INVITE','Invito non valido o sostituito. Chiedi il nuovo collegamento all’organizzatore.');
+  if(members.filter(function(r){return r[5]!=='1'}).length&gt;=MOMENTI_LIMITS.members)throw momentError_('LIMIT','Il gruppo ha raggiunto 30 partecipanti.');
+  var memberToken=momentToken_(),id=Utilities.getUuid(),name=momentText_(d.name,40,true);ms.appendRow([id,momentHash_(memberToken),JSON.stringify(name),new Date().toISOString(),'member','0']);momentRev_();return {member:{id:id,name:name,role:'member'},token:memberToken,trip:momentTrip_()};
+ }
+ var member=momentMember_(token);
+ if(op==='rename'){var name=momentText_(d.name,40,true),i=members.findIndex(function(r){return r[0]===member.id});ms.getRange(i+2,3).setValue(JSON.stringify(name));CacheService.getScriptCache().remove('member:'+member.hash);momentRev_();return {name:name};}
+ if(op==='rotate'){if(member.role!=='owner')throw momentError_('DENIED','Solo l’organizzatore può cambiare l’invito.');return {invite:momentRotate_()};}
+ if(op==='removeMember'){if(member.role!=='owner'||d.id===member.id)throw momentError_('DENIED','Puoi rimuovere solo gli altri partecipanti.');var i=members.findIndex(function(r){return r[0]===d.id&amp;&amp;r[5]!=='1'});if(i&lt;0)throw momentError_('INVALID','Partecipante non trovato.');ms.getRange(i+2,6).setValue('1');CacheService.getScriptCache().remove('member:'+members[i][1]);momentRev_();return {invite:momentRotate_()};}
+ var rows=momentRows_('Momenti'),sheet=momentSheet_('Momenti');
+ if(op==='delete'){var i=rows.findIndex(function(r){return r[0]===d.id&amp;&amp;r[12]===''});if(i&lt;0)throw momentError_('INVALID','Il momento è già stato eliminato.');var row=rows[i];if(row[1]!==member.id&amp;&amp;member.role!=='owner')throw momentError_('DENIED','Puoi eliminare soltanto i tuoi momenti.');sheet.getRange(i+2,13).setValue(new Date().toISOString());momentRev_();var cleaned=true;try{momentFile_(row[4]).setTrashed(true)}catch{cleaned=false}return {cleaned:cleaned};}
+ if(op==='publish'){
+  if(typeof d.id!=='string'||!/^[a-f0-9-]{36}$/.test(d.id))throw momentError_('INVALID','Identificativo foto non valido.');
+  var existing=rows.find(function(r){return r[0]===d.id});if(existing){if(existing[1]!==member.id||existing[12]!=='')throw momentError_('INVALID','Questo momento non può essere inviato.');return {post:momentPost_(existing),duplicate:true};}
+  if(rows.filter(function(r){return r[12]===''}).length&gt;=MOMENTI_LIMITS.posts)throw momentError_('LIMIT','Il diario ha raggiunto 5000 foto. Conserva una copia dei ricordi e libera l’archivio.');
+  var now=new Date(),today=Utilities.formatDate(now,'Asia/Tokyo','yyyy-MM-dd');if(rows.filter(function(r){return r[1]===member.id&amp;&amp;Utilities.formatDate(new Date(r[6]),'Asia/Tokyo','yyyy-MM-dd')===today}).length&gt;=MOMENTI_LIMITS.daily)throw momentError_('LIMIT','Hai raggiunto 20 momenti per oggi.');
+  var caption=momentText_(d.caption,600,false),place=momentText_(d.place,100,false),lat=d.latitude,lng=d.longitude;if(lat==null&amp;&amp;lng==null){lat='';lng='';}else if(typeof lat!=='number'||typeof lng!=='number'||!isFinite(lat)||!isFinite(lng)||Math.abs(lat)&gt;90||Math.abs(lng)&gt;180)throw momentError_('INVALID','Posizione non valida.');
+  if(typeof d.photo!=='string'||d.photo.length&gt;Math.ceil(MOMENTI_LIMITS.photoBytes/3)*4||! /^[A-Za-z0-9+/]+={0,2}$/.test(d.photo))throw momentError_('PHOTO','Foto troppo grande o non leggibile.');
+  var bytes=Utilities.base64Decode(d.photo);if(bytes.length&gt;MOMENTI_LIMITS.photoBytes||bytes.length&lt;4||(bytes[0]&amp;255)!==255||(bytes[1]&amp;255)!==216||(bytes[2]&amp;255)!==255)throw momentError_('PHOTO','La foto deve essere JPEG, massimo 350 KB.');
+  var captured=new Date(d.captured_at);if(!isFinite(captured.getTime())||captured&gt;new Date(now.getTime()+300000)||captured&lt;new Date(now.getTime()-86400000))captured=now;
+  var file=DriveApp.getFolderById(p.getProperty('mom_folder')).createFile(Utilities.newBlob(bytes,'image/jpeg','Giappone-'+today+'-'+d.id+'.jpg'));
+  var row=[d.id,member.id,JSON.stringify(member.name),JSON.stringify(caption),file.getId(),captured.toISOString(),now.toISOString(),lat,lng,JSON.stringify(place),d.source==='camera'?'camera':'selected',bytes.length,''];
+  try{sheet.appendRow(row);SpreadsheetApp.flush();}catch(error){try{file.setTrashed(true)}catch{}throw error;}momentRev_();return {post:momentPost_(row)};
+ }
+ throw momentError_('INVALID','Operazione non disponibile.');
+}
+function momentPost_(r){return {id:r[0],author_id:r[1],author_name:momentParseText_(r[2]),caption:momentParseText_(r[3]),photo_path:r[0],captured_at:r[5],created_at:r[6],latitude:r[7]===''?null:Number(r[7]),longitude:r[8]===''?null:Number(r[8]),place_label:momentParseText_(r[9]),source:r[10],size_bytes:Number(r[11])};}
+function momentFeed_(member,d){var p=momentProps_(),revision=p.getProperty('mom_rev');if(d.revision===revision&amp;&amp;!d.before)return {unchanged:true,revision:revision};var rows=momentRows_('Momenti').filter(function(r){return r[12]===''&amp;&amp;(!d.mine||r[1]===member.id)}).map(momentPost_).sort(function(a,b){return b.created_at.localeCompare(a.created_at)||b.id.localeCompare(a.id)});if(d.before){if(typeof d.before.time!=='string'||typeof d.before.id!=='string')throw momentError_('INVALID','Pagina non valida.');rows=rows.filter(function(r){return r.created_at&lt;d.before.time||r.created_at===d.before.time&amp;&amp;r.id&lt;d.before.id;});}var limit=Math.max(1,Math.min(12,Number(d.limit)||12));return {posts:rows.slice(0,limit),hasMore:rows.length&gt;limit,revision:revision,trip:momentTrip_()};}
+function momentFile_(id){var p=momentProps_(),file=DriveApp.getFileById(id),parents=file.getParents(),inside=false;while(parents.hasNext())if(parents.next().getId()===p.getProperty('mom_folder'))inside=true;if(!inside)throw momentError_('DENIED','Foto fuori dall’archivio del gruppo.');return file;}
+function momentPhoto_(member,d){var row=momentRows_('Momenti').find(function(r){return r[0]===d.id&amp;&amp;r[12]===''});if(!row)throw momentError_('PHOTO','Il momento non è più disponibile.');var file=momentFile_(row[4]);if(file.isTrashed())throw momentError_('PHOTO','La foto è nel cestino di Drive.');var blob=file.getBlob();return {photo:Utilities.base64Encode(blob.getBytes()),mimeType:'image/jpeg'};}
+</pre></details>
+<h2 id="inizializza">3. Fai creare cartella e registro</h2>
+<ol><li>Nella barra superiore dell’editor scegli la funzione <strong>inizializzaMomenti_</strong>, con il trattino basso finale, poi premi <strong>Esegui</strong>.</li>
+<li>Google chiederà l’autorizzazione: scegli il tuo account e autorizza lo script ad accedere a Drive e Fogli. L’autorizzazione tecnica di Apps Script è ampia; il codice fornito gestisce le foto attraverso la cartella dedicata e il registro appena creati. Non richiede la tua password nell’app del viaggio.</li>
+<li>Se Google segnala che l’app non è verificata, controlla che sia il progetto <strong>Momenti Giappone 2026 che hai appena creato</strong>. Per il tuo script personale può comparire <strong>Avanzate → Vai a Momenti Giappone 2026</strong>. Se l’account aziendale blocca l’autorizzazione, usa il tuo account Google personale.</li>
+<li>Al termine apri il <strong>Registro di esecuzione</strong> in basso. Troverai il <strong>CODICE PRIVATO DI ATTIVAZIONE</strong>, composto da 64 caratteri. Copialo in una nota privata temporanea: servirà fra poco. Non è la password Google e non va mandato agli amici.</li>
+<li>Lo stesso registro mostra i link di una cartella <strong>Giappone 2026 - Momenti</strong> e del foglio <strong>Giappone 2026 - Registro Momenti</strong>. Sono creati automaticamente nel tuo Drive. Lascia entrambi privati e non scegliere “Chiunque abbia il link”.</li></ol>
+<div class="note"><strong>Le foto non sono pubblicate su GitHub.</strong> Sul sito ci sono interfaccia e codice. Foto, frasi, coordinate e accessi sono nel tuo account Google. Lo script verifica l’accesso al gruppo prima di restituire le foto; gli amici non ottengono accesso agli altri file del tuo Drive.</div>
+<h2 id="pubblica">4. Attiva il collegamento</h2>
+<ol><li>Nell’editor Apps Script premi <strong>Esegui il deployment / Deploy → Nuovo deployment</strong>. Accanto a “Seleziona tipo” usa l’icona delle impostazioni e scegli <strong>App web</strong>.</li>
+<li>Imposta <strong>Esegui come: Me</strong> e <strong>Chi può accedere: Chiunque</strong>. Deve essere “Chiunque”, non “Chiunque abbia un account Google” e non “Solo io”. Conferma il deployment e le eventuali autorizzazioni.</li>
+<li>Copia l’<strong>URL dell’App web</strong>: inizia con <strong>https://script.google.com/macros/s/</strong> e termina con <strong>/exec</strong>. Non usare /dev, l’URL dell’editor o l’ID del deployment.</li>
+<li>Apri l’app del viaggio e scegli <strong>Momenti → Attiva Momenti gratuitamente</strong>. Incolla l’URL /exec, il codice privato del registro di esecuzione e il tuo nome. Premi <strong>Collega Drive e apri il diario</strong>.</li>
+<li>Il codice privato viene usato una volta e non viene conservato nell’app. Il tuo browser riceve un accesso da organizzatore. Verrà mostrata la finestra <strong>Il nostro gruppo</strong>: premi <strong>Copia invito per gli amici</strong> e manda quel collegamento al gruppo WhatsApp.</li></ol>
+<p class="small">Apps Script viene pubblicato come servizio raggiungibile dagli utenti; l’archivio Drive rimane privato e ogni richiesta dati richiede l’invito o l’accesso personale. Non mettere il codice di attivazione o gli accessi personali nei file su GitHub.</p>
+<h2 id="amici">5. Fate la prima prova insieme</h2>
+<ol><li>Un amico apre l’invito in <strong>Safari su iPhone</strong> oppure <strong>Chrome su Android</strong>, sceglie il proprio nome e preme <strong>Entra nel gruppo</strong>. Non deve creare un nuovo account né configurare Google Drive.</li>
+<li>Premete <strong>Scatta un momento → Apri fotocamera</strong>, consentite il permesso e scattate il selfie. La foto viene mostrata in anteprima e non viene inviata finché non premete <strong>Pubblica nel gruppo</strong>.</li>
+<li>Potete aggiungere una frase e il nome del luogo. Il pulsante <strong>Aggiungi posizione GPS</strong> chiede un permesso separato: la posizione viene condivisa soltanto se la aggiungete. Potete rimuoverla prima di pubblicare.</li>
+<li>Su un secondo telefono aprite Momenti e premete <strong>Aggiorna</strong>: la foto deve comparire. Sugli ultimi post il diario si aggiorna automaticamente ogni 30 secondi mentre la sezione resta aperta. La cronologia più vecchia resta ferma finché non premete Aggiorna.</li>
+<li>Controllate che gli amici possano eliminare solo i propri post e che tu, come organizzatore, possa eliminare anche gli altri. Da <strong>Gruppo → Gestisci partecipanti</strong> puoi revocare un accesso.</li>
+<li>Usate sempre lo stesso browser. Se aggiungete l’app alla schermata Home e il telefono conserva un accesso diverso rispetto a Safari, riaprite l’invito nell’ambiente che userete durante il viaggio. Da un altro browser o telefono potrete entrare come una nuova persona.</li></ol>
+<h2 id="programma">Il foglio del programma continua a funzionare</h2>
+<p>La sincronizzazione delle attività è indipendente dall’archivio delle foto. Per configurarla apri <strong>Altro → Info e strumenti → Collega il foglio Google</strong> e segui la <a href="attiva-google.html" target="_blank" rel="noopener">guida del programma condiviso</a>. Se l’hai già configurata, il collegamento rimane memorizzato. Quando copi un invito di Momenti, l’app include anche il servizio del programma configurato sul tuo browser.</p>
+<p>Le spunte delle attività fatte restano personali su ogni dispositivo. Le foto di Momenti sono condivise con il gruppo. Quando manca internet, il programma conserva l’ultima copia ricevuta; nuovi invii e caricamento delle foto richiedono connessione.</p>
+<h2 id="limiti">Gratis, con il tuo spazio disponibile</h2>
+<p>Non serve Supabase e non è necessario acquistare Google One o attivare Google Cloud a pagamento. Le immagini vengono convertite in JPEG sul telefono, senza metadati EXIF, a un massimo di <strong>1200 pixel e 350 KB per foto</strong>. Mille foto da 300 KB occupano circa 300 MB.</p>
+<p>Il diario consente <strong>30 partecipanti, 5000 foto attive e 20 post al giorno per persona</strong>. Sono limiti dell’app per un viaggio di gruppo; Apps Script ha anche quote e limiti di esecuzione propri. In caso di quota temporaneamente esaurita il servizio può bloccarsi: attendi e riprova, senza attivare abbonamenti a pagamento.</p>
+<p>Le foto usano lo spazio del tuo account Google, condiviso anche con Gmail e Google Foto. Eliminare un momento lo rimuove dal diario e sposta la foto nel cestino di Drive. Gli elementi nel cestino possono continuare a occupare spazio finché non vengono eliminati definitivamente da Google o da te.</p>
+<p>A fine viaggio puoi scaricare la cartella dal tuo Drive insieme al registro delle descrizioni, oppure usare <strong>Salva foto</strong> nei singoli post. Per tenerle più sicure conserva una copia anche sul computer. L’app salva immagini compresse: mantieni gli originali sul telefono se vuoi la massima qualità.</p>
+<h2 id="recupero">Accessi, inviti e recupero</h2>
+<p>Gli accessi sono personali per browser e non sono account verificati con email o password. Non usare la modalità privata e non cancellare i dati del browser se vuoi conservare il tuo accesso e la possibilità di eliminare i tuoi vecchi post.</p>
+<p><strong>Se perdi l’accesso da organizzatore:</strong> riapri lo stesso progetto Apps Script, esegui di nuovo <strong>inizializzaMomenti_</strong>, copia il nuovo codice privato e ricollega l’app. La cartella e le foto esistenti vengono conservate; il vecchio accesso da organizzatore viene revocato e il link d’invito viene sostituito. Gli altri partecipanti già entrati restano nel gruppo.</p>
+<p><strong>Per cambiare invito:</strong> nell’app apri <strong>Gruppo → Genera un nuovo invito</strong>. I vecchi link non permetteranno più nuovi ingressi. Gli amici già entrati rimangono collegati. Rimuovere un partecipante revoca subito il suo accesso e cambia anche l’invito, così il vecchio link non consente di rientrare. Le foto già salvate sul suo telefono non possono essere ritirate.</p>
+<h2>Se qualcosa non funziona</h2>
+<ul><li><strong>Codice non valido o già usato:</strong> esegui di nuovo inizializzaMomenti_ e usa l’ultimo codice del registro.</li><li><strong>Google non risponde:</strong> verifica deployment “App web”, “Me”, “Chiunque” e URL /exec. Apri lo stesso /exec in una scheda: deve mostrare “Momenti è collegabile”. Se chiede l’accesso, controlla la visibilità del deployment.</li><li><strong>Modifichi il codice dello script:</strong> dopo aver salvato aggiorna il deployment da “Gestisci deployment” scegliendo una nuova versione, mantenendo lo stesso URL. Se crei un nuovo deployment con un altro URL, dovrai ricollegare l’app e inviare un nuovo invito.</li><li><strong>Permesso fotocamera negato:</strong> usa “Scegli una foto” o riattiva il permesso nelle impostazioni del browser. Un file selezionato riporta l’ora di selezione nell’app, non l’ora originale dello scatto.</li><li><strong>Invio interrotto:</strong> mantieni aperta la schermata e riprova lo stesso invio. Il servizio usa lo stesso identificativo per evitare foto doppie se la prima pubblicazione era riuscita.</li><li><strong>Registro modificato a mano:</strong> le colonne con suffisso _JSON sono dati dell’app, non campi del programma del viaggio. Evita di rinominare schede, colonne o modificare gli accessi. Le attività si modificano nel foglio del programma originale.</li></ul>
+<p class="small">Questa versione include un diario fotografico condiviso; non comprende notifiche push, scatto simultaneo dalle due fotocamere o certificazione della posizione. La cronologia segue l’ora di pubblicazione del server, mostrata nel fuso del Giappone.</p>
+<p class="small"><a href="https://developers.google.com/apps-script/guides/web?hl=it" target="_blank" rel="noopener">App web Google</a> · <a href="https://developers.google.com/apps-script/guides/services/quotas?hl=it" target="_blank" rel="noopener">Quote Apps Script</a> · <a href="https://support.google.com/drive/answer/6374270?hl=it" target="_blank" rel="noopener">Spazio Google</a></p>
+<script>document.querySelector('#copy-code').onclick=async()=>{const el=document.querySelector('#google-code');try{await navigator.clipboard.writeText(el.textContent);document.querySelector('#copy-status').textContent='Codice copiato. Incollalo in un nuovo progetto Google Apps Script.'}catch{el.closest('details').open=true;const range=document.createRange();range.selectNodeContents(el);getSelection().removeAllRanges();getSelection().addRange(range);document.querySelector('#copy-status').textContent='Codice selezionato: premi Ctrl+C oppure usa Copia dal menu del browser.'}};</script></body></html>
