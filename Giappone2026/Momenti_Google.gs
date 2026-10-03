@@ -50,10 +50,19 @@ function doGet(e) {
  return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 function momentBridgeCode_(channel) {
- return "(()=>{'use strict';const channel="+JSON.stringify(channel)+",origin="+JSON.stringify(MOMENTI_ORIGIN)+";const send=(target,data)=>target.postMessage(Object.assign({channel,kind:'momenti-drive'},data),origin);window.addEventListener('message',e=>{const m=e.data;if(e.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request')return;google.script.run.withSuccessHandler(result=>send(e.source,{type:'response',id:m.id,result})).withFailureHandler(()=>send(e.source,{type:'response',id:m.id,result:{ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'}})).momentiRpc(m.payload);});send(window.top,{type:'ready'});})();";
+ return "\n(()=>{'use strict';\n const channel=CHANNEL,origin=ORIGIN,records=new Map();\n const send=data=>{try{window.top.postMessage(JSON.stringify(Object.assign({channel,kind:'momenti-drive'},data)),origin)}catch{}};\n const ready=()=>send({type:'ready',version:2});\n let started=false;const hello=setInterval(()=>{if(!started)ready()},2000);\n function trim(){const now=Date.now();for(const [key,record] of records)if(record.done&&now-record.at>120000)records.delete(key);if(records.size>32)for(const [key,record] of records){if(record.done&&!record.write)records.delete(key);if(records.size<=32)break}}\n window.addEventListener('message',event=>{\n  let m;try{m=typeof event.data==='string'?JSON.parse(event.data):event.data}catch{return}\n  if(event.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request'||typeof m.id!=='string'||m.id.length>100||!m.payload||typeof m.payload!=='object')return;\n  started=true;clearInterval(hello);trim();\n  const previous=records.get(m.id);if(previous){if(previous.done)send(previous.reply);return}\n  const requestId=m.id,record={done:false,at:Date.now(),write:['activate','join','rename','publish','delete','rotate','removeMember'].includes(m.payload.op)};records.set(requestId,record);\n  function finish(result){record.done=true;record.at=Date.now();record.reply={type:'response',id:requestId,result};send(record.reply);trim()}\n  try{google.script.run.withSuccessHandler(value=>{try{if(typeof value!=='string')throw Error('FORMAT');finish(JSON.parse(value))}catch{finish({ok:false,code:'BRIDGE_FORMAT',message:'La risposta Google non è leggibile. Aggiorna il deployment dello script alla nuova versione.'})}}).withFailureHandler(()=>finish({ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'})).momentiRpcJson(JSON.stringify(m.payload))}\n  catch{finish({ok:false,code:'BRIDGE_ERROR',message:'Il collegamento Google non ha avviato la richiesta. Aggiorna lo script e pubblica una nuova versione del deployment.'})}\n });\n ready();\n})();"
+  .replace('CHANNEL',JSON.stringify(channel)).replace('ORIGIN',JSON.stringify(MOMENTI_ORIGIN));
 }
 
 // Unica funzione pubblica di dati. Tutte le operazioni hanno controlli lato server.
+
+/* Il ponte passa testo JSON, con gli stessi controlli del metodo originale. */
+function momentiRpcJson(text) {
+ if(typeof text!=='string'||text.length>1500000)return JSON.stringify({ok:false,code:'INVALID',message:'Richiesta non valida.'});
+ var request;try{request=JSON.parse(text)}catch{return JSON.stringify({ok:false,code:'INVALID',message:'Richiesta non valida.'});}
+ return JSON.stringify(momentiRpc(request));
+}
+
 function momentiRpc(request) {
  try {
   if(!request||typeof request!=='object')throw momentError_('INVALID','Richiesta non valida.');
@@ -81,16 +90,26 @@ function momentMember_(token){if(typeof token!=='string'||!/^[a-f0-9]{64}$/.test
 function momentRotate_(){var token=momentToken_();momentProps_().setProperty('mom_invite_hash',momentHash_(token));return token;}
 function momentWrite_(op,d,token){
  var p=momentProps_(),members=momentRows_('Partecipanti'),ms=momentSheet_('Partecipanti');
+ var accessKey=d.accessKey;if(accessKey!=null&&(typeof accessKey!=='string'||!/^[a-f0-9]{64}$/.test(accessKey)))throw momentError_('INVALID','Accesso del browser non valido.');
+ var accessHash=accessKey?momentHash_(accessKey):'',existingAccess=accessKey?members.find(function(r){return momentSame_(r[1],accessHash);}):null;
  if(op==='activate'){
+  if(existingAccess){
+   if(existingAccess[0]!==p.getProperty('mom_owner')||existingAccess[4]!=='owner'||existingAccess[5]==='1')throw momentError_('ACCESS','Questo accesso non è disponibile.');
+   return {member:{id:existingAccess[0],name:momentParseText_(existingAccess[2]),role:'owner'},token:accessKey,trip:momentTrip_(),recovered:true};
+  }
   if(typeof d.code!=='string'||!/^[a-f0-9]{64}$/.test(d.code)||!momentSame_(momentHash_(d.code),p.getProperty('mom_activation_hash'))||Number(p.getProperty('mom_activation_expires'))<Date.now())throw momentError_('ACTIVATION','Codice di attivazione non valido, già usato o scaduto. Esegui inizializzaMomenti nell’editor per ottenerne uno nuovo.');
-  var name=momentText_(d.name,40,true),owner=p.getProperty('mom_owner'),memberToken=momentToken_(),row=members.findIndex(function(r){return r[0]===owner}),now=new Date().toISOString();
+  var name=momentText_(d.name,40,true),owner=p.getProperty('mom_owner'),memberToken=accessKey||momentToken_(),row=members.findIndex(function(r){return r[0]===owner}),now=new Date().toISOString();
   if(row>=0){CacheService.getScriptCache().remove('member:'+members[row][1]);ms.getRange(row+2,1,1,6).setValues([[owner,momentHash_(memberToken),JSON.stringify(name),members[row][3],'owner','0']]);}else ms.appendRow([owner,momentHash_(memberToken),JSON.stringify(name),now,'owner','0']);
   var invite=momentRotate_();p.deleteProperty('mom_activation_hash');p.deleteProperty('mom_activation_expires');momentRev_();return {member:{id:owner,name:name,role:'owner'},token:memberToken,trip:momentTrip_(),invite:invite};
  }
  if(op==='join'){
   if(typeof d.invite!=='string'||!/^[a-f0-9]{64}$/.test(d.invite)||!momentSame_(momentHash_(d.invite),p.getProperty('mom_invite_hash')))throw momentError_('INVITE','Invito non valido o sostituito. Chiedi il nuovo collegamento all’organizzatore.');
+  if(existingAccess){
+   if(existingAccess[4]!=='member'||existingAccess[5]==='1')throw momentError_('ACCESS','Questo accesso è stato revocato o non è valido.');
+   return {member:{id:existingAccess[0],name:momentParseText_(existingAccess[2]),role:'member'},token:accessKey,trip:momentTrip_(),recovered:true};
+  }
   if(members.filter(function(r){return r[5]!=='1'}).length>=MOMENTI_LIMITS.members)throw momentError_('LIMIT','Il gruppo ha raggiunto 30 partecipanti.');
-  var memberToken=momentToken_(),id=Utilities.getUuid(),name=momentText_(d.name,40,true);ms.appendRow([id,momentHash_(memberToken),JSON.stringify(name),new Date().toISOString(),'member','0']);momentRev_();return {member:{id:id,name:name,role:'member'},token:memberToken,trip:momentTrip_()};
+  var memberToken=accessKey||momentToken_(),id=Utilities.getUuid(),name=momentText_(d.name,40,true);ms.appendRow([id,momentHash_(memberToken),JSON.stringify(name),new Date().toISOString(),'member','0']);momentRev_();return {member:{id:id,name:name,role:'member'},token:memberToken,trip:momentTrip_()};
  }
  var member=momentMember_(token);
  if(op==='rename'){var name=momentText_(d.name,40,true),i=members.findIndex(function(r){return r[0]===member.id});ms.getRange(i+2,3).setValue(JSON.stringify(name));CacheService.getScriptCache().remove('member:'+member.hash);momentRev_();return {name:name};}

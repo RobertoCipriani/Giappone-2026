@@ -3,7 +3,7 @@
 <h1>Le nostre foto.<br>Nel tuo Drive.</h1>
 <p class="lead">Una sola configurazione per Roberto. Gli amici entrano dall’invito e iniziano a raccontare il viaggio.</p>
 <div class="note"><strong>L’app è già pubblicata e aggiornata.</strong> Momenti è disponibile sul sito del viaggio. Per attivare l’archivio fotografico nel tuo Drive, <a href="#script">inizia dal passaggio 2: crea il servizio Google</a>. Il passaggio 1 serve solo per caricare nuovamente l’app in futuro.</div>
-<nav class="steps" aria-label="Passaggi della guida"><a href="#github">1 · GitHub</a><a href="#script">2 · Script Google</a><a href="#inizializza">3 · Archivio</a><a href="#pubblica">4 · Collegamento</a><a href="#amici">5 · Amici</a></nav>
+<nav class="steps" aria-label="Passaggi della guida"><a href="#aggiornamento">Aggiorna il collegamento</a><a href="#github">1 · GitHub</a><a href="#script">2 · Script Google</a><a href="#inizializza">3 · Archivio</a><a href="#pubblica">4 · Collegamento</a><a href="#amici">5 · Amici</a></nav>
 <h2 id="github">1. Carica l’app su GitHub</h2>
 <ol><li>Sul computer apri il pacchetto <strong>Giappone2026_GoogleDrive.zip</strong> e scegli <strong>Estrai tutto</strong>. Troverai una cartella <strong>Giappone2026</strong> e un file <strong>index.html</strong> accanto. Se usi la cartella già preparata sul computer non serve scaricare né estrarre lo ZIP.</li>
 <li>Apri <a href="https://github.com/RobertoCipriani/Giappone-2026" target="_blank" rel="noopener">il tuo repository GitHub</a> e torna alla pagina principale, dove vedi la cartella <strong>Giappone2026</strong>. Il ramo deve essere <strong>main</strong>.</li>
@@ -11,7 +11,7 @@
 <li>Scorri in fondo. Messaggio suggerito: <strong>Aggiunge Momenti con Google Drive</strong>. Scegli <strong>Commit directly to the main branch</strong> e premi <strong>Commit changes</strong>. I file con lo stesso percorso sostituiscono quelli precedenti; non eliminare a mano la cartella del sito.</li>
 <li>Attendi che il caricamento di GitHub Pages sia terminato, poi apri <a href="https://robertocipriani.github.io/Giappone-2026/Giappone2026/" target="_blank" rel="noopener">l’app del viaggio</a>. Deve comparire <strong>Momenti</strong> nella barra delle sezioni. Budget e Info sono dentro <strong>Altro</strong>. Se vedi ancora il sito precedente, ricarica la pagina due volte o chiudi e riapri la scheda.</li></ol>
 <p class="small">Questa guida è disponibile anche dall’app: <strong>Momenti → Apri la guida passo passo</strong>.</p>
-<h2 id="script">2. Crea il servizio nel tuo account Google</h2>
+<h2 id="aggiornamento">Aggiornare il collegamento già attivo</h2><p>Se gli ingressi vengono salvati su Google ma il telefono mostra un timeout, usa il codice aggiornato di questa guida. Conserva la cartella e il registro esistenti.</p><ol><li>Premi <strong>Copia tutto il codice Google</strong>. Nell’editor Apps Script apri <strong>Codice.gs</strong>, clicca nel codice e usa <strong>Ctrl+A, Ctrl+V, Ctrl+S</strong> per sostituirlo e salvarlo.</li><li>Per aggiornare un servizio già configurato <strong>non occorre eseguire inizializzaMomenti</strong>: l’archivio e gli accessi esistenti vengono conservati.</li><li>In alto a destra premi <strong>Esegui il deployment → Gestisci deployment</strong>. Seleziona il deployment attivo, premi l’icona della matita e scegli <strong>Versione → Nuova versione</strong>.</li><li>Premi <strong>Esegui il deployment</strong> e conferma le autorizzazioni eventualmente richieste. L’URL /exec resta lo stesso; puoi conservare i link d’invito già inviati.</li><li>Chiudi e riapri l’app o il link d’invito in Safari. Inserisci lo stesso nome e premi Entra nel gruppo una volta. I nuovi tentativi dello stesso browser riutilizzano l’accesso se la conferma si perde.</li></ol><p class="small">La parte sul sito e la parte Apps Script vanno aggiornate insieme. La correzione è stata verificata con risposte ritardate e perse in test simulati; la prova sul telefono conferma il funzionamento nel browser reale. Le iscrizioni duplicate già create rimangono nel registro: l’organizzatore può rimuovere gli accessi inutilizzati da Gruppo → Gestisci partecipanti dopo aver riconosciuto quelli effettivamente in uso.</p><h2 id="script">2. Crea il servizio nel tuo account Google</h2>
 <ol><li>Apri <a href="https://script.google.com/home/start" target="_blank" rel="noopener">Google Apps Script</a> con l’account che possiede i 6–7 GB liberi su Drive. Crea un <strong>Nuovo progetto</strong> e chiamalo <strong>Momenti Giappone 2026</strong>.</li>
 <li>Lascia aperto il file iniziale <strong>Codice.gs</strong> / <strong>Code.gs</strong>. Seleziona tutto il contenuto iniziale e sostituiscilo con il codice copiato dal pulsante qui sotto. Salva con <strong>Ctrl+S</strong>.</li>
 <li>Usa un progetto nuovo: il servizio di Momenti e il servizio che legge il programma del viaggio sono separati. Non incollare questo codice sopra uno script Google già usato per altre attività.</li></ol>
@@ -68,10 +68,19 @@ function doGet(e) {
  return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 function momentBridgeCode_(channel) {
- return "(()=&gt;{'use strict';const channel="+JSON.stringify(channel)+",origin="+JSON.stringify(MOMENTI_ORIGIN)+";const send=(target,data)=&gt;target.postMessage(Object.assign({channel,kind:'momenti-drive'},data),origin);window.addEventListener('message',e=&gt;{const m=e.data;if(e.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request')return;google.script.run.withSuccessHandler(result=&gt;send(e.source,{type:'response',id:m.id,result})).withFailureHandler(()=&gt;send(e.source,{type:'response',id:m.id,result:{ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'}})).momentiRpc(m.payload);});send(window.top,{type:'ready'});})();";
+ return "\n(()=&gt;{'use strict';\n const channel=CHANNEL,origin=ORIGIN,records=new Map();\n const send=data=&gt;{try{window.top.postMessage(JSON.stringify(Object.assign({channel,kind:'momenti-drive'},data)),origin)}catch{}};\n const ready=()=&gt;send({type:'ready',version:2});\n let started=false;const hello=setInterval(()=&gt;{if(!started)ready()},2000);\n function trim(){const now=Date.now();for(const [key,record] of records)if(record.done&amp;&amp;now-record.at&gt;120000)records.delete(key);if(records.size&gt;32)for(const [key,record] of records){if(record.done&amp;&amp;!record.write)records.delete(key);if(records.size&lt;=32)break}}\n window.addEventListener('message',event=&gt;{\n  let m;try{m=typeof event.data==='string'?JSON.parse(event.data):event.data}catch{return}\n  if(event.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request'||typeof m.id!=='string'||m.id.length&gt;100||!m.payload||typeof m.payload!=='object')return;\n  started=true;clearInterval(hello);trim();\n  const previous=records.get(m.id);if(previous){if(previous.done)send(previous.reply);return}\n  const requestId=m.id,record={done:false,at:Date.now(),write:['activate','join','rename','publish','delete','rotate','removeMember'].includes(m.payload.op)};records.set(requestId,record);\n  function finish(result){record.done=true;record.at=Date.now();record.reply={type:'response',id:requestId,result};send(record.reply);trim()}\n  try{google.script.run.withSuccessHandler(value=&gt;{try{if(typeof value!=='string')throw Error('FORMAT');finish(JSON.parse(value))}catch{finish({ok:false,code:'BRIDGE_FORMAT',message:'La risposta Google non è leggibile. Aggiorna il deployment dello script alla nuova versione.'})}}).withFailureHandler(()=&gt;finish({ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'})).momentiRpcJson(JSON.stringify(m.payload))}\n  catch{finish({ok:false,code:'BRIDGE_ERROR',message:'Il collegamento Google non ha avviato la richiesta. Aggiorna lo script e pubblica una nuova versione del deployment.'})}\n });\n ready();\n})();"
+  .replace('CHANNEL',JSON.stringify(channel)).replace('ORIGIN',JSON.stringify(MOMENTI_ORIGIN));
 }
 
 // Unica funzione pubblica di dati. Tutte le operazioni hanno controlli lato server.
+
+/* Il ponte passa testo JSON, con gli stessi controlli del metodo originale. */
+function momentiRpcJson(text) {
+ if(typeof text!=='string'||text.length&gt;1500000)return JSON.stringify({ok:false,code:'INVALID',message:'Richiesta non valida.'});
+ var request;try{request=JSON.parse(text)}catch{return JSON.stringify({ok:false,code:'INVALID',message:'Richiesta non valida.'});}
+ return JSON.stringify(momentiRpc(request));
+}
+
 function momentiRpc(request) {
  try {
   if(!request||typeof request!=='object')throw momentError_('INVALID','Richiesta non valida.');
@@ -99,16 +108,26 @@ function momentMember_(token){if(typeof token!=='string'||!/^[a-f0-9]{64}$/.test
 function momentRotate_(){var token=momentToken_();momentProps_().setProperty('mom_invite_hash',momentHash_(token));return token;}
 function momentWrite_(op,d,token){
  var p=momentProps_(),members=momentRows_('Partecipanti'),ms=momentSheet_('Partecipanti');
+ var accessKey=d.accessKey;if(accessKey!=null&amp;&amp;(typeof accessKey!=='string'||!/^[a-f0-9]{64}$/.test(accessKey)))throw momentError_('INVALID','Accesso del browser non valido.');
+ var accessHash=accessKey?momentHash_(accessKey):'',existingAccess=accessKey?members.find(function(r){return momentSame_(r[1],accessHash);}):null;
  if(op==='activate'){
+  if(existingAccess){
+   if(existingAccess[0]!==p.getProperty('mom_owner')||existingAccess[4]!=='owner'||existingAccess[5]==='1')throw momentError_('ACCESS','Questo accesso non è disponibile.');
+   return {member:{id:existingAccess[0],name:momentParseText_(existingAccess[2]),role:'owner'},token:accessKey,trip:momentTrip_(),recovered:true};
+  }
   if(typeof d.code!=='string'||!/^[a-f0-9]{64}$/.test(d.code)||!momentSame_(momentHash_(d.code),p.getProperty('mom_activation_hash'))||Number(p.getProperty('mom_activation_expires'))&lt;Date.now())throw momentError_('ACTIVATION','Codice di attivazione non valido, già usato o scaduto. Esegui inizializzaMomenti nell’editor per ottenerne uno nuovo.');
-  var name=momentText_(d.name,40,true),owner=p.getProperty('mom_owner'),memberToken=momentToken_(),row=members.findIndex(function(r){return r[0]===owner}),now=new Date().toISOString();
+  var name=momentText_(d.name,40,true),owner=p.getProperty('mom_owner'),memberToken=accessKey||momentToken_(),row=members.findIndex(function(r){return r[0]===owner}),now=new Date().toISOString();
   if(row&gt;=0){CacheService.getScriptCache().remove('member:'+members[row][1]);ms.getRange(row+2,1,1,6).setValues([[owner,momentHash_(memberToken),JSON.stringify(name),members[row][3],'owner','0']]);}else ms.appendRow([owner,momentHash_(memberToken),JSON.stringify(name),now,'owner','0']);
   var invite=momentRotate_();p.deleteProperty('mom_activation_hash');p.deleteProperty('mom_activation_expires');momentRev_();return {member:{id:owner,name:name,role:'owner'},token:memberToken,trip:momentTrip_(),invite:invite};
  }
  if(op==='join'){
   if(typeof d.invite!=='string'||!/^[a-f0-9]{64}$/.test(d.invite)||!momentSame_(momentHash_(d.invite),p.getProperty('mom_invite_hash')))throw momentError_('INVITE','Invito non valido o sostituito. Chiedi il nuovo collegamento all’organizzatore.');
+  if(existingAccess){
+   if(existingAccess[4]!=='member'||existingAccess[5]==='1')throw momentError_('ACCESS','Questo accesso è stato revocato o non è valido.');
+   return {member:{id:existingAccess[0],name:momentParseText_(existingAccess[2]),role:'member'},token:accessKey,trip:momentTrip_(),recovered:true};
+  }
   if(members.filter(function(r){return r[5]!=='1'}).length&gt;=MOMENTI_LIMITS.members)throw momentError_('LIMIT','Il gruppo ha raggiunto 30 partecipanti.');
-  var memberToken=momentToken_(),id=Utilities.getUuid(),name=momentText_(d.name,40,true);ms.appendRow([id,momentHash_(memberToken),JSON.stringify(name),new Date().toISOString(),'member','0']);momentRev_();return {member:{id:id,name:name,role:'member'},token:memberToken,trip:momentTrip_()};
+  var memberToken=accessKey||momentToken_(),id=Utilities.getUuid(),name=momentText_(d.name,40,true);ms.appendRow([id,momentHash_(memberToken),JSON.stringify(name),new Date().toISOString(),'member','0']);momentRev_();return {member:{id:id,name:name,role:'member'},token:memberToken,trip:momentTrip_()};
  }
  var member=momentMember_(token);
  if(op==='rename'){var name=momentText_(d.name,40,true),i=members.findIndex(function(r){return r[0]===member.id});ms.getRange(i+2,3).setValue(JSON.stringify(name));CacheService.getScriptCache().remove('member:'+member.hash);momentRev_();return {name:name};}
