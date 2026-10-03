@@ -1,9 +1,9 @@
 {
   "format": "giappone-programma-condiviso-v1",
-  "published": false,
-  "revision": "setup-2026-10-03",
-  "updatedAt": "2026-10-03T09:22:13.451Z",
-  "editor": "Setup",
+  "published": true,
+  "revision": "d935c8da-3326-4111-81fc-5c6d167e323a",
+  "updatedAt": "2026-10-03T09:47:39.670Z",
+  "editor": "Leonardo",
   "program": {
     "appId": "roberto-giappone-2026",
     "schemaVersion": 1,
@@ -27,10 +27,10 @@
         "events": [
           {
             "id": "e2-33",
+            "title": "Volo ITAirways",
             "time": "15:00",
-            "title": "Partenza 15:05",
             "kind": "trasporto",
-            "notes": "",
+            "notes": "Partenza 15:05 - Durata 12:30h",
             "links": [],
             "bookingId": null,
             "done": false
@@ -50,19 +50,9 @@
         "transportCost": 12.208,
         "events": [
           {
-            "id": "e3-26",
-            "time": "11:30",
-            "title": "Arrivo 11:20",
-            "kind": "trasporto",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e3-27",
-            "time": "12:00",
             "title": "Controlli e dogana\nQR Code pronto (vjw.digital.go.jp/)",
+            "time": "12:00",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -71,8 +61,8 @@
           },
           {
             "id": "e3-29",
-            "time": "13:00",
             "title": "🚇 40m – Keikyū Airport Line - 12 stop - 550¥\nHaneda T3 station ➡️ Asakusabashi (oppure Higashi-Nihombashi) \nPartenze ogni 15m circa, un treno si ferma a Asakusa e il successivo a Higashi in modo alternato.",
+            "time": "13:00",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -82,19 +72,9 @@
             "done": false
           },
           {
-            "id": "e3-30",
-            "time": "13:30",
-            "title": "Hotel",
-            "kind": "nota",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e3-31",
-            "time": "14:00",
-            "title": "🚇 4m – Asakusa Line - 2 stop - 180¥\nAsakusabashi ➡️ Asakusa",
+            "id": "e3-37",
+            "title": "🚇 7m – Asakusa Line - 4 stop – ¥ alla fine\r\nOshiage Sta.(SKYTREE) ➡️ Asakusabashi\r\n\r\nCambio treno\r\n🚇 3m – Chūō-Sōbu Line - 1 stop - 340¥\r\nAsakusabashi ➡️ Akihabara",
+            "time": "17:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -102,19 +82,49 @@
             "done": false
           },
           {
-            "id": "e3-32",
-            "time": "14:30",
-            "title": "Pranzo a Senso Ji",
-            "kind": "pasto",
+            "id": "e3-26",
+            "title": "Arrivo 11:20",
+            "time": "11:20",
+            "kind": "trasporto",
             "notes": "",
             "links": [],
             "bookingId": null,
             "done": false
           },
           {
+            "id": "e3-31",
+            "title": "🚇 20m – Asakusa Line - 2 stop - 180¥Asakusabashi ➡️ Asakusa",
+            "time": "14:00",
+            "kind": "trasporto",
+            "notes": "",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-30",
+            "title": "Hotel Toyoko INN Akihabara Kanda (Deposito bagagli)",
+            "time": "13:40",
+            "kind": "nota",
+            "notes": "Facciamo deposito bagagli, \nCheck in dalle 15:00 Check out entro le 10:00",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e3-32",
+            "title": "Pranzo Bancarelle Nakamise-dori",
+            "time": "14:30",
+            "kind": "pasto",
+            "notes": "🍡 Snack Dolci\n• Age-Manju: Tortine pastellate e fritte al momento, ripiene di fagioli rossi o matcha. Prezzo: ¥150 – ¥200 l'uno\n• Ningyo-yaki: Dolcetti di pan di spagna caldi a forma di lanterna o pagoda, ripieni di fagioli rossi. Prezzo: ¥100 – ¥150 l'uno (spesso venduti in piccoli sacchetti da 4-8 pezzi per ¥500-¥1000)\n• Kibi-dango: Spiedini di piccoli gnocchi di miglio caldi ricoperti di farina di soia tostata. Prezzo: ¥400 – ¥450 (per una confezione da 5 spiedini)\n• Kaminari Okoshi: Riso soffiato croccante unito da sciroppo di zucchero e arachidi. Prezzo: ¥500 – ¥800 a sacchetto\n\n🍘 Snack Salati\n• Senbei: Grandi cracker di riso grigliati al carbone sul momento e spennellati di salsa di soia. Prezzo: ¥100 – ¥200 l'uno\n• Mitarashi Dango: Spiedini di gnocchi di riso grigliati e coperti da una glassa lucida di soia dolce. Prezzo: ¥150 – ¥200 a spiedino",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
             "id": "e3-34",
+            "title": "20m a piedi - Senso Ji ➡️ Skytree",
             "time": "15:30",
-            "title": "Senso Ji ➡️ Skytree 20m a piedi",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -124,43 +134,33 @@
             "done": false
           },
           {
-            "id": "e3-35",
-            "time": "16:00",
-            "title": "Tokyo Skytree",
-            "kind": "attivita",
-            "notes": "",
-            "links": [],
-            "bookingId": "b2",
-            "done": false
-          },
-          {
-            "id": "e3-37",
-            "time": "17:00",
-            "title": "🚇 7m – Asakusa Line - 4 stop – ¥ alla fine\r\nOshiage Sta.(SKYTREE) ➡️ Asakusabashi\r\n\r\nCambio treno\r\n🚇 3m – Chūō-Sōbu Line - 1 stop - 340¥\r\nAsakusabashi ➡️ Akihabara",
-            "kind": "trasporto",
-            "notes": "",
+            "id": "e3-43",
+            "title": "Cena ad Akihabara",
+            "time": "20:00",
+            "kind": "pasto",
+            "notes": "• Ramen al Curry da Calut: Se vuoi provare una specialità del quartiere, il ramen denso e saporito a base di curry giapponese è un must assoluto per i locali.\n• Tonkatsu da Marugo: Uno dei ristoranti di cotoletta di maiale fritta (tonkatsu) più famosi di tutta Tokyo. C'è spesso fila, ma la carne è incredibilmente tenera e succosa.\n• Soba da Kanda Matsuya: Se cerchi un'atmosfera tradizionale a breve distanza dai palazzi moderni, questa storica bottega serve ottimi spaghetti di grano saraceno in un edificio in legno della vecchia Tokyo.\n• Ramen da Kyushu Jangara: Celebre per il suo tonkotsu ramen (brodo denso di maiale) saporito e cremoso, molto amato dagli appassionati di anime e frequentatori del quartiere.",
             "links": [],
             "bookingId": null,
             "done": false
           },
           {
             "id": "e3-38",
-            "time": "17:30",
             "title": "Akihabara",
+            "time": "17:30",
             "kind": "attivita",
-            "notes": "",
+            "notes": "Nota anche come Electric Town (Akiba), è il cuore pulsante della cultura otaku, dei manga, degli anime e dell'elettronica a Tokyo.\n\n• Esplorare i templi della cultura Otaku: Entra da Radio Kaikan (subito fuori dalla stazione) o da Mandarake Complex, palazzi di oltre 8 piani straripanti di action figure, manga rari, carte collezionabili e gadget.\n• Fare acquisti di elettronica: Visita l'immenso Yodobashi Camera Akihabara, uno dei negozi di elettronica e tecnologia più grandi al mondo, oppure caccia componenti retrò da Hardoff, bookoff, o rare item studio.\n• Giocare nelle sale giochi (Arcade): Prova i videogiochi musicali, i simulatori o i famosi \"artigli\" (UFO Catchers) nei multipiani di GiGO Akihabara o nei centri dedicati al retrogaming come Super Potato.",
             "links": [],
             "bookingId": null,
             "done": false
           },
           {
-            "id": "e3-43",
-            "time": "20:00",
-            "title": "Cena ad Akihabara",
-            "kind": "pasto",
-            "notes": "",
+            "id": "e3-35",
+            "title": "Tokyo Skytree",
+            "time": "16:00",
+            "kind": "attivita",
+            "notes": "Vedere il tramonto su Tokyo dal Tembo deck posto a 350m di altezza.\nI nostri ingressi:\n4 Persone 16/16:29\n7 Persone 16:30/17",
             "links": [],
-            "bookingId": null,
+            "bookingId": "b2",
             "done": false
           }
         ]
@@ -179,8 +179,8 @@
         "events": [
           {
             "id": "e4-21",
-            "time": "09:00",
             "title": "Hotel Tokyo Tower 36min",
+            "time": "09:00",
             "kind": "attivita",
             "notes": "",
             "links": [
@@ -190,19 +190,9 @@
             "done": false
           },
           {
-            "id": "e4-22",
-            "time": "09:30",
-            "title": "Tokyo Tower",
-            "kind": "attivita",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e4-25",
-            "time": "11:00",
             "title": "Tokyo Tower ➡️Ginza 15m",
+            "time": "11:00",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -212,39 +202,9 @@
             "done": false
           },
           {
-            "id": "e4-26",
-            "time": "11:30",
-            "title": "Ginza",
-            "kind": "attivita",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e4-27",
-            "time": "12:00",
-            "title": "Passeggiata e shopping",
-            "kind": "attivita",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
-            "id": "e4-28",
-            "time": "12:30",
-            "title": "Uniqlo",
-            "kind": "attivita",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e4-29",
-            "time": "13:00",
             "title": "Pranzo a Ginza",
+            "time": "13:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -252,19 +212,9 @@
             "done": false
           },
           {
-            "id": "e4-30",
-            "time": "13:30",
-            "title": "Ginza Itoya",
-            "kind": "attivita",
-            "notes": "",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e4-31",
-            "time": "14:00",
             "title": "altri negozi",
+            "time": "14:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -273,8 +223,8 @@
           },
           {
             "id": "e4-33",
-            "time": "15:00",
             "title": "Ginza ➡️ Hotel 16min",
+            "time": "15:00",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -285,8 +235,8 @@
           },
           {
             "id": "e4-34",
-            "time": "15:30",
             "title": "Hotel",
+            "time": "15:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -295,8 +245,8 @@
           },
           {
             "id": "e4-35",
-            "time": "16:00",
             "title": "Hotel ➡️Shibuya 36m",
+            "time": "16:00",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -307,8 +257,8 @@
           },
           {
             "id": "e4-37",
-            "time": "17:00",
             "title": "Shibuya",
+            "time": "17:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -317,13 +267,33 @@
           },
           {
             "id": "e4-43",
-            "time": "20:00",
             "title": "Cena a Ichiran",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [
               "https://maps.app.goo.gl/zPME4Mgd5qgnFBJUA"
             ],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e4-26",
+            "title": "Passeggiata e shopping a Ginza",
+            "time": "11:30",
+            "kind": "attivita",
+            "notes": "Elegante quartiere dello shopping di Tokyo, famoso per i grandi magazzini, le boutique e l'architettura contemporanea.\n\n- UNIQLO Ginza — Grande flagship store del celebre marchio giapponese di abbigliamento, distribuito su numerosi piani.\n- Kyukyodo — Storica bottega fondata nel 1663, specializzata in profumi tradizionali, carta giapponese, calligrafia e articoli d'arte.\n- Ginza Itoya — Storica cartoleria giapponese di 12 piani, con penne, quaderni, articoli per la scrittura e oggetti di design.\n- MUJI Ginza — Flagship store di MUJI con abbigliamento, articoli per la casa, cancelleria e prodotti dal caratteristico design minimalista giapponese.\n- Ginza Six — Grande complesso commerciale contemporaneo con negozi, ristoranti e una terrazza panoramica con vista sulla città.",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e4-22",
+            "title": "Passeggiata intorno alla Tokyo Tower",
+            "time": "09:36",
+            "kind": "attivita",
+            "notes": "– Zojo-ji — Visita del grande tempio buddhista legato alla famiglia Tokugawa, con la caratteristica porta Sangedatsumon e la Tokyo Tower sullo sfondo.\n– Shiba Park — Passeggiata nel verde tra alberi, piccoli santuari e scorci particolarmente belli sulla Tokyo Tower.\n– Shiba Toshogu — Piccolo santuario dedicato a Tokugawa Ieyasu, immerso nel parco e caratterizzato da un grande ginkgo secolare.\n– Tokyo Tower — Passeggiata fino alla base della torre, con tempo per fotografie e per ammirare da vicino i suoi 333 metri.\n– Akabanebashi / vista sulla Tokyo Tower — Ultime fotografie dalla zona dell'incrocio di Akabanebashi, indicato anche dalla Tokyo Tower come uno dei punti fotografici d'accesso alla torre.",
+            "links": [],
             "bookingId": null,
             "done": false
           }
@@ -343,8 +313,8 @@
         "events": [
           {
             "id": "e5-19",
-            "time": "08:00",
             "title": "Tokyo ➡️Kyoto\n2:40h",
+            "time": "08:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -353,8 +323,8 @@
           },
           {
             "id": "e5-20",
-            "time": "08:30",
             "title": "Partenza 08:18",
+            "time": "08:30",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -363,8 +333,8 @@
           },
           {
             "id": "e5-21",
-            "time": "09:00",
             "title": "Nozomi 331 - Bin 17",
+            "time": "09:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -373,8 +343,8 @@
           },
           {
             "id": "e5-23",
-            "time": "10:00",
             "title": "Arrivo 10:29",
+            "time": "10:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -383,8 +353,8 @@
           },
           {
             "id": "e5-24",
-            "time": "10:30",
             "title": "30 min da stazione a hotel",
+            "time": "10:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -393,8 +363,8 @@
           },
           {
             "id": "e5-25",
-            "time": "11:00",
             "title": "Check in hotel",
+            "time": "11:00",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -403,8 +373,8 @@
           },
           {
             "id": "e5-27",
-            "time": "12:00",
             "title": "sul posto decidere come andare osaka",
+            "time": "12:00",
             "kind": "nota",
             "notes": "",
             "links": [
@@ -415,8 +385,8 @@
           },
           {
             "id": "e5-29",
-            "time": "13:00",
             "title": "Pranzo a",
+            "time": "13:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -425,8 +395,8 @@
           },
           {
             "id": "e5-31",
-            "time": "14:00",
             "title": "Castello di Osaka",
+            "time": "14:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -435,8 +405,8 @@
           },
           {
             "id": "e5-32",
-            "time": "14:30",
             "title": "(giardino)",
+            "time": "14:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -445,8 +415,8 @@
           },
           {
             "id": "e5-36",
-            "time": "16:30",
             "title": "Dotonbori",
+            "time": "16:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -455,8 +425,8 @@
           },
           {
             "id": "e5-43",
-            "time": "20:00",
             "title": "Cena street food dotonbori",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -465,8 +435,8 @@
           },
           {
             "id": "e5-45",
-            "time": "21:00",
             "title": "rientro a kyoto",
+            "time": "21:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -489,8 +459,8 @@
         "events": [
           {
             "id": "e6-19",
-            "time": "08:00",
             "title": "Arashiyama bamboo",
+            "time": "08:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -499,8 +469,8 @@
           },
           {
             "id": "e6-23",
-            "time": "10:00",
             "title": "Otagi Nenbutsuji Temple",
+            "time": "10:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -509,8 +479,8 @@
           },
           {
             "id": "e6-28",
-            "time": "12:30",
             "title": "Otagi ➡️ Iwatayama 15m",
+            "time": "12:30",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -521,8 +491,8 @@
           },
           {
             "id": "e6-29",
-            "time": "13:00",
             "title": "Pranzo streetfood al ponte",
+            "time": "13:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -531,8 +501,8 @@
           },
           {
             "id": "e6-31",
-            "time": "14:00",
             "title": "Iwatayama Monkey Park",
+            "time": "14:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -541,8 +511,8 @@
           },
           {
             "id": "e6-32",
-            "time": "14:30",
             "title": "4,5€ solo contanti",
+            "time": "14:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -551,8 +521,8 @@
           },
           {
             "id": "e6-34",
-            "time": "15:30",
             "title": "the",
+            "time": "15:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -561,8 +531,8 @@
           },
           {
             "id": "e6-39",
-            "time": "18:00",
             "title": "Workshop kintsugi",
+            "time": "18:00",
             "kind": "attivita",
             "notes": "",
             "links": [
@@ -573,8 +543,8 @@
           },
           {
             "id": "e6-42",
-            "time": "19:30",
             "title": "Cena da motoi Gyoza (altre opzioni in zona)",
+            "time": "19:30",
             "kind": "pasto",
             "notes": "",
             "links": [
@@ -585,8 +555,8 @@
           },
           {
             "id": "e6-44",
-            "time": "20:30",
             "title": "Spettacolo di sumo",
+            "time": "20:30",
             "kind": "attivita",
             "notes": "",
             "links": [
@@ -611,8 +581,8 @@
         "events": [
           {
             "id": "e7-17",
-            "time": "07:00",
             "title": "Senbon Tori e fujimini nari",
+            "time": "07:00",
             "kind": "attivita",
             "notes": "",
             "links": [
@@ -623,8 +593,8 @@
           },
           {
             "id": "e7-19",
-            "time": "08:00",
             "title": "Kyoto ➡️Nara 1:15h",
+            "time": "08:00",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -635,8 +605,8 @@
           },
           {
             "id": "e7-21",
-            "time": "09:00",
             "title": "Nara",
+            "time": "09:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -645,8 +615,8 @@
           },
           {
             "id": "e7-27",
-            "time": "12:00",
             "title": "Pranzo a Hisaya",
+            "time": "12:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -655,8 +625,8 @@
           },
           {
             "id": "e7-29",
-            "time": "13:00",
             "title": "Nara ➡️Kyoto 1:15h",
+            "time": "13:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -665,8 +635,8 @@
           },
           {
             "id": "e7-31",
-            "time": "14:00",
             "title": "Gion",
+            "time": "14:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -675,8 +645,8 @@
           },
           {
             "id": "e7-34",
-            "time": "15:30",
             "title": "Yasui Konpira-gu Shrine",
+            "time": "15:30",
             "kind": "attivita",
             "notes": "",
             "links": [
@@ -687,8 +657,8 @@
           },
           {
             "id": "e7-37",
-            "time": "17:00",
             "title": "kiyomizu dera",
+            "time": "17:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -697,8 +667,8 @@
           },
           {
             "id": "e7-39",
-            "time": "18:00",
             "title": "Sera a Gion (quartiere storico)",
+            "time": "18:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -707,8 +677,8 @@
           },
           {
             "id": "e7-43",
-            "time": "20:00",
             "title": "Cena a potocho park",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -731,8 +701,8 @@
         "events": [
           {
             "id": "e8-19",
-            "time": "08:00",
             "title": "Kyoto ➡️Kanazawa\n2:20h",
+            "time": "08:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -741,8 +711,8 @@
           },
           {
             "id": "e8-24",
-            "time": "10:30",
             "title": "15 min a piedi da stazione",
+            "time": "10:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -751,8 +721,8 @@
           },
           {
             "id": "e8-25",
-            "time": "11:00",
             "title": "Check in casa",
+            "time": "11:00",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -761,8 +731,8 @@
           },
           {
             "id": "e8-26",
-            "time": "11:30",
             "title": "Higashiyama district",
+            "time": "11:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -771,8 +741,8 @@
           },
           {
             "id": "e8-27",
-            "time": "12:00",
             "title": "Passeggiata",
+            "time": "12:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -781,8 +751,8 @@
           },
           {
             "id": "e8-29",
-            "time": "13:00",
             "title": "Pranzo a homicho market",
+            "time": "13:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -791,8 +761,8 @@
           },
           {
             "id": "e8-30",
-            "time": "13:30",
             "title": "Visita al castello (anche solo da fuori dentro e' poca roba)",
+            "time": "13:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -801,8 +771,8 @@
           },
           {
             "id": "e8-32",
-            "time": "14:30",
             "title": "Giardino Kenroku en",
+            "time": "14:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -811,8 +781,8 @@
           },
           {
             "id": "e8-35",
-            "time": "16:00",
             "title": "Cerimonia del te 16:00",
+            "time": "16:00",
             "kind": "attivita",
             "notes": "",
             "links": [
@@ -823,8 +793,8 @@
           },
           {
             "id": "e8-43",
-            "time": "20:00",
             "title": "Cena a casa",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -847,8 +817,8 @@
         "events": [
           {
             "id": "e9-17",
-            "time": "07:00",
             "title": "bus da prenotare",
+            "time": "07:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -857,8 +827,8 @@
           },
           {
             "id": "e9-18",
-            "time": "07:30",
             "title": "Kanazawa ➡️Shirakawa Go 1h",
+            "time": "07:30",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -869,8 +839,8 @@
           },
           {
             "id": "e9-19",
-            "time": "08:00",
             "title": "Shirakawa Go",
+            "time": "08:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -879,8 +849,8 @@
           },
           {
             "id": "e9-20",
-            "time": "08:30",
             "title": "Deposito bagagli al terminal bus",
+            "time": "08:30",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -889,8 +859,8 @@
           },
           {
             "id": "e9-21",
-            "time": "09:00",
             "title": "1. observation deck",
+            "time": "09:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -899,8 +869,8 @@
           },
           {
             "id": "e9-23",
-            "time": "10:00",
             "title": "2. colazione",
+            "time": "10:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -909,8 +879,8 @@
           },
           {
             "id": "e9-25",
-            "time": "11:00",
             "title": "3. three houses",
+            "time": "11:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -919,8 +889,8 @@
           },
           {
             "id": "e9-27",
-            "time": "12:00",
             "title": "4. Wooden barn",
+            "time": "12:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -929,8 +899,8 @@
           },
           {
             "id": "e9-29",
-            "time": "13:00",
             "title": "Pranzo a Shirakawa Go",
+            "time": "13:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -939,8 +909,8 @@
           },
           {
             "id": "e9-34",
-            "time": "15:30",
             "title": "Shirakawa Go ➡️Takayama 1h",
+            "time": "15:30",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -951,8 +921,8 @@
           },
           {
             "id": "e9-35",
-            "time": "16:00",
             "title": "5 min a piedi",
+            "time": "16:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -961,8 +931,8 @@
           },
           {
             "id": "e9-36",
-            "time": "16:30",
             "title": "Check in casa",
+            "time": "16:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -971,8 +941,8 @@
           },
           {
             "id": "e9-43",
-            "time": "20:00",
             "title": "Cena a",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -995,8 +965,8 @@
         "events": [
           {
             "id": "e10-19",
-            "time": "08:00",
             "title": "Patenza 07:50 \n(volendo anche 7:00)",
+            "time": "08:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1005,8 +975,8 @@
           },
           {
             "id": "e10-22",
-            "time": "09:30",
             "title": "Arrivo 9:24",
+            "time": "09:30",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1015,8 +985,8 @@
           },
           {
             "id": "e10-24",
-            "time": "10:30",
             "title": "Gita a Kamikochi",
+            "time": "10:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1025,8 +995,8 @@
           },
           {
             "id": "e10-25",
-            "time": "11:00",
             "title": "15km a piedi (max 7-8h )",
+            "time": "11:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1035,8 +1005,8 @@
           },
           {
             "id": "e10-26",
-            "time": "11:30",
             "title": "Itinerario Wikiloc",
+            "time": "11:30",
             "kind": "attivita",
             "notes": "",
             "links": [
@@ -1047,8 +1017,8 @@
           },
           {
             "id": "e10-30",
-            "time": "13:30",
             "title": "Pranzo a Kappa Bridge",
+            "time": "13:30",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1057,8 +1027,8 @@
           },
           {
             "id": "e10-39",
-            "time": "18:00",
             "title": "BUS Ultima partenza 17:30",
+            "time": "18:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1067,8 +1037,8 @@
           },
           {
             "id": "e10-43",
-            "time": "20:00",
             "title": "Cena a casa",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1091,8 +1061,8 @@
         "events": [
           {
             "id": "e11-20",
-            "time": "08:30",
             "title": "Miyagawa morning market",
+            "time": "08:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1101,8 +1071,8 @@
           },
           {
             "id": "e11-23",
-            "time": "10:00",
             "title": "Sanmachi suji",
+            "time": "10:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1111,8 +1081,8 @@
           },
           {
             "id": "e11-24",
-            "time": "10:30",
             "title": "Funasawa Sake brewery",
+            "time": "10:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1121,8 +1091,8 @@
           },
           {
             "id": "e11-25",
-            "time": "11:00",
             "title": "Takayama Jinya",
+            "time": "11:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1131,8 +1101,8 @@
           },
           {
             "id": "e11-27",
-            "time": "12:00",
             "title": "Pranzo con hidagyu Aji-no-Yohei o Kyoya (tipico e atmosfera intima)",
+            "time": "12:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1141,8 +1111,8 @@
           },
           {
             "id": "e11-29",
-            "time": "13:00",
             "title": "Takayama - Hida 45m",
+            "time": "13:00",
             "kind": "attivita",
             "notes": "",
             "links": [
@@ -1153,8 +1123,8 @@
           },
           {
             "id": "e11-30",
-            "time": "13:30",
             "title": "Hida Furukawa",
+            "time": "13:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1163,8 +1133,8 @@
           },
           {
             "id": "e11-31",
-            "time": "14:00",
             "title": "canali artificiali (Shirakabe Dozogai)",
+            "time": "14:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1173,8 +1143,8 @@
           },
           {
             "id": "e11-32",
-            "time": "14:30",
             "title": "Esperienza Kumihimo Hida Furukawa Sakura Gift Shop",
+            "time": "14:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1183,8 +1153,8 @@
           },
           {
             "id": "e11-34",
-            "time": "15:30",
             "title": "Esperienza laboratori di artigianato del legno Hida Shokunin Seikatsu",
+            "time": "15:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1193,8 +1163,8 @@
           },
           {
             "id": "e11-40",
-            "time": "18:30",
             "title": "Hida - Takayama 45m",
+            "time": "18:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1203,8 +1173,8 @@
           },
           {
             "id": "e11-43",
-            "time": "20:00",
             "title": "Cena a casa",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1227,8 +1197,8 @@
         "events": [
           {
             "id": "e12-20",
-            "time": "08:30",
             "title": "Limon BUS verso mt. fuji",
+            "time": "08:30",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1237,8 +1207,8 @@
           },
           {
             "id": "e12-21",
-            "time": "09:00",
             "title": "Ritrovo Stazione takayama 8:40",
+            "time": "09:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1247,8 +1217,8 @@
           },
           {
             "id": "e12-22",
-            "time": "09:30",
             "title": "Takayama 8:30 ➡️ Fuji 14:00",
+            "time": "09:30",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -1259,8 +1229,8 @@
           },
           {
             "id": "e12-23",
-            "time": "10:00",
             "title": "54 euro",
+            "time": "10:00",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -1269,8 +1239,8 @@
           },
           {
             "id": "e12-29",
-            "time": "13:00",
             "title": "Pranzo al sacco",
+            "time": "13:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1279,8 +1249,8 @@
           },
           {
             "id": "e12-32",
-            "time": "14:30",
             "title": "Contatta casa per trasporto da staz.",
+            "time": "14:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -1289,8 +1259,8 @@
           },
           {
             "id": "e12-33",
-            "time": "15:00",
             "title": "Check in",
+            "time": "15:00",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -1299,8 +1269,8 @@
           },
           {
             "id": "e12-34",
-            "time": "15:30",
             "title": "Mount fuji distant worship site",
+            "time": "15:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1309,8 +1279,8 @@
           },
           {
             "id": "e12-37",
-            "time": "17:00",
             "title": "Momijikadō",
+            "time": "17:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1319,8 +1289,8 @@
           },
           {
             "id": "e12-41",
-            "time": "19:00",
             "title": "Cena a Hoto Fudo",
+            "time": "19:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1343,8 +1313,8 @@
         "events": [
           {
             "id": "e13-19",
-            "time": "08:00",
             "title": "Giornata in bicicletta",
+            "time": "08:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1353,8 +1323,8 @@
           },
           {
             "id": "e13-20",
-            "time": "08:30",
             "title": "Anello intorno al lago",
+            "time": "08:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1363,8 +1333,8 @@
           },
           {
             "id": "e13-21",
-            "time": "09:00",
             "title": "Itinerario tipo",
+            "time": "09:00",
             "kind": "nota",
             "notes": "",
             "links": [
@@ -1375,8 +1345,8 @@
           },
           {
             "id": "e13-29",
-            "time": "13:00",
             "title": "Pranzo a",
+            "time": "13:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1385,8 +1355,8 @@
           },
           {
             "id": "e13-43",
-            "time": "20:00",
             "title": "Cena a",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1409,8 +1379,8 @@
         "events": [
           {
             "id": "e14-17",
-            "time": "07:00",
             "title": "Kawaguichiko ➡️Fujiyoshida 15min 310Yen",
+            "time": "07:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1419,8 +1389,8 @@
           },
           {
             "id": "e14-18",
-            "time": "07:30",
             "title": "Fujiyoshida",
+            "time": "07:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1429,8 +1399,8 @@
           },
           {
             "id": "e14-19",
-            "time": "08:00",
             "title": "Chureito Pagoda",
+            "time": "08:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1439,8 +1409,8 @@
           },
           {
             "id": "e14-21",
-            "time": "09:00",
             "title": "Honcho Street",
+            "time": "09:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1449,8 +1419,8 @@
           },
           {
             "id": "e14-22",
-            "time": "09:30",
             "title": "Foto e Passegiata",
+            "time": "09:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1459,8 +1429,8 @@
           },
           {
             "id": "e14-29",
-            "time": "13:00",
             "title": "Pranzo al sacco da mangiare sul treno",
+            "time": "13:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1469,8 +1439,8 @@
           },
           {
             "id": "e14-31",
-            "time": "14:00",
             "title": "Prenota esattamente 1 mese prima 9 ott",
+            "time": "14:00",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -1479,8 +1449,8 @@
           },
           {
             "id": "e14-32",
-            "time": "14:30",
             "title": "Treno Fuji Excursion Kawaguchiko ⇄ Shinjuku/Tokyo 2h",
+            "time": "14:30",
             "kind": "trasporto",
             "notes": "",
             "links": [
@@ -1491,8 +1461,8 @@
           },
           {
             "id": "e14-34",
-            "time": "15:30",
             "title": "14:08 - 16:08",
+            "time": "15:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1501,8 +1471,8 @@
           },
           {
             "id": "e14-35",
-            "time": "16:00",
             "title": "shinjuku ➡️ hotel 40min",
+            "time": "16:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1511,8 +1481,8 @@
           },
           {
             "id": "e14-37",
-            "time": "17:00",
             "title": "Check in hotel",
+            "time": "17:00",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -1521,8 +1491,8 @@
           },
           {
             "id": "e14-40",
-            "time": "18:30",
             "title": "hotel ➡️ teamlabs 40min",
+            "time": "18:30",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1531,8 +1501,8 @@
           },
           {
             "id": "e14-41",
-            "time": "19:00",
             "title": "teamLab Planets",
+            "time": "19:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1555,8 +1525,8 @@
         "events": [
           {
             "id": "e15-17",
-            "time": "07:00",
             "title": "Tokyo ➡️ Fujisawa 50min 990Y",
+            "time": "07:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1565,8 +1535,8 @@
           },
           {
             "id": "e15-18",
-            "time": "07:30",
             "title": "compra enoden pass",
+            "time": "07:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1575,8 +1545,8 @@
           },
           {
             "id": "e15-19",
-            "time": "08:00",
             "title": "Kamakura",
+            "time": "08:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1585,8 +1555,8 @@
           },
           {
             "id": "e15-20",
-            "time": "08:30",
             "title": "foto sul mare a Kamakura-koko-mae",
+            "time": "08:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1595,8 +1565,8 @@
           },
           {
             "id": "e15-21",
-            "time": "09:00",
             "title": "🎋Hokuji bamboo forest",
+            "time": "09:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1605,8 +1575,8 @@
           },
           {
             "id": "e15-22",
-            "time": "09:30",
             "title": "400Y (chiuso se piove)",
+            "time": "09:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -1615,8 +1585,8 @@
           },
           {
             "id": "e15-24",
-            "time": "10:30",
             "title": "🛍️Komachi dori street",
+            "time": "10:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1625,8 +1595,8 @@
           },
           {
             "id": "e15-25",
-            "time": "11:00",
             "title": "(shopping + pranzo)",
+            "time": "11:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1635,8 +1605,8 @@
           },
           {
             "id": "e15-28",
-            "time": "12:30",
             "title": "Pranzo a  komachi",
+            "time": "12:30",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1645,8 +1615,8 @@
           },
           {
             "id": "e15-29",
-            "time": "13:00",
             "title": "Grande Buddha al Kotoku-in",
+            "time": "13:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1655,8 +1625,8 @@
           },
           {
             "id": "e15-32",
-            "time": "14:30",
             "title": "⛩️Hase-Dera tempio buddista 400Y",
+            "time": "14:30",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1665,8 +1635,8 @@
           },
           {
             "id": "e15-35",
-            "time": "16:00",
             "title": "🌅Foto vista mare al tramonto",
+            "time": "16:00",
             "kind": "attivita",
             "notes": "",
             "links": [],
@@ -1675,8 +1645,8 @@
           },
           {
             "id": "e15-39",
-            "time": "18:00",
             "title": "Fujisawa ➡️ Tokyo 50min 990Y",
+            "time": "18:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1685,8 +1655,8 @@
           },
           {
             "id": "e15-43",
-            "time": "20:00",
             "title": "Cena a",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1709,8 +1679,8 @@
         "events": [
           {
             "id": "e16-26",
-            "time": "11:30",
             "title": "Giorno Libero",
+            "time": "11:30",
             "kind": "nota",
             "notes": "",
             "links": [],
@@ -1719,8 +1689,8 @@
           },
           {
             "id": "e16-43",
-            "time": "20:00",
             "title": "Cena a",
+            "time": "20:00",
             "kind": "pasto",
             "notes": "",
             "links": [],
@@ -1743,8 +1713,8 @@
         "events": [
           {
             "id": "e17-27",
-            "time": "12:00",
             "title": "Partenza 12:45",
+            "time": "12:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1753,8 +1723,8 @@
           },
           {
             "id": "e17-43",
-            "time": "20:00",
             "title": "Arrivo 20:30",
+            "time": "20:00",
             "kind": "trasporto",
             "notes": "",
             "links": [],
@@ -1774,9 +1744,9 @@
         "notes": "Ingressi: 4pp 16/16:30 e 7pp 16:30/17",
         "status": "booked",
         "owner": "Antonella",
+        "price": 12.4,
         "total": 136.4,
         "people": 11,
-        "price": 12.4,
         "payment": "Saldato",
         "links": []
       },
@@ -1789,9 +1759,9 @@
         "notes": "con prenotazione posti A/R",
         "status": "booked",
         "owner": "",
+        "price": 1307,
         "total": null,
         "people": null,
-        "price": 1307,
         "payment": "Saldato",
         "links": []
       },
@@ -1804,9 +1774,9 @@
         "notes": "3 nov ore 16:00, Kanazawa, Kenrouen (paga 31 ott)",
         "status": "booked",
         "owner": "Leo 31 ott",
+        "price": 37.5,
         "total": 412.5,
         "people": 11,
-        "price": 37.5,
         "payment": "Da Saldare",
         "links": []
       },
@@ -1819,9 +1789,9 @@
         "notes": "09 novembre ore 19:00",
         "status": "booked",
         "owner": "Antonella",
+        "price": 25.25,
         "total": 328.25,
         "people": 13,
-        "price": 25.25,
         "payment": "Saldato",
         "links": []
       },
@@ -1834,9 +1804,9 @@
         "notes": "hotel tokyo 29 - 31 ott (paga 25 ott)",
         "status": "booked",
         "owner": "Antonella 25 ott",
+        "price": 92.14285714285714,
         "total": 645,
         "people": 7,
-        "price": 92.14285714285714,
         "payment": "Da Saldare",
         "links": [
           "https://maps.app.goo.gl/STrqkEDvcyhbTgHX6"
@@ -1851,9 +1821,9 @@
         "notes": "hotel kyoto 31 ott - 3 nov",
         "status": "booked",
         "owner": "Antonella",
+        "price": 89.28571428571429,
         "total": 625,
         "people": 7,
-        "price": 89.28571428571429,
         "payment": "In Loco",
         "links": [
           "https://maps.app.goo.gl/n46M2nZcn3pa8qLc8"
@@ -1868,9 +1838,9 @@
         "notes": "Casa Kanazawa 3 - 4 nov",
         "status": "booked",
         "owner": "Antonella",
+        "price": 54.857142857142854,
         "total": 384,
         "people": 7,
-        "price": 54.857142857142854,
         "payment": "In Loco",
         "links": [
           "https://www.google.com/maps/place/Musashi+Sakaean+-+Two-Bedroom+Villa/@36.5711899,136.6528238,59m/data=!3m1!1e3!4m11!3m10!1s0x5ff83370001bb51d:0x835897195852cc70!5m3!1s2026-04-05!4m1!1i2!8m2!3d36.5711899!4d136.6529847!16s%2Fg%2F11txqmdhmm!17BQ0FF?entry=ttu&g_ep=EgoyMDI2MDMzMS4wIKXMDSoASAFQAw%3D%3D"
@@ -1885,9 +1855,9 @@
         "notes": "Casa Takayama 4 - 7 nov (paga 2 ott)",
         "status": "booked",
         "owner": "Antonella 2 ott",
+        "price": 174.1390909090909,
         "total": 1915.53,
         "people": 11,
-        "price": 174.1390909090909,
         "payment": "Da Saldare",
         "links": [
           "https://www.google.com/maps/place/%E3%81%8A%E5%AE%BF%E4%B8%80%E3%81%AE%E8%8F%AF/@36.1377302,137.252215,59m/data=!3m1!1e3!4m6!3m5!1s0x6002bb004955da2f:0x593d74c9a4775763!8m2!3d36.1378297!4d137.2522895!16s%2Fg%2F11z4zw2kdl?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D"
@@ -1902,9 +1872,9 @@
         "notes": "Casa Fuji 7 - 9 nov",
         "status": "booked",
         "owner": "Antonella",
+        "price": 75.85714285714286,
         "total": 531,
         "people": 7,
-        "price": 75.85714285714286,
         "payment": "In Loco",
         "links": [
           "https://maps.app.goo.gl/u7rfAXTCvcXeJbdu5"
@@ -1919,9 +1889,9 @@
         "notes": "Hotel Tokyo 9 - 12 nov",
         "status": "booked",
         "owner": "Antonella",
+        "price": 143,
         "total": 1001,
         "people": 7,
-        "price": 143,
         "payment": "In Loco",
         "links": [
           "https://maps.app.goo.gl/tEstH7KjBnM66BGR7"
@@ -1936,9 +1906,9 @@
         "notes": "Partenza 08:18 Stazione di Tokyo",
         "status": "booked",
         "owner": "Antonella e Fra",
+        "price": 94.43,
         "total": 1038.73,
         "people": 11,
-        "price": 94.43,
         "payment": "Saldato",
         "links": []
       },
@@ -1951,9 +1921,9 @@
         "notes": "Partenza 08:40 Stazione di Takayama (Limon bus)",
         "status": "booked",
         "owner": "Erika",
+        "price": 55.48818181818182,
         "total": 610.37,
         "people": 11,
-        "price": 55.48818181818182,
         "payment": "Saldato",
         "links": []
       },
@@ -1966,9 +1936,9 @@
         "notes": "registrarsi e inserire le info",
         "status": "pending",
         "owner": "-",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -1981,9 +1951,9 @@
         "notes": "Heymondo \"viaggio top\" con codice sconto",
         "status": "pending",
         "owner": "",
+        "price": 46,
         "total": null,
         "people": null,
-        "price": 46,
         "payment": "",
         "links": []
       },
@@ -1996,9 +1966,9 @@
         "notes": "Kanazawa-Shirakawa Go da prenotare l'05 ottobre https://japanbusonline.com/en/Detail/11900040002/1/4162027/4212032/ 2pp a prenotazione e bisogna prendere 2 biglietti separati uno per shirakawa e uno per takayama",
         "status": "pending",
         "owner": "",
+        "price": 31.3,
         "total": null,
         "people": 11,
-        "price": 31.3,
         "payment": "",
         "links": [
           "https://japanbusonline.com/en/Detail/11900040002/1/4162027/4212032/"
@@ -2013,9 +1983,9 @@
         "notes": "Treno Fuji Excursion (partenza subito dopo pranzo per arrivare da teamlabs plante la sera)",
         "status": "pending",
         "owner": "",
+        "price": 26.3,
         "total": null,
         "people": 13,
-        "price": 26.3,
         "payment": "",
         "links": []
       },
@@ -2028,9 +1998,9 @@
         "notes": "",
         "status": "pending",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -2043,9 +2013,9 @@
         "notes": "",
         "status": "pending",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -2058,9 +2028,9 @@
         "notes": "contattare struttura per domenica 8 nov",
         "status": "pending",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -2073,9 +2043,9 @@
         "notes": "contattare struttura per sabato 7 nov alle 14",
         "status": "pending",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -2088,9 +2058,9 @@
         "notes": "Kyoto-Osaka treno bellino link https://www.hankyu.co.jp/kyotrain-garaku/en/service#timetable",
         "status": "consider",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": [
           "https://www.hankyu.co.jp/kyotrain-garaku/en/service#timetable"
@@ -2105,9 +2075,9 @@
         "notes": "giardino esterno gratis",
         "status": "consider",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -2120,9 +2090,9 @@
         "notes": "Partenza 7 o 8:40 da Takayama Nohi Bus Center \"Takayama – Kamikochi Round-trip Transfer Ticket\"",
         "status": "consider",
         "owner": "",
+        "price": 32.5,
         "total": null,
         "people": 11,
-        "price": 32.5,
         "payment": "",
         "links": []
       },
@@ -2135,9 +2105,9 @@
         "notes": "Meglio prenotare in anticipo",
         "status": "pending",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -2150,9 +2120,9 @@
         "notes": "Esperienza Kumihimo Hida Furukawa Sakura Gift Shop",
         "status": "consider",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -2165,9 +2135,9 @@
         "notes": "Hida Shokunin Seikatsu (tazzza di legno o tagliere",
         "status": "consider",
         "owner": "",
+        "price": null,
         "total": null,
         "people": null,
-        "price": null,
         "payment": "",
         "links": []
       },
@@ -2180,9 +2150,9 @@
         "notes": "https://www.klook.com/it/activity/190642-kyoto-gion-kintsugi-making-traditional-workshop/?package_id=635685&utm_campaign=platform-share&utm_content=platform%3Dios_pagespm%3DActivity_textversion%3D1_shareid%3D58E8A9EA-51C8-4B9E-A639-3E1391AEDD4F&utm_medium=whatsapp&utm_source=whatsapp",
         "status": "booked",
         "owner": "Leonardo",
+        "price": 6.40817064352856,
         "total": 70.48987707881416,
         "people": 11,
-        "price": 6.40817064352856,
         "payment": "Saldato",
         "links": [
           "https://www.klook.com/it/activity/190642-kyoto-gion-kintsugi-making-traditional-workshop/?package_id=635685&utm_campaign=platform-share&utm_content=platform%3Dios_pagespm%3DActivity_textversion%3D1_shareid%3D58E8A9EA-51C8-4B9E-A639-3E1391AEDD4F&utm_medium=whatsapp&utm_source=whatsapp"
@@ -2197,9 +2167,9 @@
         "notes": "https://www.klook.com/it/activity/228817-kyoto-sumo-experience-live-show-audience-challenge/?package_id=744388&utm_campaign=platform-share&utm_content=platform%3Dios_pagespm%3DActivity_textversion%3D1_shareid%3D3A5309EB-5B67-40FC-BC5C-9832CAAC4FE4&utm_medium=whatsapp&utm_source=whatsapp&dd_referrer=",
         "status": "booked",
         "owner": "Leonardo",
+        "price": 8.75813449023861,
         "total": 96.33947939262472,
         "people": 11,
-        "price": 8.75813449023861,
         "payment": "Saldato",
         "links": [
           "https://www.klook.com/it/activity/228817-kyoto-sumo-experience-live-show-audience-challenge/?package_id=744388&utm_campaign=platform-share&utm_content=platform%3Dios_pagespm%3DActivity_textversion%3D1_shareid%3D3A5309EB-5B67-40FC-BC5C-9832CAAC4FE4&utm_medium=whatsapp&utm_source=whatsapp&dd_referrer="
@@ -2211,11 +2181,6 @@
         "id": "w1",
         "dayId": "d0",
         "text": "Volo di andata: il riepilogo indica 14:55, la griglia 15:05. Controlla il biglietto."
-      },
-      {
-        "id": "w2",
-        "dayId": "d1",
-        "text": "Arrivo a Tokyo: il riepilogo indica 10:25, la griglia 11:20. Controlla il biglietto."
       },
       {
         "id": "w3",
@@ -2280,6 +2245,6 @@
       "exchange": 0.0056,
       "notes": ""
     },
-    "updatedAt": null
+    "updatedAt": "2026-10-03T09:47:39.670Z"
   }
 }
