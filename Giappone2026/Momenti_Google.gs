@@ -1,13 +1,24 @@
 /* MOMENTI / Giappone 2026. Google Apps Script, eseguito come il proprietario.
  * Foto PRIVATE su Drive. Nessun token OAuth viene inviato al browser.
- * Incollare in un NUOVO progetto Apps Script, poi eseguire inizializzaMomenti_.
+ * Incollare in un NUOVO progetto Apps Script, poi eseguire inizializzaMomenti (senza trattino basso finale).
  */
 var MOMENTI_ORIGIN = 'https://robertocipriani.github.io';
 var MOMENTI_LIMITS = {photoBytes:350000,posts:5000,members:30,daily:20};
 var MOMENTI_MEMBER_HEADERS = ['id','hash_accesso','nome_JSON','creato_UTC','ruolo','revocato'];
 var MOMENTI_POST_HEADERS = ['id','autore_id','nome_JSON','descrizione_JSON','foto_Drive_id','foto_UTC','pubblicato_UTC','latitudine','longitudine','luogo_JSON','origine_foto','dimensione_byte','eliminato_UTC'];
 
-// Il suffisso _ impedisce l’esecuzione dal browser: solo dall’editor dello script.
+
+// Voce visibile nel menu Esegui. L'avvio richiede l'identità del proprietario.
+function inizializzaMomenti() {
+ var active=Session.getActiveUser().getEmail();
+ var effective=Session.getEffectiveUser().getEmail();
+ if(!active||!effective||active!==effective)throw new Error('Avvia inizializzaMomenti dall’editor Apps Script con l’account proprietario. Questa funzione non è disponibile agli altri utenti dell’app web.');
+ console.log('Avvio della configurazione Momenti.');
+ inizializzaMomenti_();
+ console.log('Configurazione completata: copia il CODICE PRIVATO DI ATTIVAZIONE dal registro di esecuzione.');
+}
+
+// La funzione interna resta privata; per avviare usare inizializzaMomenti.
 function inizializzaMomenti_() {
  var lock=LockService.getScriptLock();lock.waitLock(25000);
  try {
@@ -56,13 +67,13 @@ function momentiRpc(request) {
  }catch(error){return {ok:false,code:error.momentCode||'GOOGLE_ERROR',message:error.momentCode?error.message:'Google non ha completato la richiesta. Verifica la configurazione, lo spazio Drive e riprova tra poco.'};}
 }
 function momentError_(code,message){var error=new Error(message);error.momentCode=code;return error;}
-function momentProps_(){var p=PropertiesService.getScriptProperties();if(!p.getProperty('mom_folder')||!p.getProperty('mom_sheet'))throw momentError_('NOT_READY','Esegui prima inizializzaMomenti_ nell’editor Apps Script.');return p;}
+function momentProps_(){var p=PropertiesService.getScriptProperties();if(!p.getProperty('mom_folder')||!p.getProperty('mom_sheet'))throw momentError_('NOT_READY','Esegui prima inizializzaMomenti nell’editor Apps Script.');return p;}
 function momentToken_(){return (Utilities.getUuid()+Utilities.getUuid()).replace(/-/g,'');}
 function momentHash_(value){return Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256,String(value),Utilities.Charset.UTF_8).map(function(b){return ('0'+(b&255).toString(16)).slice(-2)}).join('');}
 function momentSame_(a,b){a=String(a||'');b=String(b||'');if(a.length!==b.length)return false;var diff=0;for(var i=0;i<a.length;i++)diff|=a.charCodeAt(i)^b.charCodeAt(i);return diff===0;}
 function momentText_(value,max,required){if(typeof value!=='string')value='';value=value.trim();if(value.length>max||required&&!value)throw momentError_('INVALID','Controlla i campi: nome, descrizione o luogo troppo lunghi.');return value;}
 function momentParseText_(value){try{return JSON.parse(String(value))}catch{return ''}}
-function momentSheet_(name){var s=SpreadsheetApp.openById(momentProps_().getProperty('mom_sheet')).getSheetByName(name);if(!s)throw momentError_('NOT_READY','Il registro Momenti non è completo. Esegui inizializzaMomenti_ nell’editor.');return s;}
+function momentSheet_(name){var s=SpreadsheetApp.openById(momentProps_().getProperty('mom_sheet')).getSheetByName(name);if(!s)throw momentError_('NOT_READY','Il registro Momenti non è completo. Esegui inizializzaMomenti nell’editor.');return s;}
 function momentRows_(name){var s=momentSheet_(name);return s.getLastRow()<2?[]:s.getRange(2,1,s.getLastRow()-1,name==='Momenti'?MOMENTI_POST_HEADERS.length:MOMENTI_MEMBER_HEADERS.length).getValues();}
 function momentRev_(){var p=momentProps_();p.setProperty('mom_rev',String(Number(p.getProperty('mom_rev')||0)+1));}
 function momentTrip_(){var p=momentProps_();return {id:p.getProperty('mom_group'),name:p.getProperty('mom_name'),owner_id:p.getProperty('mom_owner')};}
@@ -71,7 +82,7 @@ function momentRotate_(){var token=momentToken_();momentProps_().setProperty('mo
 function momentWrite_(op,d,token){
  var p=momentProps_(),members=momentRows_('Partecipanti'),ms=momentSheet_('Partecipanti');
  if(op==='activate'){
-  if(typeof d.code!=='string'||!/^[a-f0-9]{64}$/.test(d.code)||!momentSame_(momentHash_(d.code),p.getProperty('mom_activation_hash'))||Number(p.getProperty('mom_activation_expires'))<Date.now())throw momentError_('ACTIVATION','Codice di attivazione non valido, già usato o scaduto. Esegui inizializzaMomenti_ nell’editor per ottenerne uno nuovo.');
+  if(typeof d.code!=='string'||!/^[a-f0-9]{64}$/.test(d.code)||!momentSame_(momentHash_(d.code),p.getProperty('mom_activation_hash'))||Number(p.getProperty('mom_activation_expires'))<Date.now())throw momentError_('ACTIVATION','Codice di attivazione non valido, già usato o scaduto. Esegui inizializzaMomenti nell’editor per ottenerne uno nuovo.');
   var name=momentText_(d.name,40,true),owner=p.getProperty('mom_owner'),memberToken=momentToken_(),row=members.findIndex(function(r){return r[0]===owner}),now=new Date().toISOString();
   if(row>=0){CacheService.getScriptCache().remove('member:'+members[row][1]);ms.getRange(row+2,1,1,6).setValues([[owner,momentHash_(memberToken),JSON.stringify(name),members[row][3],'owner','0']]);}else ms.appendRow([owner,momentHash_(memberToken),JSON.stringify(name),now,'owner','0']);
   var invite=momentRotate_();p.deleteProperty('mom_activation_hash');p.deleteProperty('mom_activation_expires');momentRev_();return {member:{id:owner,name:name,role:'owner'},token:memberToken,trip:momentTrip_(),invite:invite};
