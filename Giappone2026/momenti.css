@@ -17,3 +17,5 @@
 #moment-camera-status{margin:9px 0 0}
 .camera-lens-help{margin:-8px 0 20px}
 .moment-camera-actions button{min-height:44px}
+
+.moments-explanation{max-width:720px;margin:21px 0 27px;font-size:15px;line-height:1.8;color:#526169}.moment-invite-help{background:#fff5de;padding:16px;border-radius:12px;line-height:1.7}.moments-hero.compact p{display:block;font-size:14px;line-height:1.6;margin:10px 0 0;max-width:70%}@media(max-width:650px){.moments-explanation{font-size:14px;line-height:1.75;margin:18px 0 24px}.moments-hero.compact p{max-width:80%}}
