@@ -105,3 +105,116 @@
 }
 @media(max-width:380px){.event{grid-template-columns:47px minmax(0,1fr);gap:13px}.event-time{font-size:.86rem}.event-heading{gap:8px}.activity-emoji{width:29px;height:29px;font-size:1.25rem}.event h3{font-size:1rem}.kind-trasporto h3{font-size:.92rem}.journey-leg-editor .field-grid{grid-template-columns:1fr}.timeline-now{margin-left:53px}}
 @media print{.journey-legs{display:block}.journey-leg{break-inside:avoid;margin-bottom:10px}.event{grid-template-columns:64px minmax(0,1fr)}}
+
+
+/* Simple travel view: four sections, compact covers and readable content. */
+.city-cover:not(.small-cover){height:210px}
+.cover-copy{bottom:24px}
+.cover-copy strong{font-size:2.9rem;margin:0 0 8px}
+.cover-copy>span:last-child{font-size:.9rem}
+.cover-shade{background:linear-gradient(90deg,rgba(16,35,39,.7),rgba(16,35,39,.2) 66%,rgba(16,35,39,.04))}
+.cover-kicker{display:none}
+.event h3{font-size:1.25rem;line-height:1.4}
+.event-subtitle{font-size:.94rem;color:#52616b}
+.kind-trasporto h3{font-size:1.1rem}
+.kind-trasporto .event-subtitle{font-size:.87rem}
+.details-body{font-size:1rem;line-height:1.65;color:#44545c}
+.details-body p{margin:0 0 14px}
+.details-body ul,.today-hotel-body ul,.info-folder ul{margin:0 0 16px;padding-left:20px}
+.details-body li,.today-hotel-body li,.info-folder li{white-space:pre-line;margin:0 0 9px}
+.details-body strong{color:#263f49}
+.journey-leg-heading strong{font-size:.96rem}
+.journey-leg-info dt,.journey-totals dt{font-size:.79rem;color:#53636a}
+.journey-leg-info dd,.journey-totals dd{font-size:.95rem;color:#243e48}
+.details-body .journey-leg-route{font-size:1rem}
+.journey-leg{padding:14px}
+.map-link,.event-link{font-size:.85rem;min-height:42px;padding:10px 12px}
+.today-heading{margin:20px 0 16px}
+.today-heading h1{font-size:1.9rem;margin:7px 0 0}
+.today-clock{font-size:.85rem;color:#58696f;font-variant-numeric:tabular-nums}
+.today-focus-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:16px}
+.today-focus-grid>.today-spotlight:only-child{grid-column:1/-1}
+.today-spotlight{min-width:0;padding:22px;border-radius:15px;border:1px solid var(--line);background:#fffdf9}
+.spotlight-primary{background:#192f3a;color:#fffdf8;border-color:#192f3a}
+.spotlight-label{font-size:.82rem;font-weight:650;color:#53666f}
+.spotlight-primary .spotlight-label{color:#ebd9b9}
+.spotlight-row{display:flex;align-items:center;justify-content:space-between;margin:12px 0}
+.spotlight-time{font-size:2rem;line-height:1.2;font-weight:650;font-variant-numeric:tabular-nums}
+.spotlight-emoji{font-size:1.8rem}
+.today-spotlight h2{font-size:1.22rem;line-height:1.4;margin:0;overflow-wrap:anywhere}
+.today-spotlight p{font-size:.92rem;line-height:1.55;margin:8px 0 0;white-space:pre-line;color:#53656c}
+.spotlight-primary p{color:#e0e6e5}
+.spotlight-primary .map-link{background:#fffdf8;color:#213f4a}
+.spotlight-primary .text-button{color:#ebd9b9}
+.today-spotlight .event-bottom{margin-top:14px}
+[data-today-focus],[data-event]{scroll-margin-top:90px}
+.today-hotel,.today-alert,.past-timeline,.info-tools,.info-folder{border:1px solid var(--line);border-radius:12px;background:#fffdf9;margin:14px 0;overflow:hidden}
+.today-hotel>summary,.today-alert>summary,.past-timeline>summary,.info-tools>summary,.info-folder>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:14px;list-style:none;cursor:pointer;font-size:.9rem;color:#344e59;font-weight:650}
+.today-hotel>summary::-webkit-details-marker,.today-alert>summary::-webkit-details-marker,.past-timeline>summary::-webkit-details-marker,.info-tools>summary::-webkit-details-marker,.info-folder>summary::-webkit-details-marker{display:none}
+.today-hotel>summary>span:nth-child(2){flex:1;min-width:0}
+.today-hotel small{display:block;color:#5a6d73;font-size:.76rem;font-weight:400;margin-bottom:4px}
+.today-hotel strong{display:block;font-size:.9rem;line-height:1.35}
+.today-hotel-body,.info-folder>div{padding:0 16px 16px;font-size:1rem;line-height:1.65;color:#44545c}
+.today-hotel-body p,.info-folder p{white-space:pre-line;margin:0 0 12px}
+.today-hotel-body .event-link{margin:6px 6px 0 0}
+.today-alert p,.info-tools p,.info-tools .info-actions{padding:0 16px;font-size:.9rem;line-height:1.6}
+.info-tools>p:last-child{padding-bottom:6px}
+.past-timeline{background:#f4f1e9}
+.past-timeline>summary{font-weight:500}
+.past-timeline>summary>span{font-size:.8rem;white-space:nowrap;color:#62737a}
+.past-timeline>.timeline{padding:4px 12px 14px}
+.past-timeline>.timeline .event-card{background:#fffdf9}
+.info-hub{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.info-hub .more-card{padding:22px;min-height:150px}
+.info-hub .more-card strong{font-size:1.1rem}
+.info-hub .more-card>span{font-size:.9rem;line-height:1.5;color:#586971}
+.info-back{margin:0 0 8px;font-size:.9rem}
+.useful-info{max-width:800px}
+.useful-info>.info-card{margin:14px 0}
+.info-card p,.booking-card p{font-size:1rem;line-height:1.65}
+.booking-title-row h2{font-size:1.18rem}
+.section-note{font-size:.88rem;line-height:1.6}
+.program-toolbar{margin:8px 0 12px}
+@media(max-width:760px){
+ .masthead{height:64px}
+ .brand-dates{display:none}
+ .main-tabs button{font-size:.72rem;gap:4px}
+ .city-cover:not(.small-cover){height:130px}
+ .cover-copy{left:18px;bottom:18px}
+ .cover-copy strong{font-size:2.1rem;margin:0 0 6px}
+ .cover-copy>span:last-child{font-size:.8rem}
+ .small-cover .cover-copy strong{font-size:1.4rem}
+ .event h3{font-size:1.125rem}
+ .event-subtitle{font-size:.88rem}
+ .kind-trasporto h3{font-size:1.03rem}
+ .kind-trasporto .event-subtitle{font-size:.82rem}
+ .details-body{font-size:.97rem;line-height:1.65}
+ .journey-leg-info dt,.journey-totals dt{font-size:.76rem}
+ .journey-leg-info dd,.journey-totals dd{font-size:.9rem}
+ .map-link,.event-link{font-size:.81rem;min-height:42px}
+ .day-heading h1{font-size:1.65rem}
+ .today-heading h1{font-size:1.5rem}
+ .today-clock{font-size:.8rem}
+ .today-focus-grid{grid-template-columns:1fr;gap:10px}
+ .today-spotlight{padding:17px}
+ .today-spotlight h2{font-size:1.16rem}
+ .spotlight-label{font-size:.81rem}
+ .spotlight-time{font-size:1.8rem}
+ .today-spotlight p{font-size:.89rem}
+ .today-spotlight:not(.spotlight-primary) .spotlight-row{margin:7px 0}
+ .today-spotlight:not(.spotlight-primary) .spotlight-time{font-size:1.2rem}
+ .today-spotlight:not(.spotlight-primary) .spotlight-emoji{font-size:1.3rem}
+ .today-spotlight:not(.spotlight-primary) h2{font-size:1.05rem}
+ .today-hotel>summary,.today-alert>summary,.past-timeline>summary{font-size:.84rem}
+ .info-hub{grid-template-columns:1fr}
+ .info-hub .more-card{min-height:0;padding:20px}
+ .info-hub .more-card strong{font-size:1.1rem}
+ .info-hub .more-card>span{font-size:.88rem}
+ .info-card p,.booking-card p{font-size:.96rem}
+ .booking-title-row h2{font-size:1.12rem}
+ [data-today-focus],[data-event]{scroll-margin-top:20px}
+ .past-timeline>.timeline{padding-left:8px;padding-right:8px}
+ .timeline-head .text-button{font-size:.8rem}
+}
+@media(max-width:380px){.main-tabs button{font-size:.66rem}.event h3{font-size:1.09rem}.kind-trasporto h3{font-size:1rem}}
+@media print{.past-timeline:not([open])>.timeline{display:flex!important}.info-back{display:none}.today-spotlight{background:white!important;color:black!important}}
