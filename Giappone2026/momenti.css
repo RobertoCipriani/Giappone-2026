@@ -5,3 +5,15 @@
 .moment-member{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #e4ddd2;font-size:13px}.moment-member span{font-size:11px;color:#748087}.moment-member button{font-size:11px}
 
 .moments-hero.compact{min-height:120px;padding:22px 28px}.moments-hero.compact h1{font-size:46px;margin:10px 0 0}.moments-hero.compact p{display:none}.moments-hero.compact .moments-hero-mark{font-size:40px;top:12px;right:28px;letter-spacing:6px}@media(max-width:700px){.moments-hero.compact{padding:19px 23px;min-height:110px}.moments-hero.compact h1{font-size:42px}.moments-hero.compact .moments-hero-mark{right:20px}}
+
+
+/* Front / rear cameras and available lenses. */
+.moment-camera video{transform:none}
+.moment-camera video[data-facing="user"]{transform:scaleX(-1)}
+.moment-camera-choice{display:flex;gap:8px;margin-top:12px}
+.moment-camera-choice button{flex:1;min-height:44px;font-size:.8rem}
+.moment-camera-choice button[aria-pressed="true"]{border-color:#ad8250;background:#f0e4d0;color:#765323}
+#moment-camera-device-field{margin:12px 0 0}
+#moment-camera-status{margin:9px 0 0}
+.camera-lens-help{margin:-8px 0 20px}
+.moment-camera-actions button{min-height:44px}
