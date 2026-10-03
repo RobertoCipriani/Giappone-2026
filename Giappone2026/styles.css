@@ -8,3 +8,26 @@
 .transport-meta{font-size:.73rem;color:#73828a;margin:7px 0 0;letter-spacing:.1px}@media(max-width:760px){.transport-meta{font-size:.66rem;margin-top:6px}}
 
 @media(max-width:760px){.city-cover:not(.small-cover){height:180px}.day-list{margin-bottom:0}.program-layout{gap:17px}.cover-copy{bottom:22px}.program-toolbar{margin-bottom:13px}}
+
+/* Shared city photos, activity subtitles and Japan-time progress. */
+.custom-cover{object-fit:cover;object-position:center}
+.event-subtitle{margin:7px 0 0;color:#65727b;font-size:.84rem;line-height:1.5;white-space:pre-line}
+.event-details>summary,.event-details[open]>summary{font-weight:700;color:#987023}
+.event.is-past .event-time{color:#9b9690}
+.event.is-past .event-time:before,.event.is-past .event-time:after{background:#b6a071}
+.event.is-current .event-card{border-color:#b58b42;box-shadow:0 0 0 2px #b58b421c;background:#fffcf4}
+.event.is-current .event-time{color:#987023;font-weight:750}
+.event.is-current .event-time:after{background:#b58b42;box-shadow:0 0 0 5px #f1e5cc}
+.current-step{margin-left:auto;padding:4px 8px;border-radius:20px;background:#eee1c7;color:#77551c;font-size:.6rem;font-weight:700;letter-spacing:.2px}
+.timeline-now{display:flex;align-items:center;gap:10px;margin:2px 0 4px 59px;color:#987023;font-size:.68rem;font-weight:750;letter-spacing:.8px}
+.timeline-now:before{content:"";height:8px;width:8px;flex:none;border-radius:50%;background:#b58b42;box-shadow:0 0 0 4px #f1e5cc}
+.timeline-now:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,#b58b42,transparent)}
+.cover-editor-help{font-size:.85rem;line-height:1.6;color:var(--muted)}
+#cover-preview{margin:0 0 18px}
+.cover-upload-preview{height:170px;border-radius:12px;overflow:hidden;background:#f3eee5}
+.cover-upload-preview img{width:100%;height:100%;object-fit:cover}
+.cover-reset{display:flex;align-items:center;gap:9px;font-size:.85rem;margin:18px 0}
+.cover-reset input{width:18px;height:18px}
+@media(max-width:760px){.event-subtitle{font-size:.77rem}.timeline-now{margin-left:44px;font-size:.61rem}.current-step{font-size:.54rem;padding:4px 6px}.program-toolbar>div{flex-wrap:wrap;justify-content:flex-end;gap:8px}.program-toolbar>span{flex-shrink:0}.event-type{flex-wrap:wrap}}
+@media(max-width:350px){.timeline-now{margin-left:38px}}
+@media print{.timeline-now,.current-step{display:none!important}.event.is-current .event-card{box-shadow:none;border-color:#ddd;background:white}}

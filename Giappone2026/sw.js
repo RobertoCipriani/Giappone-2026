@@ -1,4 +1,4 @@
-const CACHE='roberto-japan-shared-v1.0';
+const CACHE='roberto-japan-shared-v1.1';
 const ASSETS=["./","./index.html","./styles.css","./data.js","./app.js","./program-shared.js","./program-shared.css","./gestione.html","./guida-gestione.html","./momenti.js","./drive-transport.js","./momenti.css","./attiva-momenti.html","./covers.js","./sheet-parser.js","./favicon.svg","./manifest.webmanifest","./icon-192.png","./icon-512.png"];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));self.skipWaiting()});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('roberto-japan-')&&k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
