@@ -1,8 +1,8 @@
 {
   "format": "giappone-programma-condiviso-v1",
   "published": true,
-  "revision": "d74d3aff-74bf-475c-a49d-5eac6d97afcf",
-  "updatedAt": "2026-10-04T08:31:15.039Z",
+  "revision": "f43d9638-94c8-4750-8c30-c60fd74134c5",
+  "updatedAt": "2026-10-04T08:42:10.865Z",
   "editor": "Leonardo",
   "program": {
     "appId": "roberto-giappone-2026",
@@ -162,21 +162,6 @@
             "done": false
           },
           {
-            "id": "e3-37",
-            "title": "Oshiage Sta. ➡️ Asakusabashi ➡️ Akihabara",
-            "subtitle": "10m - Asakusa Line - 4 stop - 🔀 - Chūō-Sōbu Line - 1 stop - 340¥",
-            "emoji": "",
-            "transport": null,
-            "entryType": "transport",
-            "walkDuration": "",
-            "time": "17:00",
-            "kind": "trasporto",
-            "notes": "🚇 7m – Asakusa Line - 4 stop – ¥ alla fine Oshiage Sta.(SKYTREE) ➡️ Asakusabashi\n\nCambio treno\n\n🚇 3m – Chūō-Sōbu Line - 1 stop - 340¥Asakusabashi ➡️ Akihabara",
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e3-26",
             "title": "🛬 Atterraggio a Tokyo Haneda",
             "subtitle": "",
@@ -207,6 +192,21 @@
             "done": false
           },
           {
+            "id": "75febc6c-d39b-486d-bbf2-052be25591a8",
+            "title": "A piedi",
+            "subtitle": "",
+            "emoji": "",
+            "transport": null,
+            "entryType": "walk",
+            "walkDuration": "7min",
+            "time": "13:33",
+            "kind": "piedi",
+            "notes": "",
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
             "id": "e3-29",
             "title": "Haneda T3 ➡️ Asakusabashi",
             "subtitle": "Spostamento dall'aeroporto all'Hotel",
@@ -216,14 +216,14 @@
               "totalCost": "550¥",
               "legs": [
                 {
-                  "mode": "Treno",
-                  "line": "Keikyū Airport Line",
+                  "mode": "Metro",
+                  "line": "Linea: Keikyū Airport Line",
                   "from": "Haneda T3",
                   "to": "Asakusabashi",
                   "via": "",
                   "direction": "Keikyu-Kamata",
-                  "departure": "13:00",
-                  "arrival": "13:33",
+                  "departure": "",
+                  "arrival": "",
                   "platform": "",
                   "cost": "",
                   "duration": "12 fermate",
@@ -243,15 +243,48 @@
             "done": false
           },
           {
-            "id": "75febc6c-d39b-486d-bbf2-052be25591a8",
-            "title": "A piedi",
-            "subtitle": "",
+            "id": "e3-37",
+            "title": "Oshiage Sta. ➡️ Asakusabashi ➡️ Akihabara",
+            "subtitle": "Spostamento dalla Tokyo Skytree Akihabara",
             "emoji": "",
-            "transport": null,
-            "entryType": "walk",
-            "walkDuration": "7min",
-            "time": "13:33",
-            "kind": "piedi",
+            "transport": {
+              "duration": "10min",
+              "totalCost": "340¥",
+              "legs": [
+                {
+                  "mode": "Metro",
+                  "line": "Linea: Asakusa Line",
+                  "from": "Oshiage Sta.",
+                  "to": "Asakusabashi",
+                  "via": "",
+                  "direction": "",
+                  "departure": "",
+                  "arrival": "",
+                  "platform": "",
+                  "cost": "",
+                  "duration": "7min",
+                  "notes": ""
+                },
+                {
+                  "mode": "Metro",
+                  "line": "Linea: Chūō-Sōbu Line",
+                  "from": "Asakusabashi",
+                  "to": "Akihabara",
+                  "via": "",
+                  "direction": "",
+                  "departure": "",
+                  "arrival": "",
+                  "platform": "",
+                  "cost": "",
+                  "duration": "3min",
+                  "notes": ""
+                }
+              ]
+            },
+            "entryType": "transport",
+            "walkDuration": "10min",
+            "time": "17:00",
+            "kind": "trasporto",
             "notes": "",
             "links": [],
             "bookingId": null,
@@ -2959,7 +2992,7 @@
       "exchange": 0.0056,
       "notes": ""
     },
-    "updatedAt": "2026-10-04T08:31:15.039Z",
+    "updatedAt": "2026-10-04T08:42:10.865Z",
     "cityCovers": {}
   }
 }
