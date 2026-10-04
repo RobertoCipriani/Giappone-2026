@@ -1,8 +1,8 @@
 {
   "format": "giappone-programma-condiviso-v1",
   "published": true,
-  "revision": "11035c26-2297-494a-87fe-5e1cb3b00792",
-  "updatedAt": "2026-10-04T08:30:21.916Z",
+  "revision": "d74d3aff-74bf-475c-a49d-5eac6d97afcf",
+  "updatedAt": "2026-10-04T08:31:15.039Z",
   "editor": "Leonardo",
   "program": {
     "appId": "roberto-giappone-2026",
@@ -2959,7 +2959,7 @@
       "exchange": 0.0056,
       "notes": ""
     },
-    "updatedAt": "2026-10-04T08:30:21.916Z",
+    "updatedAt": "2026-10-04T08:31:15.039Z",
     "cityCovers": {}
   }
 }
