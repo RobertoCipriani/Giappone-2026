@@ -361,3 +361,66 @@
 .brand .flag{flex-shrink:0}
 @media(min-width:761px){.brand-name{display:inline}}
 @media(max-width:760px){.brand-welcome{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+
+/* Alloggio: un solo comando, informazioni a richiesta. */
+details.stay-card{display:block;padding:0;overflow:hidden}
+.stay-card>summary{display:flex;align-items:center;gap:12px;padding:15px 17px;list-style:none;cursor:pointer;min-height:66px}
+.stay-card>summary::-webkit-details-marker{display:none}
+.stay-heading{flex:1;min-width:0}.stay-heading strong{display:block;overflow-wrap:anywhere;line-height:1.4}
+.stay-details-label{display:flex;gap:6px;align-items:center;font-size:.75rem;font-weight:650;border:1px solid #d9d9cc;background:#fffdf9;padding:9px 11px;border-radius:9px;flex:none}
+.stay-details-label>span{transition:transform .2s}.stay-card[open] .stay-details-label>span{transform:rotate(180deg)}
+.stay-details-body{border-top:1px solid #dcd9ce;padding:16px 17px;background:#fffdf9}
+.hotel-facts{display:grid;grid-template-columns:1fr 1fr;gap:13px 18px;margin:0 0 15px;min-width:0}
+.hotel-facts>div{min-width:0}.hotel-facts dt{font-size:.72rem;color:#728079;margin-bottom:4px}
+.hotel-facts dd{margin:0;color:#344e59;font-size:.88rem;font-weight:600;overflow-wrap:anywhere}
+.hotel-facts>div:first-child{grid-column:1/-1}.hotel-facts a{padding:0;min-height:0;border:0;background:none;margin:0;font-size:inherit;text-decoration:underline;display:inline}
+.hotel-notes{border-top:1px solid #e8e4d9;padding-top:12px;color:#44545c;font-size:.88rem;line-height:1.6}
+.hotel-notes h3{font-size:.74rem;margin:0 0 8px;color:#728079;font-weight:650}
+.hotel-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:12px}
+.hotel-actions a{margin-left:0;padding:9px 12px;color:#344e59;font-size:.78rem}
+#hotel-editor{padding:16px;border:1px solid var(--line);border-radius:12px;background:#f8f6ef;margin-bottom:16px}
+#hotel-editor h3{margin:0 0 14px;font-size:.95rem}
+.details-body{font-size:.89rem;line-height:1.65}
+.details-body p{margin-bottom:11px}.details-body .journey-leg-route{font-size:.89rem}
+.event-details>summary,.event-details[open]>summary{font-size:.73rem;font-weight:700;color:#987023}
+/* Note formattate: testo semplice, senza HTML degli autori. */
+.formatted-note{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65;margin-bottom:12px}
+.note-tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap;background:#f4f2ea;border:1px solid #e2dfd4;border-radius:10px;padding:8px;margin-top:8px}
+.note-tools label{display:flex;align-items:center;gap:6px;font-size:.7rem;margin:0;color:#687773}
+.note-tools select{max-width:98px;min-height:34px;padding:4px 6px;font-size:.77rem}
+.note-tools input[type=color]{width:36px;height:34px;padding:3px;border:1px solid #d9ddd3;border-radius:7px;background:white}
+.note-tools button{display:grid;place-items:center;background:white;border:1px solid #d9ddd3;border-radius:7px;min-width:36px;min-height:34px;font-size:.86rem}
+.note-hint{display:block;color:#788478;font-size:.7rem;margin-top:7px;line-height:1.5}
+.note-preview{padding:12px;background:#fffdf8;border:1px dashed #dddccf;border-radius:9px;margin-top:10px;font-size:.89rem;line-height:1.6}
+.note-preview .formatted-note{margin-bottom:0}
+/* Un binario continuo comprende anche le righe a piedi. */
+.timeline{position:relative;--timeline-axis:74px;--timeline-time:64px;isolation:isolate}
+.timeline:before{content:"";position:absolute;top:25px;bottom:12px;left:var(--timeline-axis);width:2px;transform:translateX(-50%);background:#dfd6c6;z-index:0;pointer-events:none}
+.timeline .event{position:relative;z-index:1}
+.timeline .event-time{padding-right:8px}
+.timeline .event-time:before{display:none!important}
+.timeline .event-time:after{left:calc(var(--timeline-axis) - 5px);right:auto;top:25px;width:10px;height:10px;background:#b84339;box-shadow:0 0 0 4px var(--paper);border-radius:50%}
+.timeline .kind-trasporto .event-time:after{top:18px}
+.timeline .event.is-past .event-time:after{background:#bf8d80}
+.timeline .event.is-current .event-time:after{background:#b84339;box-shadow:0 0 0 5px #f6e2da}
+.timeline-mascot{position:absolute;top:0;left:calc(var(--timeline-axis) - 16px);width:32px;height:40px;z-index:3;pointer-events:none;will-change:transform;transition:transform 15s linear;filter:drop-shadow(0 2px 2px #192b3814)}
+.timeline-mascot img{display:block;width:32px;height:40px}
+.mascot-clock{position:absolute;left:36px;top:17px;padding:3px 5px;border:1px solid #e3d4b4;border-radius:5px;background:#fff9ec;color:#987023;font-size:.59rem;line-height:1.2;white-space:nowrap;font-weight:750;box-shadow:0 1px 3px #192b3809}
+@media(max-width:760px){
+ .timeline{--timeline-axis:60px;--timeline-time:52px}
+ .timeline .event-time:after{top:22px}.timeline .kind-trasporto .event-time:after{top:16px}
+ .details-body{font-size:.86rem}.details-body .journey-leg-route{font-size:.86rem}
+ .event-details>summary,.event-details[open]>summary{font-size:.7rem}
+ .stay-card>summary{padding:12px;gap:9px}.stay-details-label{font-size:.7rem;padding:8px}
+ .stay-details-body{padding:14px}.hotel-facts{gap:12px}.hotel-facts dd{font-size:.84rem}
+}
+@media(max-width:390px){.timeline{--timeline-axis:54px;--timeline-time:47px}.mascot-clock{font-size:.55rem}}
+@media(prefers-reduced-motion:reduce){.timeline-mascot,.stay-details-label>span{transition:none;will-change:auto}}
+@media print{
+ .timeline{--timeline-axis:74px}.timeline-mascot,.stay-details-label,.note-tools,.note-hint,.note-preview{display:none!important}
+ .stay-card>.stay-details-body{display:block!important}.stay-card{break-inside:avoid}
+}
+
+/* La mascotte resta nel binario, senza coprire il contenuto delle schede. */
+.mascot-clock{display:none}
+.timeline-mascot:after{content:"";position:absolute;left:11px;bottom:-8px;width:10px;height:10px;border-radius:50%;background:#b84339;box-shadow:0 0 0 3px #f8f5ef}
