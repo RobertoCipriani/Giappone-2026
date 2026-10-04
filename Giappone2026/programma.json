@@ -1,9 +1,9 @@
 {
   "format": "giappone-programma-condiviso-v1",
   "published": true,
-  "revision": "5dcbd89b-e03d-4c70-bd86-c3b4ee858730",
-  "updatedAt": "2026-10-04T08:48:12.701Z",
-  "editor": "Leonardo",
+  "revision": "f0688143-b306-4259-b6fc-edf1ede43a99",
+  "updatedAt": "2026-10-04T13:17:26.955Z",
+  "editor": "Roberto",
   "program": {
     "appId": "roberto-giappone-2026",
     "schemaVersion": 1,
@@ -36,11 +36,14 @@
             "time": "15:05",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d1",
@@ -65,6 +68,8 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "• Ramen al Curry da Calut: Se vuoi provare una specialità del quartiere, il ramen denso e saporito a base di curry giapponese è un must assoluto per i locali.\n• Tonkatsu da Marugo: Uno dei ristoranti di cotoletta di maiale fritta (tonkatsu) più famosi di tutta Tokyo. C'è spesso fila, ma la carne è incredibilmente tenera e succosa.\n• Soba da Kanda Matsuya: Se cerchi un'atmosfera tradizionale a breve distanza dai palazzi moderni, questa storica bottega serve ottimi spaghetti di grano saraceno in un edificio in legno della vecchia Tokyo.\n• Ramen da Kyushu Jangara: Celebre per il suo tonkotsu ramen (brodo denso di maiale) saporito e cremoso, molto amato dagli appassionati di anime e frequentatori del quartiere.",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -80,6 +85,8 @@
             "time": "16:00",
             "kind": "attivita",
             "notes": "I nostri ingressi:\n4 Persone 16/16:29\n7 Persone 16:30/17",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": "b2",
             "done": false
@@ -95,6 +102,8 @@
             "time": "14:30",
             "kind": "pasto",
             "notes": "🍡 Snack Dolci\n• Age-Manju: Tortine pastellate e fritte al momento, ripiene di fagioli rossi o matcha. Prezzo: ¥150 – ¥200 l'uno\n• Ningyo-yaki: Dolcetti di pan di spagna caldi a forma di lanterna o pagoda, ripieni di fagioli rossi. Prezzo: ¥100 – ¥150 l'uno (spesso venduti in piccoli sacchetti da 4-8 pezzi per ¥500-¥1000)\n• Kibi-dango: Spiedini di piccoli gnocchi di miglio caldi ricoperti di farina di soia tostata. Prezzo: ¥400 – ¥450 (per una confezione da 5 spiedini)\n• Kaminari Okoshi: Riso soffiato croccante unito da sciroppo di zucchero e arachidi. Prezzo: ¥500 – ¥800 a sacchetto\n\n🍘 Snack Salati\n• Senbei: Grandi cracker di riso grigliati al carbone sul momento e spennellati di salsa di soia. Prezzo: ¥100 – ¥200 l'uno\n• Mitarashi Dango: Spiedini di gnocchi di riso grigliati e coperti da una glassa lucida di soia dolce. Prezzo: ¥150 – ¥200 a spiedino",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -110,6 +119,8 @@
             "time": "17:30",
             "kind": "attivita",
             "notes": "• Esplorare i templi della cultura Otaku: Entra da Radio Kaikan (subito fuori dalla stazione) o da Mandarake Complex, palazzi di oltre 8 piani straripanti di action figure, manga rari, carte collezionabili e gadget.\n• Fare acquisti di elettronica: Visita l'immenso Yodobashi Camera Akihabara, uno dei negozi di elettronica e tecnologia più grandi al mondo, oppure caccia componenti retrò da Hardoff, bookoff, o rare item studio.\n• Giocare nelle sale giochi (Arcade): Prova i videogiochi musicali, i simulatori o i famosi \"artigli\" (UFO Catchers) e gatchapon nei multipiani di GiGO Akihabara o nei centri dedicati al retrogaming come Super Potato.",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -125,6 +136,8 @@
             "time": "12:00",
             "kind": "Info",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -140,6 +153,8 @@
             "time": "14:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -155,6 +170,8 @@
             "time": "15:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "http://google.com/maps/dir/Tokyo+Skytree,+1+Chome-1-2+Oshiage,+Sumida+City,+Tokyo+131-0045,+Giappone/Sens%C5%8D-ji,+2+Chome-3-1+Asakusa,+Taito+City,+Tokyo+111-0032,+Giappone/@35.7125749,139.7994495,1601m/data=!3m1!1e3!4m14!4m13!1m5!1m1!1s0x60188ed0d12f9adf:0x7d1d4fb31f43f72a!2m2!1d139.8107004!2d35.7100627!1m5!1m1!1s0x60188ec1a4463df1:0x6c0d289a8292810d!2m2!1d139.7966553!2d35.7147651!3e2?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D"
             ],
@@ -172,6 +189,8 @@
             "time": "11:20",
             "kind": "info",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -187,6 +206,8 @@
             "time": "13:40",
             "kind": "Tappa",
             "notes": "Check in dalle 15:00 \nCheck out entro le 10:00",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -202,6 +223,8 @@
             "time": "13:33",
             "kind": "piedi",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -222,12 +245,20 @@
                   "to": "Asakusabashi",
                   "via": "",
                   "direction": "Keikyu-Kamata",
+                  "stops": "",
                   "departure": "",
                   "arrival": "",
                   "platform": "",
                   "cost": "",
                   "duration": "",
-                  "notes": "Arrivo a Asakusabashi oppure Higashi-Nihombashi (sono 2 stazioni vicine) \n\nPartenze ogni 15m circa, un treno si ferma a Asakusa e il successivo a Higashi in modo alternato."
+                  "notes": "Arrivo a Asakusabashi oppure Higashi-Nihombashi (sono 2 stazioni vicine) \n\nPartenze ogni 15m circa, un treno si ferma a Asakusa e il successivo a Higashi in modo alternato.",
+                  "notesFormat": [
+                    {
+                      "start": 0,
+                      "end": 172,
+                      "size": 12
+                    }
+                  ]
                 }
               ]
             },
@@ -236,6 +267,34 @@
             "time": "13:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": {
+              "type": "activity",
+              "name": "",
+              "category": "",
+              "price": "",
+              "duration": "",
+              "reservation": "",
+              "address": "",
+              "phone": "",
+              "access": "",
+              "dietary": "",
+              "whatToBring": "",
+              "hoursNote": "",
+              "mapsUrl": "",
+              "website": "",
+              "bookingUrl": "",
+              "sourceUrl": "",
+              "opening": "",
+              "closing": "",
+              "secondOpening": "",
+              "secondClosing": "",
+              "lastEntry": "",
+              "closed": false,
+              "open24": false,
+              "hoursDate": "2026-10-29",
+              "checkedAt": ""
+            },
             "links": [
               "https://www.google.com/maps/dir/Aeroporto+di+Tokyo-Haneda,+Hanedakuko,+Ota+City,+Tokyo+144-0041,+Giappone/Toyoko+INN+Akihabara+Kanda,+2+Chome-2-4+Nihonbashibakurocho,+Chuo+City,+Tokyo+103-0002,+Giappone/@35.6183072,139.6734115,30506m/data=!3m2!1e3!4b1!4m14!4m13!1m5!1m1!1s0x6018640ba43192e3:0xd32c3a9d146f8df!2m2!1d139.7779951!2d35.5482964!1m5!1m1!1s0x60188eb278b64dad:0xbf78f5ed8ba661c6!2m2!1d139.7831729!2d35.6954149!3e3?entry=ttu&g_ep=EgoyMDI2MDQyOS4wIKXMDSoASAFQAw%3D%3D"
             ],
@@ -258,12 +317,14 @@
                   "to": "Asakusabashi",
                   "via": "",
                   "direction": "Nishi-magome",
+                  "stops": "",
                   "departure": "",
                   "arrival": "",
                   "platform": "",
                   "cost": "",
                   "duration": "7min",
-                  "notes": ""
+                  "notes": "",
+                  "notesFormat": []
                 },
                 {
                   "mode": "Metro",
@@ -272,12 +333,14 @@
                   "to": "Akihabara",
                   "via": "",
                   "direction": "Ochanomizu e Shinjuku",
+                  "stops": "",
                   "departure": "",
                   "arrival": "",
                   "platform": "",
                   "cost": "",
                   "duration": "3min",
-                  "notes": "1 fermata"
+                  "notes": "",
+                  "notesFormat": []
                 }
               ]
             },
@@ -286,11 +349,40 @@
             "time": "17:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": {
+              "type": "activity",
+              "name": "",
+              "category": "",
+              "price": "",
+              "duration": "",
+              "reservation": "",
+              "address": "",
+              "phone": "",
+              "access": "",
+              "dietary": "",
+              "whatToBring": "",
+              "hoursNote": "",
+              "mapsUrl": "",
+              "website": "",
+              "bookingUrl": "",
+              "sourceUrl": "",
+              "opening": "",
+              "closing": "",
+              "secondOpening": "",
+              "secondClosing": "",
+              "lastEntry": "",
+              "closed": false,
+              "open24": false,
+              "hoursDate": "2026-10-29",
+              "checkedAt": ""
+            },
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d2",
@@ -315,6 +407,8 @@
             "time": "13:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -330,6 +424,8 @@
             "time": "15:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.google.com/maps/dir/Toyoko+INN+Akihabara+Kanda,+2+Chome-2-4+Nihonbashibakurocho,+Chuo+City,+Tokyo+103-0002,+Giappone/Ginza+Station,+7+Ginza,+Chuo+City,+Tokyo+104-0061,+Giappone/@35.6836683,139.7542543,5411m/data=!3m1!1e3!4m14!4m13!1m5!1m1!1s0x60188eb278b64dad:0xbf78f5ed8ba661c6!2m2!1d139.7831729!2d35.6954149!1m5!1m1!1s0x60188be67cd18827:0x908c96f389166eda!2m2!1d139.7650154!2d35.6712254!3e3?authuser=1&entry=ttu&g_ep=EgoyMDI2MDUxMi4wIKXMDSoASAFQAw%3D%3D"
             ],
@@ -347,6 +443,8 @@
             "time": "16:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.google.com/maps/dir/Toyoko+INN+Akihabara+Kanda,+2+Chome-2-4+Nihonbashibakurocho,+Chuo+City,+Tokyo+103-0002,+Giappone/Shibuya,+Tokyo,+Giappone/@35.6572273,139.702595,10825m/data=!3m1!1e3!4m14!4m13!1m5!1m1!1s0x60188eb278b64dad:0xbf78f5ed8ba661c6!2m2!1d139.7831729!2d35.6954149!1m5!1m1!1s0x60188cb2eb3108d1:0xf11cd9b2395b6677!2m2!1d139.703795!2d35.6619707!3e3?authuser=1&entry=ttu&g_ep=EgoyMDI2MDUxMi4wIKXMDSoASAFQAw%3D%3D"
             ],
@@ -364,6 +462,8 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://maps.app.goo.gl/zPME4Mgd5qgnFBJUA"
             ],
@@ -381,6 +481,8 @@
             "time": "09:36",
             "kind": "attivita",
             "notes": "– Zojo-ji — Visita del grande tempio buddhista legato alla famiglia Tokugawa, con la caratteristica porta Sangedatsumon e la Tokyo Tower sullo sfondo.\n– Shiba Park — Passeggiata nel verde tra alberi, piccoli santuari e scorci particolarmente belli sulla Tokyo Tower.\n– Shiba Toshogu — Piccolo santuario dedicato a Tokugawa Ieyasu, immerso nel parco e caratterizzato da un grande ginkgo secolare.\n– Tokyo Tower — Passeggiata fino alla base della torre, con tempo per fotografie e per ammirare da vicino i suoi 333 metri.\n– Akabanebashi / vista sulla Tokyo Tower — Ultime fotografie dalla zona dell'incrocio di Akabanebashi, indicato anche dalla Tokyo Tower come uno dei punti fotografici d'accesso alla torre.",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -396,6 +498,8 @@
             "time": "11:30",
             "kind": "attivita",
             "notes": "I negozi aprono alle 11:00\n\n- UNIQLO Ginza — Grande flagship store del celebre marchio giapponese di abbigliamento, distribuito su numerosi piani.\n- Kyukyodo — Storica bottega fondata nel 1663, specializzata in profumi tradizionali, carta giapponese, calligrafia e articoli d'arte.\n- Ginza Itoya — Storica cartoleria giapponese di 12 piani, con penne, quaderni, articoli per la scrittura e oggetti di design.\n- MUJI Ginza — Flagship store di MUJI con abbigliamento, articoli per la casa, cancelleria e prodotti dal caratteristico design minimalista giapponese.\n- Ginza Six — Grande complesso commerciale contemporaneo con negozi, ristoranti e una terrazza panoramica con vista sulla città.",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -411,6 +515,8 @@
             "time": "17:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -426,6 +532,8 @@
             "time": "11:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.google.com/maps/dir/Tokyo+Tower,+4+Chome-2-8+Shibakoen,+Minato+City,+Tokyo+105-0011,+Giappone/Ginza+Station,+7+Ginza,+Chuo+City,+Tokyo+104-0061,+Giappone/@35.6678663,139.7437786,2706m/data=!3m1!1e3!4m14!4m13!1m5!1m1!1s0x60188bbd9009ec09:0x481a93f0d2a409dd!2m2!1d139.7454329!2d35.6585805!1m5!1m1!1s0x60188be67cd18827:0x908c96f389166eda!2m2!1d139.7650154!2d35.6712254!3e3?entry=ttu&g_ep=EgoyMDI2MDUxMi4wIKXMDSoASAFQAw%3D%3D"
             ],
@@ -443,6 +551,8 @@
             "time": "09:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.google.com/maps/dir/Toyoko+INN+Akihabara+Kanda,+2+Chome-2-4+Nihonbashibakurocho,+Chuo+City,+Tokyo+103-0002,+Giappone/Tokyo+Tower,+4+Chome-2-8+Shibakoen,+Minato+City,+Tokyo+105-0011,+Giappone/@35.6651922,139.7122401,10516m/data=!3m1!1e3!4m14!4m13!1m5!1m1!1s0x60188eb278b64dad:0xbf78f5ed8ba661c6!2m2!1d139.7831729!2d35.6954149!1m5!1m1!1s0x60188bbd9009ec09:0x481a93f0d2a409dd!2m2!1d139.7454329!2d35.6585805!3e3?authuser=1&entry=ttu&g_ep=EgoyMDI2MDUxMi4wIKXMDSoASAFQAw%3D%3D"
             ],
@@ -460,11 +570,14 @@
             "time": "15:30",
             "kind": "info",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d3",
@@ -489,6 +602,8 @@
             "time": "10:30",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -504,6 +619,8 @@
             "time": "11:00",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -519,6 +636,8 @@
             "time": "12:00",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.hankyu.co.jp/kyotrain-garaku/en/service/#timetable"
             ],
@@ -536,6 +655,8 @@
             "time": "13:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -551,6 +672,8 @@
             "time": "14:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -566,6 +689,8 @@
             "time": "14:30",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -581,6 +706,8 @@
             "time": "16:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -596,6 +723,8 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -611,6 +740,8 @@
             "time": "21:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -626,6 +757,8 @@
             "time": "08:18",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -641,11 +774,14 @@
             "time": "10:29",
             "kind": "info",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d4",
@@ -670,6 +806,8 @@
             "time": "08:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -685,6 +823,8 @@
             "time": "10:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -700,6 +840,8 @@
             "time": "12:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.google.com/maps/dir/Otagi+Nenbutsuji,+2-5+Sagatoriimoto+Fukatanicho,+Ukyo+Ward,+Kyoto,+616-8439,+Giappone/Iwatayama+Monkey+Park,+%EF%BC%96%EF%BC%91-61+Arashiyama+Nakaoshitacho,+Nishikyo+Ward,+Kyoto,+616-0004,+Giappone/@35.0195179,135.6686755,5456m/data=!3m1!1e3!4m14!4m13!1m5!1m1!1s0x6001aa3999ac708b:0x57b7af11417a95d2!2m2!1d135.6615546!2d35.0311428!1m5!1m1!1s0x600100ab6efb49bd:0x1b3493b0430734b2!2m2!1d135.6766245!2d35.011395!3e3!5m1!1e2?entry=ttu&g_ep=EgoyMDI2MDkxNC4wIKXMDSoASAFQAw%3D%3D"
             ],
@@ -717,6 +859,8 @@
             "time": "13:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -732,6 +876,8 @@
             "time": "14:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -747,6 +893,8 @@
             "time": "14:30",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -762,6 +910,8 @@
             "time": "15:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -777,6 +927,8 @@
             "time": "18:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.klook.com/it/activity/190642-kyoto-gion-kintsugi-making-traditional-workshop/?package_id=635685&utm_campaign=platform-share&utm_content=platform%3Dios_pagespm%3DActivity_textversion%3D1_shareid%3D58E8A9EA-51C8-4B9E-A639-3E1391AEDD4F&utm_medium=whatsapp&utm_source=whatsapp"
             ],
@@ -794,6 +946,8 @@
             "time": "19:30",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://maps.app.goo.gl/KGdCGchC9UYLFUdq7"
             ],
@@ -811,13 +965,16 @@
             "time": "20:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.klook.com/it/activity/228817-kyoto-sumo-experience-live-show-audience-challenge/?package_id=744388&utm_campaign=platform-share&utm_content=platform%3Dios_pagespm%3DActivity_textversion%3D1_shareid%3D3A5309EB-5B67-40FC-BC5C-9832CAAC4FE4&utm_medium=whatsapp&utm_source=whatsapp&dd_referrer="
             ],
             "bookingId": "b29",
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d5",
@@ -842,6 +999,8 @@
             "time": "07:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://maps.app.goo.gl/BBNHPnVvSYZxoYyS8"
             ],
@@ -859,6 +1018,8 @@
             "time": "08:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://maps.app.goo.gl/b8irE1YEB8nMFZ6b8"
             ],
@@ -876,6 +1037,8 @@
             "time": "09:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -891,6 +1054,8 @@
             "time": "12:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -906,6 +1071,8 @@
             "time": "13:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -921,6 +1088,8 @@
             "time": "14:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -936,6 +1105,8 @@
             "time": "15:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://donnykimball.com/yasui-konpiragu-8d64ad8c0e86"
             ],
@@ -953,6 +1124,8 @@
             "time": "17:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -968,6 +1141,8 @@
             "time": "18:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -983,11 +1158,14 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d6",
@@ -1012,6 +1190,8 @@
             "time": "08:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1027,6 +1207,8 @@
             "time": "10:30",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1042,6 +1224,8 @@
             "time": "11:00",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1057,6 +1241,8 @@
             "time": "11:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1072,6 +1258,8 @@
             "time": "12:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1087,6 +1275,8 @@
             "time": "13:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1102,6 +1292,8 @@
             "time": "13:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1117,6 +1309,8 @@
             "time": "14:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1132,6 +1326,8 @@
             "time": "16:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.getyourguide.com/it-it/kanazawa-l32537/kanazawa-esperienza-di-cerimonia-del-te-kenrokuen-t647215/?ranking_uuid=08ba1262-7b33-44d3-98f0-857bd445dfb9&q=Kanazawa%2C+Cerimonie+del+t%C3%A8"
             ],
@@ -1149,11 +1345,14 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d7",
@@ -1178,6 +1377,8 @@
             "time": "07:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1193,6 +1394,8 @@
             "time": "07:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.nouhibus.co.jp/highwaybus/kanazawa_en/#timetable"
             ],
@@ -1210,6 +1413,8 @@
             "time": "08:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1225,6 +1430,8 @@
             "time": "08:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1240,6 +1447,8 @@
             "time": "09:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1255,6 +1464,8 @@
             "time": "10:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1270,6 +1481,8 @@
             "time": "11:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1285,6 +1498,8 @@
             "time": "12:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1300,6 +1515,8 @@
             "time": "13:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1315,6 +1532,8 @@
             "time": "15:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.nouhibus.co.jp/highwaybus/kanazawa_en/#timetable"
             ],
@@ -1332,6 +1551,8 @@
             "time": "16:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1347,6 +1568,8 @@
             "time": "16:30",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1362,11 +1585,14 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d8",
@@ -1391,6 +1617,8 @@
             "time": "08:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1406,6 +1634,8 @@
             "time": "09:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1421,6 +1651,8 @@
             "time": "10:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1436,6 +1668,8 @@
             "time": "11:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1451,6 +1685,8 @@
             "time": "11:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://it.wikiloc.com/percorsi-escursionismo/kamikochi-visita-a-lagos-tashiro-taisho-y-myojin-33118218"
             ],
@@ -1468,6 +1704,8 @@
             "time": "13:30",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1483,6 +1721,8 @@
             "time": "18:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1498,11 +1738,14 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d9",
@@ -1527,6 +1770,8 @@
             "time": "08:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1542,6 +1787,8 @@
             "time": "10:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1557,6 +1804,8 @@
             "time": "10:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1572,6 +1821,8 @@
             "time": "11:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1587,6 +1838,8 @@
             "time": "12:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1602,6 +1855,8 @@
             "time": "13:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://maps.app.goo.gl/U1dnnVGQMNJyYenG7"
             ],
@@ -1619,6 +1874,8 @@
             "time": "13:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1634,6 +1891,8 @@
             "time": "14:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1649,6 +1908,8 @@
             "time": "14:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1664,6 +1925,8 @@
             "time": "15:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1679,6 +1942,8 @@
             "time": "18:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1694,11 +1959,14 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d10",
@@ -1723,6 +1991,8 @@
             "time": "08:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1738,6 +2008,8 @@
             "time": "09:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1753,6 +2025,8 @@
             "time": "09:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.limonbus.com/booking_proc_snk_sh_en/757883/EN/limon/main/detail?XCD=757883&CODE1=HG&CODE2=TI00&CODE3=401000&YEAR=2026&MONTH=8&ROOMTYPE=046#calarea"
             ],
@@ -1770,6 +2044,8 @@
             "time": "10:00",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1785,6 +2061,8 @@
             "time": "13:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1800,6 +2078,8 @@
             "time": "14:30",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1815,6 +2095,8 @@
             "time": "15:00",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1830,6 +2112,8 @@
             "time": "15:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1845,6 +2129,8 @@
             "time": "17:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1860,11 +2146,14 @@
             "time": "19:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d11",
@@ -1889,6 +2178,8 @@
             "time": "08:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1904,6 +2195,8 @@
             "time": "08:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1919,6 +2212,8 @@
             "time": "09:00",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://vm.tiktok.com/ZN8jTJShA/"
             ],
@@ -1936,6 +2231,8 @@
             "time": "13:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1951,11 +2248,14 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d12",
@@ -1980,6 +2280,8 @@
             "time": "07:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -1995,6 +2297,8 @@
             "time": "07:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2010,6 +2314,8 @@
             "time": "08:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2025,6 +2331,8 @@
             "time": "09:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2040,6 +2348,8 @@
             "time": "09:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2055,6 +2365,8 @@
             "time": "13:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2070,6 +2382,8 @@
             "time": "14:00",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2085,6 +2399,8 @@
             "time": "14:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [
               "https://www.jreast.co.jp/en/multi/traininformation/azusa_kaiji/"
             ],
@@ -2102,6 +2418,8 @@
             "time": "15:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2117,6 +2435,8 @@
             "time": "16:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2132,6 +2452,8 @@
             "time": "17:00",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2147,6 +2469,8 @@
             "time": "18:30",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2162,11 +2486,14 @@
             "time": "19:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": "b5",
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d13",
@@ -2191,6 +2518,8 @@
             "time": "07:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2206,6 +2535,8 @@
             "time": "07:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2221,6 +2552,8 @@
             "time": "08:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2236,6 +2569,8 @@
             "time": "08:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2251,6 +2586,8 @@
             "time": "09:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2266,6 +2603,8 @@
             "time": "09:30",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2281,6 +2620,8 @@
             "time": "10:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2296,6 +2637,8 @@
             "time": "11:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2311,6 +2654,8 @@
             "time": "12:30",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2326,6 +2671,8 @@
             "time": "13:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2341,6 +2688,8 @@
             "time": "14:30",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2356,6 +2705,8 @@
             "time": "16:00",
             "kind": "attivita",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2371,6 +2722,8 @@
             "time": "18:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2386,11 +2739,14 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d14",
@@ -2415,6 +2771,8 @@
             "time": "11:30",
             "kind": "nota",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2430,11 +2788,14 @@
             "time": "20:00",
             "kind": "pasto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       },
       {
         "id": "d15",
@@ -2459,6 +2820,8 @@
             "time": "12:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
@@ -2474,11 +2837,14 @@
             "time": "20:00",
             "kind": "trasporto",
             "notes": "",
+            "notesFormat": [],
+            "place": null,
             "links": [],
             "bookingId": null,
             "done": false
           }
-        ]
+        ],
+        "notesFormat": []
       }
     ],
     "reservations": [
@@ -2489,6 +2855,11 @@
         "date": "2026-10-29",
         "deadline": "13 settembre",
         "notes": "Ingressi: 4pp 16/16:30 e 7pp 16:30/17",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella",
         "price": 12.4,
@@ -2504,6 +2875,11 @@
         "date": "2026-10-28",
         "deadline": "8 marzo",
         "notes": "con prenotazione posti A/R",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "",
         "price": 1307,
@@ -2519,6 +2895,11 @@
         "date": "2026-11-03",
         "deadline": "13 settembre",
         "notes": "3 nov ore 16:00, Kanazawa, Kenrouen (paga 31 ott)",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Leo 31 ott",
         "price": 37.5,
@@ -2534,6 +2915,11 @@
         "date": "2026-11-09",
         "deadline": "13 settembre",
         "notes": "09 novembre ore 19:00",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella",
         "price": 25.25,
@@ -2549,6 +2935,11 @@
         "date": "2026-10-29",
         "deadline": "8 marzo",
         "notes": "hotel tokyo 29 - 31 ott (paga 25 ott)",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella 25 ott",
         "price": 92.14285714285714,
@@ -2566,6 +2957,11 @@
         "date": "2026-10-31",
         "deadline": "8 marzo",
         "notes": "hotel kyoto 31 ott - 3 nov",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella",
         "price": 89.28571428571429,
@@ -2583,6 +2979,11 @@
         "date": "2026-11-03",
         "deadline": "8 marzo",
         "notes": "Casa Kanazawa 3 - 4 nov",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella",
         "price": 54.857142857142854,
@@ -2600,6 +3001,11 @@
         "date": "2026-11-04",
         "deadline": "10 giugno",
         "notes": "Casa Takayama 4 - 7 nov (paga 2 ott)",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella 2 ott",
         "price": 174.1390909090909,
@@ -2617,6 +3023,11 @@
         "date": "2026-11-07",
         "deadline": "8 marzo",
         "notes": "Casa Fuji 7 - 9 nov",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella",
         "price": 75.85714285714286,
@@ -2634,6 +3045,11 @@
         "date": "2026-11-09",
         "deadline": "8 marzo",
         "notes": "Hotel Tokyo 9 - 12 nov",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella",
         "price": 143,
@@ -2651,6 +3067,11 @@
         "date": "2026-10-31",
         "deadline": "6 settembre",
         "notes": "Partenza 08:18 Stazione di Tokyo",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Antonella e Fra",
         "price": 94.43,
@@ -2666,6 +3087,11 @@
         "date": "2026-11-07",
         "deadline": "6 settembre",
         "notes": "Partenza 08:40 Stazione di Takayama (Limon bus)",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Erika",
         "price": 55.48818181818182,
@@ -2681,6 +3107,11 @@
         "date": "",
         "deadline": "prima di partire",
         "notes": "registrarsi e inserire le info",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "-",
         "price": null,
@@ -2696,6 +3127,11 @@
         "date": "",
         "deadline": "un mese prima",
         "notes": "Heymondo \"viaggio top\" con codice sconto",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "",
         "price": 46,
@@ -2711,6 +3147,11 @@
         "date": "2026-11-04",
         "deadline": "il 05 ottobre (1 mese prima)",
         "notes": "Kanazawa-Shirakawa Go da prenotare l'05 ottobre https://japanbusonline.com/en/Detail/11900040002/1/4162027/4212032/ 2pp a prenotazione e bisogna prendere 2 biglietti separati uno per shirakawa e uno per takayama",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "",
         "price": 31.3,
@@ -2728,6 +3169,11 @@
         "date": "2026-11-09",
         "deadline": "il 09 ottobre (1 mese prima)",
         "notes": "Treno Fuji Excursion (partenza subito dopo pranzo per arrivare da teamlabs plante la sera)",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "",
         "price": 26.3,
@@ -2743,6 +3189,11 @@
         "date": "",
         "deadline": "",
         "notes": "",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "",
         "price": null,
@@ -2758,6 +3209,11 @@
         "date": "",
         "deadline": "",
         "notes": "",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "",
         "price": null,
@@ -2773,6 +3229,11 @@
         "date": "2026-11-08",
         "deadline": "11 ottobre",
         "notes": "contattare struttura per domenica 8 nov",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "",
         "price": null,
@@ -2788,6 +3249,11 @@
         "date": "2026-11-07",
         "deadline": "11 ottobre",
         "notes": "contattare struttura per sabato 7 nov alle 14",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "",
         "price": null,
@@ -2803,6 +3269,11 @@
         "date": "2026-10-31",
         "deadline": "Valuta sul posto",
         "notes": "Kyoto-Osaka treno bellino link https://www.hankyu.co.jp/kyotrain-garaku/en/service#timetable",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "consider",
         "owner": "",
         "price": null,
@@ -2820,6 +3291,11 @@
         "date": "2026-10-31",
         "deadline": "",
         "notes": "giardino esterno gratis",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "consider",
         "owner": "",
         "price": null,
@@ -2835,6 +3311,11 @@
         "date": "2026-11-05",
         "deadline": "solo sul posto in stazione",
         "notes": "Partenza 7 o 8:40 da Takayama Nohi Bus Center \"Takayama – Kamikochi Round-trip Transfer Ticket\"",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "consider",
         "owner": "",
         "price": 32.5,
@@ -2850,6 +3331,11 @@
         "date": "2026-11-03",
         "deadline": "il 03 ottobre (1 mese prima)",
         "notes": "Meglio prenotare in anticipo",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "pending",
         "owner": "",
         "price": null,
@@ -2865,6 +3351,11 @@
         "date": "2026-11-06",
         "deadline": "Prenota il giorno stesso",
         "notes": "Esperienza Kumihimo Hida Furukawa Sakura Gift Shop",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "consider",
         "owner": "",
         "price": null,
@@ -2880,6 +3371,11 @@
         "date": "2026-11-06",
         "deadline": "Prenota in anticipo",
         "notes": "Hida Shokunin Seikatsu (tazzza di legno o tagliere",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "consider",
         "owner": "",
         "price": null,
@@ -2895,6 +3391,11 @@
         "date": "2026-11-01",
         "deadline": "16 settembre",
         "notes": "https://www.klook.com/it/activity/190642-kyoto-gion-kintsugi-making-traditional-workshop/?package_id=635685&utm_campaign=platform-share&utm_content=platform%3Dios_pagespm%3DActivity_textversion%3D1_shareid%3D58E8A9EA-51C8-4B9E-A639-3E1391AEDD4F&utm_medium=whatsapp&utm_source=whatsapp",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Leonardo",
         "price": 6.40817064352856,
@@ -2912,6 +3413,11 @@
         "date": "2026-11-01",
         "deadline": "16 settembre",
         "notes": "https://www.klook.com/it/activity/228817-kyoto-sumo-experience-live-show-audience-challenge/?package_id=744388&utm_campaign=platform-share&utm_content=platform%3Dios_pagespm%3DActivity_textversion%3D1_shareid%3D3A5309EB-5B67-40FC-BC5C-9832CAAC4FE4&utm_medium=whatsapp&utm_source=whatsapp&dd_referrer=",
+        "notesFormat": [],
+        "phone": "",
+        "checkIn": "",
+        "checkOut": "",
+        "mapUrl": "",
         "status": "booked",
         "owner": "Leonardo",
         "price": 8.75813449023861,
@@ -2990,9 +3496,10 @@
       "customs": "Compilare Visit Japan Web prima della partenza e preparare il QR code.",
       "customsUrl": "https://www.vjw.digital.go.jp/",
       "exchange": 0.0056,
-      "notes": ""
+      "notes": "",
+      "notesFormat": []
     },
-    "updatedAt": "2026-10-04T08:48:12.701Z",
+    "updatedAt": "2026-10-04T13:17:26.955Z",
     "cityCovers": {}
   }
 }
