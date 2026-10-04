@@ -38,9 +38,17 @@ function adjust(before,after,ranges){
  const cleaned=[];for(const r of out){const last=cleaned.at(-1);if(last&&r.start<last.end)r.start=last.end;if(r.end>r.start)cleaned.push(r)}
  return validate(after,cleaned)
 }
+// Preserve authored hue while keeping coloured notes legible on dark cards.
+function darkColor(hex){
+ const rgb=hex.slice(1).match(/../g).map(v=>parseInt(v,16));
+ const lum=values=>values.reduce((sum,v,i)=>{const c=v/255;return sum+[.2126,.7152,.0722][i]*(c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4))},0);
+ const background=lum([48,59,60]);let adjusted=rgb;
+ for(let step=0;step<=100;step++){adjusted=rgb.map(v=>Math.round(v+(255-v)*step/100));if((lum(adjusted)+.05)/(background+.05)>=4.5)break}
+ return '#'+adjusted.map(v=>v.toString(16).padStart(2,'0')).join('')
+}
 function html(text,ranges){
  ranges=validate(text,ranges);let cursor=0,out='';
- for(const r of ranges){out+=escape(text.slice(cursor,r.start));const css=[r.size?'font-size:'+r.size+'px':'',r.color?'color:'+r.color:'',r.bold?'font-weight:700':'',r.italic?'font-style:italic':'',r.underline?'text-decoration:underline':''].filter(Boolean).join(';');out+='<span style="'+css+'">'+escape(text.slice(r.start,r.end))+'</span>';cursor=r.end}
+ for(const r of ranges){out+=escape(text.slice(cursor,r.start));const css=[r.size?'font-size:'+r.size+'px':'',r.color?'color:'+r.color+';--note-dark-color:'+darkColor(r.color):'',r.bold?'font-weight:700':'',r.italic?'font-style:italic':'',r.underline?'text-decoration:underline':''].filter(Boolean).join(';');out+='<span'+(r.color?' data-note-color="'+r.color+'"':'')+' style="'+css+'">'+escape(text.slice(r.start,r.end))+'</span>';cursor=r.end}
  return '<div class="formatted-note">'+out+escape(text.slice(cursor))+'</div>'
 }
 function fieldMarkup(name,text,ranges){
@@ -69,5 +77,5 @@ function mount(container){
   tools.addEventListener('click',format);tools.addEventListener('change',format);paint()
  }
 }
-window.JAPAN_NOTES={validate,apply,adjust,html,fieldMarkup,mount};
+window.JAPAN_NOTES={validate,apply,adjust,html,fieldMarkup,mount,darkColor};
 })();

@@ -219,7 +219,7 @@ function updateTimeline(){
   if(!state.today||timeline.dataset.timelinePast){mascot?.remove();continue}
   const box=timeline.getBoundingClientRect(),anchors=rows.map(row=>{const r=row.getBoundingClientRect(),time=row.querySelector('.event-time');const dot=time?window.getComputedStyle?.(time,'::after'):null,offset=time?(parseFloat(dot?.top)||25)+(parseFloat(dot?.height)||10)/2:Math.min((r.height||24)/2,16);return {time:row.dataset.time,y:r.top-box.top+offset}}),position=timelineProgress(day,clock,anchors);
   if(position==null){mascot?.remove();continue}
-  if(!mascot){mascot=document.createElement('div');mascot.className='timeline-mascot';mascot.innerHTML='<img src="mascotte-kitsu.svg?v=20261004-giornate" width="32" height="40" alt="" aria-hidden="true"><span class="mascot-clock"></span>';mascot.setAttribute('role','img');timeline.append(mascot)}
+  if(!mascot){mascot=document.createElement('div');mascot.className='timeline-mascot';mascot.innerHTML=(window.JAPAN_KITSU?.markup()||'<img src="mascotte-kitsu.svg?v=20261004-notte" width="32" height="40" alt="" aria-hidden="true">')+'<span class="mascot-clock"></span>';mascot.setAttribute('role','img');timeline.append(mascot)}
   mascot.setAttribute('aria-label','Kitsu indica dove siamo nel programma: '+clock.time+', ora del Giappone.');mascot.title='Kitsu · '+clock.time+' in Giappone';mascot.querySelector('.mascot-clock').textContent=clock.time;
   mascot.style.transform='translateY('+Math.max(0,position-43)+'px)'
  }
@@ -346,14 +346,10 @@ function dayRail(){
 function kitsuDeparture(day,index){
  if(index!==0||japanClock().date>=model.days[0].date)return '';
  const days=Math.max(0,Math.ceil((Date.parse(model.days[0].date+'T00:00:00Z')-Date.parse(japanClock().date+'T00:00:00Z'))/86400000));
- return '<aside class="kitsu-departure"><button type="button" class="kitsu-ready" data-kitsu-ready aria-label="Saluta Kitsu, pronta a partire"><img src="mascotte-kitsu.svg?v=20261004-giornate" width="55" height="69" alt=""></button><div><strong>Io sono pronta. E voi?</strong><p>Zaino in spalla: mancano '+days+' giorni al nostro Giappone.</p></div></aside>'
+ return '<aside class="kitsu-departure"><button type="button" class="kitsu-ready" data-kitsu-ready aria-label="Saluta Kitsu, pronta a partire">'+(window.JAPAN_KITSU?.markup()||'<img src="mascotte-kitsu.svg?v=20261004-notte" width="55" height="69" alt="">')+'</button><div><strong>Io sono pronta. E voi?</strong><p>Zaino in spalla: mancano '+days+' giorni al nostro Giappone.</p></div></aside>'
 }
 function programHTML(){const day=model.days[selected];return coverHTML(day)+(editing?'<div class="program-toolbar"><button data-action="edit-cover" class="text-button">Foto città</button></div>':'')+'<div class="program-layout">'+dayRail()+dayHTML(day,selected)+'</div>'}
 
-document.addEventListener('click',event=>{
- const button=event.target.closest('[data-kitsu-ready]');if(!button?.animate||prefersReducedMotion())return;
- button.getAnimations?.().forEach(m=>m.cancel());button.animate([{transform:'rotate(0) translateY(0)'},{transform:'rotate(-9deg) translateY(-5px)',offset:.3},{transform:'rotate(9deg) translateY(-5px)',offset:.65},{transform:'rotate(0) translateY(0)'}],{duration:600,easing:'ease-in-out'})
-});
 
 function overviewHTML(){return `<div class="page-heading"><span class="eyebrow">DAL 28 OTTOBRE AL 12 NOVEMBRE</span><h1>Il viaggio, tutto insieme.</h1><p>Da Tokyo alle montagne, passando per Kyoto. Scegli una giornata per aprire il programma.</p></div><div class="overview-grid">${model.days.map((d,i)=>`<button class="overview-card" data-action="open-overview-day" data-index="${i}">${coverHTML(d,true)}<div class="overview-copy"><span class="eyebrow">GIORNO ${String(i+1).padStart(2,'0')} · ${dateText(d.date)}</span><strong>${esc(d.title)}</strong><span>${d.events.filter(e=>e.kind==='attivita').length} visite · ${d.events.length} voci ${svg('arrow')}</span></div></button>`).join('')}</div>`}
 
@@ -393,13 +389,13 @@ function scrollBehavior(){return prefersReducedMotion()?'auto':'smooth'}
 function cancelContentMotion(){viewMotion?.cancel();viewMotion=null;[...dayMotions,...sectionMotions].forEach(m=>m.cancel());dayMotions=[];sectionMotions=[]}
 function animateView(){
  cancelContentMotion();if(!main.animate||prefersReducedMotion())return;
- viewMotion=main.animate([{opacity:0,transform:'translateY(14px) scale(.992)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:340,easing:'cubic-bezier(.2,.8,.2,1)'});
- const visible=[...main.querySelectorAll('.more-card,.overview-card,.today-spotlight,.booking-card,.phrase-card,.moments-welcome,.moments-loading,.quick-converter,.event')].filter(el=>{const r=el.getBoundingClientRect();return r.bottom>0&&r.top<window.innerHeight}).slice(0,5);
- visible.forEach((el,i)=>{if(!el.animate)return;const motion=el.animate([{opacity:0,transform:'translateY(16px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,delay:i*35,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'});sectionMotions.push(motion);motion.onfinish=()=>{sectionMotions=sectionMotions.filter(m=>m!==motion)}});
+ viewMotion=main.animate([{opacity:0,transform:'translateY(20px) scale(.985)'},{opacity:1,transform:'translateY(-2px) scale(1.002)',offset:.72},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:460,easing:'cubic-bezier(.16,1,.3,1)'});
+ const visible=[...main.querySelectorAll('.more-card,.overview-card,.today-spotlight,.booking-card,.phrase-card,.moments-welcome,.moments-loading,.quick-converter,.personal-today,.stay-card,.event')].filter(el=>{const r=el.getBoundingClientRect();return r.bottom>0&&r.top<window.innerHeight}).slice(0,7);
+ visible.forEach((el,i)=>{if(!el.animate)return;const motion=el.animate([{opacity:0,transform:'translateY(22px) scale(.98)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:400,delay:i*40,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'});sectionMotions.push(motion);motion.onfinish=()=>{sectionMotions=sectionMotions.filter(m=>m!==motion)}});
 }
 function animateDay(){
  cancelContentMotion();if(prefersReducedMotion())return;
- for(const [i,el] of [...main.querySelectorAll('.city-cover:not(.small-cover),.day-content')].entries()){if(!el.animate)continue;dayMotions.push(el.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:300,delay:i*40,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}))}
+ for(const [i,el] of [...main.querySelectorAll('.city-cover:not(.small-cover),.day-content')].entries()){if(!el.animate)continue;dayMotions.push(el.animate([{opacity:0,transform:'translateX(18px) scale(.985)'},{opacity:1,transform:'translateX(0) scale(1)'}],{duration:420,delay:i*55,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}))}
 }
 // Animate all native accordions only after the user explicitly opens them.
 const requestedDetails=new WeakSet(),detailMotions=new WeakMap();
@@ -409,18 +405,18 @@ main.addEventListener('toggle',event=>{
  (detailMotions.get(details)||[]).forEach(m=>m.cancel());detailMotions.delete(details);
  if(!details.open||prefersReducedMotion())return;
  const body=details.querySelector('.details-body,.today-hotel-body,.timeline'),targets=body?[body]:[...details.children].filter(el=>el.tagName!=='SUMMARY').slice(0,3);
- const motions=targets.filter(el=>el.animate).map((el,i)=>el.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,delay:i*25,easing:'ease-out',fill:'backwards'}));detailMotions.set(details,motions);
+ const motions=targets.filter(el=>el.animate).map((el,i)=>el.animate([{opacity:0,transform:'translateY(-8px) scale(.985)',clipPath:'inset(0 0 20% 0)'},{opacity:1,transform:'translateY(0) scale(1)',clipPath:'inset(0 0 0 0)'}],{duration:340,delay:i*35,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'}));detailMotions.set(details,motions);
 },true);
 // Feedback is local and immediate; it never delays navigation or network actions.
 const tapMotions=new WeakMap();
 document.addEventListener('click',event=>{
- const el=event.target.closest?.('button,a.map-link,a.event-link,summary');if(!el||el.disabled||prefersReducedMotion())return;
+ const el=event.target.closest?.('button,a.map-link,a.event-link,summary');if(!el||el.disabled||el.matches('[data-fortune-charm],[data-kitsu-ready]')||prefersReducedMotion())return;
  tapMotions.get(el)?.cancel();el.querySelector(':scope > .tap-wave')?.remove();if(!el.animate)return;
  el.classList.add('tap-surface');const wave=document.createElement('span');wave.className='tap-wave';wave.setAttribute('aria-hidden','true');el.appendChild(wave);
- const motion=wave.animate([{opacity:.55,transform:'scale(.15)'},{opacity:0,transform:'scale(1)'}],{duration:430,easing:'ease-out'});
+ const motion=wave.animate([{opacity:.55,transform:'scale(.15)'},{opacity:0,transform:'scale(1)'}],{duration:520,easing:'cubic-bezier(.16,1,.3,1)'});
  const remove=()=>{wave.remove();if(tapMotions.get(el)===motion)tapMotions.delete(el)};motion.onfinish=remove;motion.oncancel=remove;tapMotions.set(el,motion);
  const navIcon=el.matches('.main-tabs button')?el.querySelector('[data-nav-icon]'):null;
- navIcon?.animate?.([{transform:'translateY(0) scale(1)'},{transform:'translateY(-4px) scale(1.13)',offset:.45},{transform:'translateY(0) scale(1)'}],{duration:360,easing:'ease-out'});
+ navIcon?.animate?.([{transform:'translateY(0) scale(1)'},{transform:'translateY(-6px) rotate(-6deg) scale(1.18)',offset:.45},{transform:'translateY(0) scale(1)'}],{duration:440,easing:'cubic-bezier(.34,1.56,.64,1)'});
 },true);
 function groupShareHTML(){const available=window.JAPAN_MOMENTS.canInvite();return '<button class="more-card" '+(available?'data-moment-action="invite"':'data-view="moments"')+'>'+svg('group')+'<strong>Invita gli amici</strong><span>'+(available?'Copia l’invito a programma e Momenti':'Apri Momenti e collega il diario del gruppo')+'</span></button>'}
 function moreHTML(){const pending=model.reservations.filter(b=>b.status!=='booked').length;return '<div class="page-heading"><h1>Info</h1><p>Le cose da avere a portata di mano.</p></div><div class="info-hub"><button class="more-card phrase-hub-card" data-view="phrases">'+svg('info')+'<strong>Frasi in giapponese</strong><span>Cerca, pronuncia o mostra · anche al ristorante</span></button><button class="more-card" data-view="bookings">'+svg('ticket')+'<strong>Prenotazioni e biglietti</strong><span>Link e informazioni delle prenotazioni'+(pending?' · '+pending+' da organizzare':'')+'</span></button><button class="more-card" data-view="stays">'+svg('moon')+'<strong>Alloggi</strong><span>Le nostre notti, gli indirizzi e le mappe</span></button><button class="more-card" data-view="budget">'+svg('wallet')+'<strong>Budget</strong><span>La previsione delle spese</span></button><button class="more-card" data-view="info">'+svg('info')+'<strong>Info utili</strong><span>Voli, eSIM e consigli</span></button>'+groupShareHTML()+'</div><details class="info-tools"><summary>Strumenti e aggiornamenti <span>⌄</span></summary><p class="sync-description"></p><div class="info-actions"><button class="secondary" data-program-refresh>Aggiorna programma</button><button class="secondary" data-action="export">Esporta una copia</button></div></details>'}

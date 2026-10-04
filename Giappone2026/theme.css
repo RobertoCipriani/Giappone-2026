@@ -1,0 +1,124 @@
+/* Giappone di notte. Photos and emoji retain their original colours. */
+.brand-title-row{display:flex;align-items:center;gap:10px}
+.theme-toggle{display:grid;place-items:center;flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:#987023;touch-action:manipulation}
+.theme-toggle svg{display:block;width:21px;height:21px}
+.theme-toggle:hover{filter:none;background:var(--accent-soft)}
+.kitsu-charm,.kitsu-ready{background:transparent!important;border:0;border-radius:0;padding:0;box-shadow:none;overflow:visible}
+.kitsu-charm:hover,.kitsu-ready:hover{filter:none}
+.kitsu-charm .kitsu-character{display:block;width:90px;height:94px;margin-left:-5px}
+.kitsu-ready .kitsu-character{display:block;width:67px;height:70px;margin-left:-6px}
+.timeline-mascot .kitsu-character{display:block;width:44px;height:46px;margin-left:-6px;margin-top:-6px}
+.kitsu-charm.tap-surface,.kitsu-ready.tap-surface{isolation:auto}
+.kitsu-charm>.tap-wave,.kitsu-ready>.tap-wave{display:none}
+@media(max-width:760px){.brand-title-row{gap:7px}.theme-toggle{width:34px;height:34px}.theme-toggle svg{width:19px;height:19px}.kitsu-charm .kitsu-character{width:75px;height:78px;margin-left:-6px}}
+@media(max-width:390px){.brand-title-row{gap:5px}.brand-name{font-size:1.14rem}.theme-toggle{width:32px;height:32px}}
+@media screen{
+ html[data-theme="dark"]{--ink:#f1ede5;--muted:#adbbb9;--accent:#f19382;--accent-soft:#3b2828;--paper:#11191f;--white:#1b252c;--line:#36454c;--shadow:0 8px 24px #0003;--gold:#e6be7d;--sage:#bdd3b7;color-scheme:dark;color:var(--ink);background:var(--paper)}
+ html[data-theme="dark"] :is(body,main){background:var(--paper)!important;color:var(--ink)}
+ html[data-theme="dark"] :is(.masthead,.main-tabs){background:#141f26;border-color:var(--line)}
+ html[data-theme="dark"] .main-tabs{box-shadow:0 -6px 28px #0003}
+ html[data-theme="dark"] .flag{background:radial-gradient(circle,#f19382 0 8px,#273740 8.5px);border-color:#415057}
+ html[data-theme="dark"] .theme-toggle{background:#2f3030;border-color:#5a5041;color:var(--gold)}
+ html[data-theme="dark"] :is(.tools-menu,.day-list,.day-pager button,.day-rail-arrow,.secondary,.edit-toggle,.booking-card,.info-card,.budget-list,.more-card,.overview-card,.search-field,.next-activity,.today-stay,.today-hotel,.today-alert,.info-tools,.info-folder,.phrase-card,.phrase-preparation,.phrase-help,.phrase-display,.phrase-display .dialog-actions,dialog,.empty){background:#1b252c;border-color:var(--line);color:var(--ink);box-shadow:none}
+ html[data-theme="dark"] :is(.event-card,.past-timeline>.timeline .event-card){background:#1b252c!important;border-color:var(--line);color:var(--ink)}
+ html[data-theme="dark"] :is(.today-spotlight,.spotlight-primary){background:#203139!important;color:var(--ink)!important;border-color:#435c61;box-shadow:0 5px 22px #0002}
+ html[data-theme="dark"] :is(.kind-trasporto .event-card,.compact-transport .event-card,.kind-nota .event-card){background:#202c2c!important;border-color:#3a4b46}
+ html[data-theme="dark"] .event.is-current .event-card{background:#302b23!important;border-color:#a08759;box-shadow:0 0 0 1px #e6be7d16}
+ html[data-theme="dark"] :is(.event-subtitle,.details-body,.today-spotlight p,.today-hotel-body,.info-folder>div,.more-card span,.info-hub .more-card>span,.phrase-preparation p,.phrase-help p,.phrase-pronunciation,.moments-explanation,.moments-welcome>p,.hotel-notes){color:#c2ccc8}
+ html[data-theme="dark"] :is(.details-body strong,.hotel-facts dd,.hotel-actions a,.journey-totals dd,.journey-leg-info dd,.journey-leg-heading,.details-body .journey-leg-route,.transport-facts dd,.transport-stations strong,.place-facts dd,.place-hours strong,.phrase-japanese,.fortune-japanese,.fortune-meaning,.moment-comment p strong){color:var(--ink)}
+ html[data-theme="dark"] :is(.event-time,.event.is-past .event-time,.event-symbol,.kind-label,.transport-meta,.transport-line,.transport-stations small,.transport-arrow,.transport-via,.transport-change,.transport-legacy-meta,.transport-facts dt,.today-clock,.spotlight-label,.today-hotel small,.hotel-facts dt,.hotel-notes h3,.journey-totals dt,.journey-leg-info dt,.place-detail-label,.place-facts dt,.place-source,.place-practical h4,.place-description h4,.place-day-label,.note-tools label,.note-hint,.phrase-count,.phrase-pronunciation>span,.app-footer){color:var(--muted)}
+ html[data-theme="dark"] :is(.kind-trasporto .event-symbol,.kind-trasporto .kind-label,.kind-pasto .event-symbol,.kind-pasto .kind-label,.kind-nota .event-symbol,.kind-nota .kind-label){color:var(--muted)}
+ html[data-theme="dark"] :is(.event-details>summary,.event-details[open]>summary,.event.is-current .event-time,.kind-piedi.is-current .walk-inline,.phrase-group,.phrase-card .text-button,.phrase-sources a,.phrase-staff-label,.phrase-display-part summary,.place-hours-warning,.spotlight-primary .text-button,.spotlight-primary .spotlight-label){color:var(--gold)}
+ html[data-theme="dark"] :is(.today-hotel>summary,.today-alert>summary,.past-timeline>summary,.info-tools>summary,.info-folder>summary,.place-editor-hours>summary,.place-editor-extra>summary){color:var(--ink)}
+ html[data-theme="dark"] :is(.brand-welcome,.personal-today-heading p,.fortune-label,.fortune-reading,.fortune-reading>span,.fortune-tip,.fortune-bottom .text-button,.kitsu-departure p,.kitsu-departure strong,#place-import-status){color:var(--sage)}
+ html[data-theme="dark"] :is(.stay-card,.day-notes,.past-timeline,.journey-editor,.place-editor,#hotel-editor,.note-tools,.moment-account-tabs){background:#202c2e;border-color:var(--line);color:var(--ink)}
+ html[data-theme="dark"] :is(.stay-icon,.activity-emoji,.kind-trasporto .activity-emoji,.more-card>svg,.map-link,.event-link,.stay-details-label,.stay-card a,.hotel-actions a,.place-actions a,.place-detail-heading,.restaurant-card .place-detail-heading,.journey-leg-number){background:#2b393b;border-color:var(--line);color:#d9d9c5}
+ html[data-theme="dark"] :is(.stay-card small,.stay-card a){color:var(--ink)}
+ html[data-theme="dark"] :is(.stay-details-body,.note-preview,.place-import,.journey-leg,.journey-leg-editor,.place-hours,.moment-comments-panel .moment-comment-form){background:#182329;border-color:var(--line);color:var(--ink)}
+ html[data-theme="dark"] :is(.place-practical,.place-description,.hotel-notes,.transport-totals,.transport-change,.transport-direction .stops-label,.place-editor-hours,.place-editor-extra,.phrase-display-part,.moment-social,.moment-member,.moment-day){border-color:var(--line)}
+ html[data-theme="dark"] :is(.quick-converter,.personal-today){background:linear-gradient(125deg,#243133,#1a262c);border-color:#425347}
+ html[data-theme="dark"] :is(.kitsu-speech,.kitsu-speech:before){background:#1a272c;border-color:#425347}
+ html[data-theme="dark"] .kitsu-departure{background:#1e2b2a;border-color:#425347}
+ html[data-theme="dark"] :is(.daily-fortune,.fortune-bottom){border-color:#425347}
+ html[data-theme="dark"] :is(.quick-converter>div>p,.past-timeline>summary>span){color:var(--muted)}
+ html[data-theme="dark"] :is(.cost-total,.toast){background:#293c44;border:1px solid #526467;color:var(--ink)}
+ html[data-theme="dark"] :is(.cost-total small,.cost-total p){color:#c2ccc8}
+ html[data-theme="dark"] :is(.bar,.segmented,.booking-tools .segmented){background:#28353c}
+ html[data-theme="dark"] :is(.segmented button.active,.moment-account-tabs .selected){background:#3a4b4b;color:var(--ink);box-shadow:none}
+ html[data-theme="dark"] :is(.day-button.selected,.day-button:not(.selected):hover,.main-tabs button.active>span:first-child){background:var(--accent-soft);box-shadow:none}
+ html[data-theme="dark"] .main-tabs button.active{color:var(--accent)}
+ html[data-theme="dark"] .main-tabs .nav-count{border-color:#141f26;background:#b84339;color:#fff}
+ html[data-theme="dark"] .primary,html[data-theme="dark"] .edit-toggle[aria-pressed=true]{background:#bb4d41;color:#fff;border-color:#bb4d41}
+ html[data-theme="dark"] :is(.notice,.day-alerts,.editing-banner,.storage-warning,.phrase-warning,.phrase-empty,.phrase-alert,.phrase-hub-card,.phrase-emergency,.moment-invite-help){background:#302b23;color:#eed9ad;border-color:#746043}
+ html[data-theme="dark"] :is(.day-alerts>summary,.phrase-alert strong){color:var(--gold)}
+ html[data-theme="dark"] .phrase-hub-card{border-color:#746043!important}
+ html[data-theme="dark"] .form-error{background:#3b2828;color:#ffb4a5}
+ html[data-theme="dark"] .current-step{background:#443727;color:#f4cf8e}
+ html[data-theme="dark"] .chip{background:#2c4036;color:#c1d9c8}
+ html[data-theme="dark"] .chip.pending{background:#403325;color:#efca98}
+ html[data-theme="dark"] :is(.field input,.field select,.field textarea,dialog input,dialog select,dialog textarea,.phrase-search input,.phrase-search select,.search-field,.quick-converter .converter input,.note-tools button,.note-tools input[type=color],.moment-comment-form input){background:#142027;border-color:#43575b;color:var(--ink)}
+ html[data-theme="dark"] :is(input,textarea)::placeholder{color:#a0b2b0}
+ html[data-theme="dark"] :is(dialog,.phrase-display)::backdrop{background:#060e13bb}
+ html[data-theme="dark"] .timeline:before{background:#47554e}
+ html[data-theme="dark"] .timeline .event.is-past .event-time:after{background:#c69b8e}
+ html[data-theme="dark"] .timeline .event.is-current .event-time:after{background:#f19382;box-shadow:0 0 0 5px #3b2828}
+ html[data-theme="dark"] .timeline-mascot:after{background:#f19382;box-shadow:0 0 0 3px var(--paper)}
+ html[data-theme="dark"] :is(.walk-inline,.kind-piedi .walk-inline){color:#bdc8c1}
+ html[data-theme="dark"] .kind-piedi .walk-inline:after{background:repeating-linear-gradient(90deg,#617165 0 3px,transparent 3px 7px)}
+ html[data-theme="dark"] .moments-hero{background:#1c2a32;border:1px solid #3a4a4e}
+ html[data-theme="dark"] .moments-hero h1 span{color:#f19382}
+ html[data-theme="dark"] :is(.moment-card,.moments-empty,.moments-loading){background:#1b252c;border-color:var(--line);box-shadow:0 7px 22px #0002;color:var(--ink)}
+ html[data-theme="dark"] :is(.moment-photo,.moment-camera,.cover-upload-preview,.journey-art){background:#27343b}
+ html[data-theme="dark"] .moment-photo.is-loading::before{background:linear-gradient(105deg,transparent 20%,#b5c8c322 45%,transparent 70%)}
+ html[data-theme="dark"] :is(.moment-filters,.moment-you){border-color:var(--line)}
+ html[data-theme="dark"] :is(.moment-filters button,.moment-identity,.moment-day,.moment-load,.moment-status,.moment-you,.moment-location,.moment-card-foot,.moment-end,.moments-empty p,.moment-dialog .field label span,.moment-member span,.moment-account-tabs button,.moment-comment-count,.moment-like,.moment-comment small,.moment-comment .comment-remove,.moments-loading .loader-play-hint,#moment-camera-placeholder){color:var(--muted)}
+ html[data-theme="dark"] .moment-fine{color:var(--muted)!important}
+ html[data-theme="dark"] :is(.moment-filters button.selected,.moment-camera-choice button[aria-pressed="true"]){background:#40534d;color:var(--ink)}
+ html[data-theme="dark"] :is(.moment-avatar,.moment-round){background:#3b3029;color:#f1b0a0}
+ html[data-theme="dark"] .comment-avatar{background:#314437;color:#d4e6c7}
+ html[data-theme="dark"] :is(.moment-guide,.moment-dialog a,.moment-card-foot a,.more-card svg,.moment-like.is-liked){color:var(--accent)}
+ html[data-theme="dark"] :is(.moment-link,.moment-upgrade-note,.moment-account-reminder){background:#263432;color:#c4d0c8}
+ html[data-theme="dark"] :is(.moment-upgrade-note a,.moment-account-reminder .text-button){color:var(--gold)}
+ html[data-theme="dark"] .moment-comment-form button{background:#344b38;color:#dfecd7}
+ html[data-theme="dark"] .moment-comment-form input::placeholder{color:var(--muted)}
+ html[data-theme="dark"] .moment-comment-form input:focus{outline-color:#a3c09b}
+ html[data-theme="dark"] .loader-polaroid{border-color:#425253;box-shadow:0 6px 18px #0005}
+ html[data-theme="dark"] .loader-left{background:#795446}
+ html[data-theme="dark"] .loader-right{background:#36594a}
+ html[data-theme="dark"] .loader-front{background:#6a4241}
+ html[data-theme="dark"] :is(.loader-dots i){background:var(--gold)}
+ html[data-theme="dark"] .loader-spark{color:var(--gold)}
+ html[data-theme="dark"] .program-admin{background:#203039;border:1px solid #42575d}
+ html[data-theme="dark"] .program-admin .secondary{background:#30434b;color:var(--ink);border-color:#52676c}
+ html[data-theme="dark"] .program-help{color:#e8cda4}
+ html[data-theme="dark"] .formatted-note [data-note-color]{color:var(--note-dark-color)!important}
+ html[data-theme="dark"] :is(button,a,input,select,textarea):focus-visible{outline-color:#edbe7d}
+ html[data-theme="dark"] button:hover{filter:brightness(1.08)}
+ html[data-theme="dark"] :is(.kitsu-charm,.kitsu-ready):hover{filter:none}
+}
+@media(prefers-reduced-motion:no-preference){
+ html.theme-changing :is(body,main,.masthead,.main-tabs,.event-card,.more-card,dialog,.today-spotlight,.quick-converter,.personal-today,.kitsu-speech,.moment-card,.stay-card,.day-list,.theme-toggle){transition:background-color .35s ease,color .35s ease,border-color .35s ease}
+ .theme-toggle svg{animation:theme-icon-in .38s cubic-bezier(.16,1,.3,1)}
+ .theme-toggle:active{transform:scale(.9)}
+ @keyframes theme-icon-in{from{opacity:0;transform:rotate(-55deg) scale(.5)}to{opacity:1;transform:rotate(0) scale(1)}}
+}
+@media print{.theme-toggle{display:none!important}}
+
+/* Motion follows interactions; refreshes never restart page transitions. */
+@media(prefers-reduced-motion:no-preference){
+ .more-card,.overview-card,.day-button,.secondary,.primary,.moment-like>span{transition:transform .22s cubic-bezier(.16,1,.3,1),border-color .22s,box-shadow .22s}
+ .more-card:active,.overview-card:active,.day-button:active,.secondary:active,.primary:active{transform:scale(.975)}
+ .moment-like:active:not(:disabled)>span{transform:rotate(-12deg) scale(1.3)}
+ .moment-photo.photo-reveal img{animation:night-photo-reveal .65s cubic-bezier(.16,1,.3,1)}
+ .moment-card.moment-arrival{animation:night-card-arrival .48s cubic-bezier(.16,1,.3,1)}
+ .moment-dialog[open]{animation:night-dialog-arrival .38s cubic-bezier(.16,1,.3,1)}
+ .loader-left,.loader-right,.loader-front{animation-duration:3.1s}
+ @keyframes night-photo-reveal{0%{opacity:0;transform:scale(1.07) translateY(6px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+ @keyframes night-card-arrival{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+ @keyframes night-dialog-arrival{from{opacity:0;transform:translateY(22px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+}
+@media(hover:hover) and (prefers-reduced-motion:no-preference){.info-hub .more-card:hover,.overview-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px #192b3810}}
+@media(prefers-reduced-motion:reduce){.theme-toggle,.theme-toggle svg,.kitsu-character,.kitsu-character *{animation:none!important;transition:none!important}}
+
+.brand{min-width:0}.brand>div{min-width:0}.brand-welcome{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.head-actions{flex:none}
+@media(max-width:360px){.brand>.flag{display:none}.brand-dates{font-size:.6rem}}
