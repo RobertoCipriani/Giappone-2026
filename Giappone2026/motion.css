@@ -1,0 +1,47 @@
+/* Motion stays local: no scrolling effects, animated text or permanent compositing layers. */
+.main-tabs.motion-ready{isolation:isolate}
+.main-tabs.motion-ready button{z-index:1}
+.main-tabs.motion-ready button.active:after{display:none}
+.nav-glider{position:absolute;top:0;left:0;z-index:0;border-radius:4px 4px 0 0;background:var(--accent);pointer-events:none}
+.motion-accordion{overflow:hidden!important;overflow-anchor:none}
+.tap-wave{background:radial-gradient(circle at var(--tap-x,50%) var(--tap-y,50%),#b98b4340,transparent 70%);transform-origin:var(--tap-x,50%) var(--tap-y,50%)}
+.motion-asleep,.motion-asleep *{animation-play-state:paused!important}
+html.motion-paused *,html.motion-paused *:before,html.motion-paused *:after{animation-play-state:paused!important}
+@media(max-width:760px){
+ .nav-glider{border-radius:12px;background:#f7e8e2}
+ .main-tabs.motion-ready button.active>[data-nav-icon]{background:transparent}
+ html[data-theme="dark"] .main-tabs.motion-ready button.active>[data-nav-icon]{background:transparent}
+ html[data-theme="dark"] .nav-glider{background:#3a302a}
+}
+@media(prefers-reduced-motion:no-preference){
+ .nav-glider{transition:transform .32s cubic-bezier(.22,1,.36,1)}
+ .nav-glider.glider-still{transition:none}
+ .day-button .day-number,.day-button .day-city,.day-button .day-date{transition:color .2s ease}
+ .more-card>svg,.overview-card img,.map-link .ui-icon,.event-link .ui-icon,.weather-card>summary,.stay-card>summary{transition:transform .24s cubic-bezier(.16,1,.3,1),background-color .2s ease}
+ .moment-comment-form input{transition:border-color .2s ease,box-shadow .2s ease}
+ .moment-comment-form input:focus{border-color:var(--gold);box-shadow:0 0 0 2px #b98b4315}
+ .event-details>summary>span,.today-hotel>summary>span,.info-folder>summary>span{transition:transform .24s cubic-bezier(.16,1,.3,1)}
+ .event-details[open]>summary>span{transform:rotate(180deg)}
+ .moment-photo.photo-reveal img{animation:motion-photo-arrival .46s cubic-bezier(.16,1,.3,1)}
+ .moment-card.moment-arrival{animation:motion-card-arrival .32s cubic-bezier(.16,1,.3,1)}
+ .moment-dialog[open]{animation:motion-dialog-arrival .28s cubic-bezier(.16,1,.3,1)}
+ dialog[open]:not(.moment-dialog){animation:motion-dialog-arrival .28s cubic-bezier(.16,1,.3,1)}
+ .tools-menu:not([hidden]){transform-origin:calc(100% - 24px) 0;animation:motion-menu-arrival .2s cubic-bezier(.16,1,.3,1)}
+ .toast:not([hidden]){animation:motion-toast-arrival .22s cubic-bezier(.16,1,.3,1)}
+ @keyframes motion-photo-arrival{from{opacity:0;transform:scale(1.035) translateY(4px)}to{opacity:1;transform:scale(1) translateY(0)}}
+ @keyframes motion-card-arrival{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+ @keyframes motion-dialog-arrival{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+ @keyframes motion-menu-arrival{from{opacity:0;transform:translateY(-4px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+ @keyframes motion-toast-arrival{from{opacity:0;translate:0 6px}to{opacity:1;translate:0 0}}
+}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .more-card:hover>svg{transform:rotate(-5deg) translateY(-1px)}
+ .overview-card:hover img{transform:scale(1.025)}
+ :is(.map-link,.event-link):hover .ui-icon{transform:translateY(-2px)}
+ .weather-card>summary:hover{background:#ffffff29}
+}
+@media(prefers-reduced-motion:reduce){
+ .nav-glider,.day-button .day-number,.day-button .day-city,.day-button .day-date,.more-card>svg,.overview-card img,.map-link .ui-icon,.event-link .ui-icon,.moment-comment-form input,.weather-card>summary,.stay-card>summary{transition:none!important}
+ .overview-card:hover img,.more-card:hover>svg{transform:none}
+}
+@media print{.nav-glider{display:none}}
