@@ -1,0 +1,80 @@
+/* A compact day forecast with small, local weather animations. */
+.view-program>.city-cover:not(.small-cover){margin-bottom:18px}
+.day-weather{margin:0 0 13px;min-width:0}
+.weather-card{border:1px solid #e1e7e5;border-radius:12px;background:linear-gradient(110deg,#eef5f5,#fafaf3);color:#243e48;overflow:hidden}
+.weather-card>summary{display:flex;align-items:center;gap:10px;height:72px;min-height:72px;padding:10px 14px;list-style:none;cursor:pointer;touch-action:manipulation}
+.weather-card>summary::-webkit-details-marker{display:none}
+.weather-scene{display:grid;place-items:center;position:relative;width:44px;height:44px;flex:none;border-radius:50%;background:radial-gradient(circle,#ffffffb8,transparent 74%);color:#a8b8c1;overflow:hidden}
+.weather-svg{display:block;width:44px;height:44px}
+.weather-sun{background:radial-gradient(circle,#ffe6a569,transparent 74%)}
+.weather-rain,.weather-storm{color:#899faa;background:radial-gradient(circle,#b9d6e557,transparent 74%)}
+.weather-copy{flex:1;min-width:0;display:grid;gap:3px}
+.weather-copy small{font-size:.68rem;font-weight:500;color:#657980;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.weather-copy>strong{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.87rem;line-height:1.25;font-weight:650}
+.weather-copy>span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:.63rem;line-height:1.4;color:#677b7e}
+.weather-range{display:grid;gap:3px;flex:none;text-align:right;font-variant-numeric:tabular-nums}
+.weather-range strong{font-size:1.02rem;line-height:1.3;font-weight:650;white-space:nowrap}
+.weather-range strong>span{color:#9dadae;margin:0 2px;font-weight:400}
+.weather-range small{font-size:.58rem;color:#738489}
+.weather-chevron{font-size:.92rem;flex:none;color:#667d82;transform-origin:center}
+.weather-card[open] .weather-chevron{transform:rotate(180deg)}
+.weather-details{padding:0 14px 9px;border-top:1px solid #dfe7e4}
+.weather-place{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #e1e8e5}
+.weather-place>.weather-scene,.weather-place .weather-svg{width:34px;height:34px}
+.weather-place>div{display:grid;gap:4px;min-width:0;flex:1}
+.weather-place>div>strong{font-size:.8rem;font-weight:650}
+.weather-place>div>span{font-size:.78rem}
+.weather-place>div>small{font-size:.66rem;line-height:1.5;color:#657980}
+.weather-place-temp{flex:none;font-size:.87rem;font-weight:650;white-space:nowrap;font-variant-numeric:tabular-nums}
+.weather-note{font-size:.66rem;line-height:1.6;color:#677b7e;margin:11px 0 5px}
+.weather-footer{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.weather-footer small{font-size:.61rem;line-height:1.6;color:#748787}
+.weather-footer a{color:#5c777f;text-underline-offset:3px}
+.weather-footer .text-button{font-size:.7rem;padding:9px 0;color:#8c6b2d;min-height:36px}
+.weather-unavailable{font-size:.77rem;color:var(--muted);padding:12px 14px;border:1px solid var(--line);border-radius:12px}
+.day-content>.timeline{margin-top:15px}
+.timeline-editor-tools{display:flex;justify-content:flex-end;margin:12px 0}
+@media(max-width:760px){
+ .view-program>.city-cover:not(.small-cover){margin-bottom:18px}
+ .weather-card>summary{padding:9px 10px;gap:8px;height:70px;min-height:70px}
+ .weather-scene,.weather-svg{width:36px;height:36px}
+ .weather-copy small{font-size:.63rem}.weather-copy>strong{font-size:.79rem}.weather-copy>span{font-size:.58rem}
+ .weather-range strong{font-size:.95rem}.weather-range strong>span{margin:0 1px}.weather-range small{font-size:.55rem}
+ .weather-chevron{font-size:.8rem}
+ .weather-details{padding:0 12px 9px}
+}
+@media(max-width:360px){.weather-card>summary{gap:6px}.weather-scene,.weather-svg{width:31px;height:31px}.weather-copy>span{font-size:.56rem}.weather-range strong{font-size:.88rem}}
+@media screen{
+ html[data-theme="dark"] .weather-card{background:linear-gradient(110deg,#20343d,#212e31);border-color:#425a5c;color:#e9efe9}
+ html[data-theme="dark"] :is(.weather-copy small,.weather-copy>span,.weather-range small,.weather-place>div>small,.weather-note,.weather-footer small){color:#adbfbe}
+ html[data-theme="dark"] :is(.weather-footer a,.weather-chevron){color:#c2d7d7}
+ html[data-theme="dark"] .weather-footer .text-button{color:#e6be7d}
+ html[data-theme="dark"] :is(.weather-details,.weather-place){border-color:#3e5458}
+ html[data-theme="dark"] .weather-scene{background:radial-gradient(circle,#7aa3b119,transparent 74%);color:#b5c5d0}
+ html[data-theme="dark"] .weather-sun{background:radial-gradient(circle,#ffd46d24,transparent 74%)}
+ html[data-theme="dark"] .weather-rain,html[data-theme="dark"] .weather-storm{color:#9db4c0}
+}
+@media(prefers-reduced-motion:no-preference){
+ .weather-chevron{transition:transform .22s ease}
+ .weather-scene{animation:weather-appear .3s ease-out}
+ .wx-rays{transform-box:fill-box;transform-origin:center;animation:weather-sun-spin 24s linear infinite}
+ .wx-glow{transform-box:fill-box;transform-origin:center;animation:weather-glow 4s ease-in-out infinite}
+ .wx-cloud{animation:weather-cloud 6s ease-in-out infinite}
+ .wx-drop{animation:weather-rain 1.25s linear infinite}
+ .wx-snow{animation:weather-snow 2.6s ease-in-out infinite}
+ .wx-leaf{animation:weather-leaf 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+ .wx-lightning{animation:weather-lightning 4.5s ease-in-out infinite}
+ .wx-mist{animation:weather-cloud 7s ease-in-out infinite}
+ .wx-star{animation:weather-glow 4s ease-in-out infinite}
+ .wx-delay-1{animation-delay:-.45s}.wx-delay-2{animation-delay:-.85s}
+ @keyframes weather-appear{from{opacity:.45;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+ @keyframes weather-sun-spin{to{transform:rotate(360deg)}}
+ @keyframes weather-glow{0%,100%{opacity:.18;transform:scale(.92)}50%{opacity:.4;transform:scale(1.08)}}
+ @keyframes weather-cloud{0%,100%{transform:translateX(-1px)}50%{transform:translateX(2px)}}
+ @keyframes weather-rain{0%{opacity:0;transform:translate(1px,-3px)}30%{opacity:1}100%{opacity:0;transform:translate(-2px,5px)}}
+ @keyframes weather-snow{0%{opacity:0;transform:translate(2px,-3px)}30%{opacity:1}100%{opacity:0;transform:translate(-2px,7px)}}
+ @keyframes weather-leaf{0%{opacity:0;transform:translate(-14px,2px) rotate(-30deg)}25%,65%{opacity:1}100%{opacity:0;transform:translate(24px,-9px) rotate(65deg)}}
+ @keyframes weather-lightning{0%,65%,100%{opacity:.45}75%,85%{opacity:1}}
+}
+@media(prefers-reduced-motion:reduce){.weather-svg *,.weather-scene,.weather-chevron{animation:none!important;transition:none!important}}
+@media print{.day-weather{display:none!important}}
