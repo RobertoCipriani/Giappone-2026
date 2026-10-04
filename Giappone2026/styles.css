@@ -424,3 +424,74 @@ details.stay-card{display:block;padding:0;overflow:hidden}
 /* La mascotte resta nel binario, senza coprire il contenuto delle schede. */
 .mascot-clock{display:none}
 .timeline-mascot:after{content:"";position:absolute;left:11px;bottom:-8px;width:10px;height:10px;border-radius:50%;background:#b84339;box-shadow:0 0 0 3px #f8f5ef}
+
+/* Dettagli di locali e visite, leggibili e facoltativi. */
+.transport-facts .transport-direction{flex-basis:100%;gap:5px}
+.transport-direction .stops-label{margin-left:9px;padding-left:10px;border-left:1px solid #ced6c9}
+.place-detail-heading{display:flex;align-items:center;gap:9px;padding:10px 12px;background:#f2f4eb;border-radius:9px;margin-bottom:12px;font-size:.84rem;font-weight:650;color:#344e59}
+.restaurant-card .place-detail-heading{background:#f8f0e4}
+.place-detail-heading>span:last-child{min-width:0;overflow-wrap:anywhere}
+.place-hours{padding:11px 12px;border:1px solid #e0e4d8;background:#f9fbf4;border-radius:10px;margin:0 0 12px}
+.place-detail-label{display:block;font-size:.68rem;line-height:1.5;color:#718069;margin-bottom:4px}
+.place-hours strong{font-size:.87rem;color:#435c43;line-height:1.6;font-weight:650}
+.place-hours p{font-size:.78rem;margin:5px 0 0}.place-hours-warning{display:block;font-size:.7rem;line-height:1.5;color:#987023;margin-top:5px}
+.place-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 14px;margin:0 0 14px}
+.place-facts>div{min-width:0}.place-facts dt{font-size:.66rem;color:#7b877b;margin-bottom:3px}
+.place-facts dd{font-size:.83rem;line-height:1.55;margin:0;color:#3f5156;overflow-wrap:anywhere}
+.place-practical,.place-description{margin-top:12px;padding-top:12px;border-top:1px solid #e7e2d6}
+.place-practical h4,.place-description h4{font-size:.7rem;font-weight:650;color:#788574;margin:0 0 8px}
+.place-practical p{font-size:.83rem;line-height:1.6;white-space:pre-line}
+.place-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}
+.place-actions a{padding:8px 10px;background:#fffdf9;border:1px solid #e0ddd2;border-radius:8px;font-size:.74rem}
+.place-source{font-size:.65rem;line-height:1.5;color:#8a8f82;margin:10px 0 0!important}
+.place-source a{font-size:inherit}
+.place-editor{background:#f8f6ef;border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0 18px}
+.place-editor h3{font-size:.95rem;margin:0 0 14px}
+.place-editor-hours,.place-editor-extra{border-top:1px solid #e0ddcf;margin-top:12px;padding-top:8px}
+.place-editor-hours>summary,.place-editor-extra>summary{font-size:.82rem;font-weight:650;cursor:pointer;min-height:40px;padding:9px 0;color:#52645a}
+.place-day-label{font-size:.8rem;line-height:1.5;color:#66765f}
+.place-checks{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
+.place-check{display:flex;align-items:center;gap:7px;font-size:.78rem;line-height:1.4}
+.place-check input{width:17px;height:17px;flex:none}
+.place-import{border:1px dashed #d7dccb;border-radius:10px;padding:12px;margin:12px 0;background:#fffdf9}
+.place-import .field{margin-top:12px}.place-import .secondary{font-size:.78rem;padding:9px 12px}
+#place-import-status{font-size:.76rem;line-height:1.5;color:#6b785f}
+/* La foto contiene città, giorno del viaggio e data. */
+.cover-copy .cover-day{display:block;font-size:.73rem;line-height:1.4;letter-spacing:1.3px;text-transform:uppercase;color:#ffecc8;font-weight:700;margin:3px 0 6px}
+.small-cover .cover-copy .cover-day{display:none}
+.day-heading{margin-top:4px}.day-heading h1{margin-top:0}
+/* Le frecce rimangono ai due estremi, mentre la lista può scorrere. */
+.day-navigation{position:sticky;top:85px;align-self:start;display:grid;grid-template-columns:1fr;grid-template-rows:34px minmax(0,1fr) 34px;gap:7px;min-width:0}
+.day-navigation .day-list{position:static;margin:0;max-height:calc(100dvh - 205px);min-width:0}
+.day-rail-arrow{display:grid;place-items:center;border:1px solid var(--line);border-radius:9px;background:#fffdf9;min-height:34px;font-size:1.6rem;line-height:1;transition:background-color .18s,transform .18s}
+.day-rail-arrow:not(:disabled):active{transform:scale(.96)}.day-rail-arrow:disabled{opacity:.3}
+.program-toolbar{margin-bottom:8px}
+/* Kitsu parla, saluta e aspetta la partenza. */
+.kitsu-charm{width:80px;height:90px;border:0;background:#edf1df;border-radius:25px;padding:5px;box-shadow:none;flex:none}
+.kitsu-charm img{display:block;width:64px;height:80px;margin:auto}
+.kitsu-speech{position:relative;background:#fffdf6;border:1px solid #e3e5d5;border-radius:13px;padding:16px;margin-top:17px}
+.kitsu-speech:before{content:"";position:absolute;right:29px;top:-7px;width:13px;height:13px;transform:rotate(45deg);background:#fffdf6;border-top:1px solid #e3e5d5;border-left:1px solid #e3e5d5}
+.kitsu-departure{display:flex;align-items:center;gap:14px;padding:12px 15px;background:#f1f4e7;border:1px solid #e0e5d1;border-radius:12px;margin:0 0 15px}
+.kitsu-ready{flex:none;width:55px;height:69px;padding:0}.kitsu-ready img{display:block;width:55px;height:69px}
+.kitsu-departure strong{font-size:.86rem;line-height:1.4;color:#425d47}
+.kitsu-departure p{font-size:.78rem;color:#74836c;line-height:1.5;margin:5px 0 0}
+@media(prefers-reduced-motion:no-preference){
+ .kitsu-charm img,.kitsu-ready img{animation:kitsu-sway 12s ease-in-out infinite;transform-origin:50% 90%}
+ @keyframes kitsu-sway{0%,70%,100%{transform:rotate(0) translateY(0)}75%{transform:rotate(-4deg) translateY(-2px)}80%{transform:rotate(4deg) translateY(-2px)}85%{transform:rotate(0) translateY(0)}}
+}
+@media(max-width:760px){
+ .main-tabs{justify-content:space-between}.main-tabs button{flex:1 1 0;min-width:0;font-size:.66rem;letter-spacing:0}
+ .main-tabs button>span:first-child,.main-tabs button.active>span:first-child{padding:4px 11px}
+ .day-navigation{position:static;display:grid;grid-template-columns:32px minmax(0,1fr) 32px;grid-template-rows:auto;align-items:stretch;gap:5px;width:100%;margin-bottom:13px}
+ .day-navigation .day-list{max-height:none;padding:6px;min-height:64px}
+ .day-rail-arrow{font-size:1.65rem}.day-navigation .day-button{flex:0 0 auto}
+ .cover-copy .cover-day{font-size:.67rem;margin:2px 0 4px}
+ .place-facts{gap:9px 12px}.place-facts dd{font-size:.8rem}
+ .place-editor{padding:13px}.place-detail-heading{font-size:.8rem}
+ .kitsu-charm{width:63px;height:78px;padding:4px;border-radius:20px}.kitsu-charm img{width:55px;height:69px}
+ .kitsu-speech{padding:13px}.kitsu-departure{gap:10px;padding:10px 12px}
+ .personal-today-heading h2{font-size:1.05rem}
+}
+@media(max-width:390px){.main-tabs button{font-size:.62rem}.main-tabs button>span:first-child,.main-tabs button.active>span:first-child{padding:4px 9px}}
+@media(prefers-reduced-motion:reduce){.kitsu-charm img,.kitsu-ready img{animation:none}.day-rail-arrow{transition:none}}
+@media print{.day-navigation,.kitsu-departure{display:none!important}.kitsu-charm{display:none}.kitsu-speech{border:0;padding:0}.place-facts{break-inside:avoid}}
