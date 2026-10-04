@@ -385,6 +385,7 @@ setInterval(()=>{if(!document.hidden){syncNow();if(view==='today'&&!syncBusy&&!d
 setTimeout(()=>syncNow(),150);
 
 if(window.JAPAN_MOMENTS.hasInvitation())view='moments';
+if(new URL(location.href).searchParams.get('home')==='1')view=window.JAPAN_MOMENTS.profile?.()?'today':'moments';
 if(new URL(location.href).searchParams.get('gestione')==='1')view='program';
 window.JAPAN_PROGRAM_SHARED?.install({
  validate,get:()=>clone(model),view:()=>view,isEditing:()=>editing,toast,confirm,
