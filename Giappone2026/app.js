@@ -265,23 +265,40 @@ function render(){
 }
 
 // Animate navigation only; live clock and shared-program refresh keep the page still.
-let viewMotion=null,dayMotions=[];
+let viewMotion=null,dayMotions=[],sectionMotions=[];
 function prefersReducedMotion(){return !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches}
 function scrollBehavior(){return prefersReducedMotion()?'auto':'smooth'}
-function animateView(){dayMotions.forEach(m=>m.cancel());dayMotions=[];viewMotion?.cancel();viewMotion=null;if(!main.animate||prefersReducedMotion())return;viewMotion=main.animate([{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:200,easing:'ease-out'})}
-function animateDay(){
- viewMotion?.cancel();viewMotion=null;dayMotions.forEach(m=>m.cancel());dayMotions=[];if(prefersReducedMotion())return;
- for(const el of main.querySelectorAll('.city-cover:not(.small-cover),.day-content')){if(!el.animate)continue;dayMotions.push(el.animate([{opacity:.35,transform:'translateY(4px)'},{opacity:1,transform:'translateY(0)'}],{duration:180,easing:'ease-out'}))}
+function cancelContentMotion(){viewMotion?.cancel();viewMotion=null;[...dayMotions,...sectionMotions].forEach(m=>m.cancel());dayMotions=[];sectionMotions=[]}
+function animateView(){
+ cancelContentMotion();if(!main.animate||prefersReducedMotion())return;
+ viewMotion=main.animate([{opacity:0,transform:'translateY(14px) scale(.992)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:340,easing:'cubic-bezier(.2,.8,.2,1)'});
+ const visible=[...main.querySelectorAll('.more-card,.overview-card,.today-spotlight,.booking-card,.phrase-card,.moments-welcome,.moments-loading,.quick-converter,.event')].filter(el=>{const r=el.getBoundingClientRect();return r.bottom>0&&r.top<window.innerHeight}).slice(0,5);
+ visible.forEach((el,i)=>{if(!el.animate)return;const motion=el.animate([{opacity:0,transform:'translateY(16px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,delay:i*35,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'});sectionMotions.push(motion);motion.onfinish=()=>{sectionMotions=sectionMotions.filter(m=>m!==motion)}});
 }
-// Native details remain fully functional; animate only an explicit user opening.
-// Restoring open details during a shared update must never replay the entrance.
+function animateDay(){
+ cancelContentMotion();if(prefersReducedMotion())return;
+ for(const [i,el] of [...main.querySelectorAll('.city-cover:not(.small-cover),.day-content')].entries()){if(!el.animate)continue;dayMotions.push(el.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'translateY(0)'}],{duration:300,delay:i*40,easing:'cubic-bezier(.2,.8,.2,1)',fill:'backwards'}))}
+}
+// Animate all native accordions only after the user explicitly opens them.
 const requestedDetails=new WeakSet(),detailMotions=new WeakMap();
-main.addEventListener('click',event=>{const summary=event.target.closest?.('summary'),details=summary?.parentElement;if(details?.matches('.event-details'))requestedDetails.add(details)});
+main.addEventListener('click',event=>{const summary=event.target.closest?.('summary'),details=summary?.parentElement;if(details?.matches('details'))requestedDetails.add(details)});
 main.addEventListener('toggle',event=>{
  const details=event.target;if(!requestedDetails.delete(details))return;
- detailMotions.get(details)?.cancel();detailMotions.delete(details);
- if(!details.open||prefersReducedMotion())return;const body=details.querySelector('.details-body');if(!body?.animate)return;
- detailMotions.set(details,body.animate([{opacity:0,transform:'translateY(3px)'},{opacity:1,transform:'translateY(0)'}],{duration:180,easing:'ease-out'}));
+ (detailMotions.get(details)||[]).forEach(m=>m.cancel());detailMotions.delete(details);
+ if(!details.open||prefersReducedMotion())return;
+ const body=details.querySelector('.details-body,.today-hotel-body,.timeline'),targets=body?[body]:[...details.children].filter(el=>el.tagName!=='SUMMARY').slice(0,3);
+ const motions=targets.filter(el=>el.animate).map((el,i)=>el.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:260,delay:i*25,easing:'ease-out',fill:'backwards'}));detailMotions.set(details,motions);
+},true);
+// Feedback is local and immediate; it never delays navigation or network actions.
+const tapMotions=new WeakMap();
+document.addEventListener('click',event=>{
+ const el=event.target.closest?.('button,a.map-link,a.event-link,summary');if(!el||el.disabled||prefersReducedMotion())return;
+ tapMotions.get(el)?.cancel();el.querySelector(':scope > .tap-wave')?.remove();if(!el.animate)return;
+ el.classList.add('tap-surface');const wave=document.createElement('span');wave.className='tap-wave';wave.setAttribute('aria-hidden','true');el.appendChild(wave);
+ const motion=wave.animate([{opacity:.55,transform:'scale(.15)'},{opacity:0,transform:'scale(1)'}],{duration:430,easing:'ease-out'});
+ const remove=()=>{wave.remove();if(tapMotions.get(el)===motion)tapMotions.delete(el)};motion.onfinish=remove;motion.oncancel=remove;tapMotions.set(el,motion);
+ const navIcon=el.matches('.main-tabs button')?el.querySelector('[data-nav-icon]'):null;
+ navIcon?.animate?.([{transform:'translateY(0) scale(1)'},{transform:'translateY(-4px) scale(1.13)',offset:.45},{transform:'translateY(0) scale(1)'}],{duration:360,easing:'ease-out'});
 },true);
 function groupShareHTML(){const available=window.JAPAN_MOMENTS.canInvite();return '<button class="more-card" '+(available?'data-moment-action="invite"':'data-view="moments"')+'>'+svg('group')+'<strong>Invita gli amici</strong><span>'+(available?'Copia l’invito a programma e Momenti':'Apri Momenti e collega il diario del gruppo')+'</span></button>'}
 function moreHTML(){const pending=model.reservations.filter(b=>b.status!=='booked').length;return '<div class="page-heading"><h1>Info</h1><p>Le cose da avere a portata di mano.</p></div><div class="info-hub"><button class="more-card phrase-hub-card" data-view="phrases">'+svg('info')+'<strong>Frasi in giapponese</strong><span>Cerca, pronuncia o mostra · anche al ristorante</span></button><button class="more-card" data-view="bookings">'+svg('ticket')+'<strong>Prenotazioni e biglietti</strong><span>Link e informazioni delle prenotazioni'+(pending?' · '+pending+' da organizzare':'')+'</span></button><button class="more-card" data-view="stays">'+svg('moon')+'<strong>Alloggi</strong><span>Le nostre notti, gli indirizzi e le mappe</span></button><button class="more-card" data-view="budget">'+svg('wallet')+'<strong>Budget</strong><span>La previsione delle spese</span></button><button class="more-card" data-view="info">'+svg('info')+'<strong>Info utili</strong><span>Voli, eSIM e consigli</span></button>'+groupShareHTML()+'</div><details class="info-tools"><summary>Strumenti e aggiornamenti <span>⌄</span></summary><p class="sync-description"></p><div class="info-actions"><button class="secondary" data-program-refresh>Aggiorna programma</button><button class="secondary" data-action="export">Esporta una copia</button></div></details>'}

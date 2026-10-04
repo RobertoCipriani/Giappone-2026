@@ -276,3 +276,15 @@
  dialog,dialog::backdrop,.tools-menu,.toast{animation:none!important}
 }
 @media print{dialog,dialog::backdrop,.tools-menu,.toast{animation:none!important}.booking-card,.phrase-card,.activity-card .event-card{box-shadow:none}}
+
+/* More expressive touch feedback with no layout changes. */
+:where(.tap-surface){position:relative}
+.tap-wave{position:absolute;inset:0;border-radius:inherit;background:radial-gradient(ellipse at center,#c39a5866,transparent 72%);pointer-events:none;z-index:2}
+@media(prefers-reduced-motion:no-preference){
+ .primary:active:not(:disabled),.secondary:active:not(:disabled),.more-card:active,.day-button:active,.phrase-alert:active{transform:scale(.965)}
+ .main-tabs button:active{transform:scale(.95)}
+ .main-tabs button>span:first-child,.event-details>summary>span{transition:background-color .24s,transform .26s}
+ dialog[open]:not(.moment-dialog){animation-duration:.28s}
+ .tools-menu:not([hidden]){animation-duration:.24s}
+}
+@media(prefers-reduced-motion:reduce){.tap-wave{display:none}}
