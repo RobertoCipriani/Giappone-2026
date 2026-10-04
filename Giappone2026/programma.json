@@ -1,8 +1,8 @@
 {
   "format": "giappone-programma-condiviso-v1",
   "published": true,
-  "revision": "f43d9638-94c8-4750-8c30-c60fd74134c5",
-  "updatedAt": "2026-10-04T08:42:10.865Z",
+  "revision": "58af29ba-df4a-44cf-ae25-83831f32381c",
+  "updatedAt": "2026-10-04T08:45:11.747Z",
   "editor": "Leonardo",
   "program": {
     "appId": "roberto-giappone-2026",
@@ -253,7 +253,7 @@
               "legs": [
                 {
                   "mode": "Metro",
-                  "line": "Linea: Asakusa Line",
+                  "line": "Linea: Asakusa Line - Fermate: 4",
                   "from": "Oshiage Sta.",
                   "to": "Asakusabashi",
                   "via": "",
@@ -267,7 +267,7 @@
                 },
                 {
                   "mode": "Metro",
-                  "line": "Linea: Chūō-Sōbu Line",
+                  "line": "Linea: Chūō-Sōbu Line - Fermate: 1",
                   "from": "Asakusabashi",
                   "to": "Akihabara",
                   "via": "",
@@ -277,7 +277,7 @@
                   "platform": "",
                   "cost": "",
                   "duration": "3min",
-                  "notes": ""
+                  "notes": "1 fermata"
                 }
               ]
             },
@@ -2992,7 +2992,7 @@
       "exchange": 0.0056,
       "notes": ""
     },
-    "updatedAt": "2026-10-04T08:42:10.865Z",
+    "updatedAt": "2026-10-04T08:45:11.747Z",
     "cityCovers": {}
   }
 }
