@@ -1,8 +1,8 @@
 {
   "format": "giappone-programma-condiviso-v1",
   "published": true,
-  "revision": "58af29ba-df4a-44cf-ae25-83831f32381c",
-  "updatedAt": "2026-10-04T08:45:11.747Z",
+  "revision": "5dcbd89b-e03d-4c70-bd86-c3b4ee858730",
+  "updatedAt": "2026-10-04T08:48:12.701Z",
   "editor": "Leonardo",
   "program": {
     "appId": "roberto-giappone-2026",
@@ -217,7 +217,7 @@
               "legs": [
                 {
                   "mode": "Metro",
-                  "line": "Linea: Keikyū Airport Line",
+                  "line": "Linea: Keikyū Airport Line - Fermate: 12",
                   "from": "Haneda T3",
                   "to": "Asakusabashi",
                   "via": "",
@@ -226,7 +226,7 @@
                   "arrival": "",
                   "platform": "",
                   "cost": "",
-                  "duration": "12 fermate",
+                  "duration": "",
                   "notes": "Arrivo a Asakusabashi oppure Higashi-Nihombashi (sono 2 stazioni vicine) \n\nPartenze ogni 15m circa, un treno si ferma a Asakusa e il successivo a Higashi in modo alternato."
                 }
               ]
@@ -257,7 +257,7 @@
                   "from": "Oshiage Sta.",
                   "to": "Asakusabashi",
                   "via": "",
-                  "direction": "",
+                  "direction": "Nishi-magome",
                   "departure": "",
                   "arrival": "",
                   "platform": "",
@@ -271,7 +271,7 @@
                   "from": "Asakusabashi",
                   "to": "Akihabara",
                   "via": "",
-                  "direction": "",
+                  "direction": "Ochanomizu e Shinjuku",
                   "departure": "",
                   "arrival": "",
                   "platform": "",
@@ -2992,7 +2992,7 @@
       "exchange": 0.0056,
       "notes": ""
     },
-    "updatedAt": "2026-10-04T08:45:11.747Z",
+    "updatedAt": "2026-10-04T08:48:12.701Z",
     "cityCovers": {}
   }
 }
