@@ -22,7 +22,7 @@
 
 /* Light, fixed-size loading placeholders; reveal begins on the image load event. */
 .moment-photo:not(.loaded) img{opacity:0}
-.moment-photo.is-loading::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 20%,#fff7 45%,transparent 70%);background-size:220% 100%;pointer-events:none}
+.moment-photo.is-loading::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 20%,#fff7 45%,transparent 70%);pointer-events:none}
 .moment-photo.is-loading .moment-load{position:relative;z-index:1}
 .moment-load:disabled{cursor:wait;opacity:.8}
 @media(prefers-reduced-motion:no-preference){
@@ -30,7 +30,7 @@
  .moment-photo.photo-reveal img{animation:moment-photo-in .42s cubic-bezier(.2,.65,.3,1)}
  .moment-card.moment-arrival{animation:moment-card-in .28s ease-out}
  .moment-dialog[open]{animation:moment-dialog-in .18s ease-out}
- @keyframes moment-shimmer{from{background-position:180% 0}to{background-position:-80% 0}}
+ @keyframes moment-shimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
  @keyframes moment-photo-in{from{opacity:0;transform:scale(1.025)}to{opacity:1;transform:scale(1)}}
  @keyframes moment-card-in{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
  @keyframes moment-dialog-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
