@@ -1,9 +1,14 @@
 /* MOMENTI / Giappone 2026. Google Apps Script, eseguito come il proprietario.
  * Foto PRIVATE su Drive. Nessun token OAuth viene inviato al browser.
- * Incollare in un NUOVO progetto Apps Script, poi eseguire inizializzaMomenti (senza trattino basso finale).
+ * Prima attivazione: nuovo progetto ed eseguire inizializzaMomenti.
+ * Aggiornamento: sostituire il codice nel progetto esistente e aggiornare il deployment.
+ * Non inizializzare di nuovo per attivare profili, like e commenti.
  */
 var MOMENTI_ORIGIN = 'https://robertocipriani.github.io';
-var MOMENTI_LIMITS = {photoBytes:350000,posts:5000,members:30,daily:20};
+var MOMENTI_LIMITS = {photoBytes:350000,posts:5000,members:30,daily:20,comments:20000,commentsDaily:60,likes:20000,sessions:1500};
+var MOMENTI_SOCIAL_VERSION=3;
+var MOMENTI_WRITE_LOCKED=false;
+var MOMENTI_SOCIAL_HEADERS={Account:['autore_id','hash_codice','creato_UTC'],Sessioni:['hash_accesso','autore_id','creato_UTC'],Commenti:['id','momento_id','autore_id','nome_JSON','testo_JSON','creato_UTC','eliminato_UTC'],Like:['momento_id','autore_id','attivo','aggiornato_UTC']};
 var MOMENTI_MEMBER_HEADERS = ['id','hash_accesso','nome_JSON','creato_UTC','ruolo','revocato'];
 var MOMENTI_POST_HEADERS = ['id','autore_id','nome_JSON','descrizione_JSON','foto_Drive_id','foto_UTC','pubblicato_UTC','latitudine','longitudine','luogo_JSON','origine_foto','dimensione_byte','eliminato_UTC'];
 
@@ -50,7 +55,7 @@ function doGet(e) {
  return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 function momentBridgeCode_(channel) {
- return "\n(()=>{'use strict';\n const channel=CHANNEL,origin=ORIGIN,records=new Map();\n const send=data=>{try{window.top.postMessage(JSON.stringify(Object.assign({channel,kind:'momenti-drive'},data)),origin)}catch{}};\n const ready=()=>send({type:'ready',version:2});\n let started=false;const hello=setInterval(()=>{if(!started)ready()},2000);\n function trim(){const now=Date.now();for(const [key,record] of records)if(record.done&&now-record.at>120000)records.delete(key);if(records.size>32)for(const [key,record] of records){if(record.done&&!record.write)records.delete(key);if(records.size<=32)break}}\n window.addEventListener('message',event=>{\n  let m;try{m=typeof event.data==='string'?JSON.parse(event.data):event.data}catch{return}\n  if(event.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request'||typeof m.id!=='string'||m.id.length>100||!m.payload||typeof m.payload!=='object')return;\n  started=true;clearInterval(hello);trim();\n  const previous=records.get(m.id);if(previous){if(previous.done)send(previous.reply);return}\n  const requestId=m.id,record={done:false,at:Date.now(),write:['activate','join','rename','publish','delete','rotate','removeMember'].includes(m.payload.op)};records.set(requestId,record);\n  function finish(result){record.done=true;record.at=Date.now();record.reply={type:'response',id:requestId,result};send(record.reply);trim()}\n  try{google.script.run.withSuccessHandler(value=>{try{if(typeof value!=='string')throw Error('FORMAT');finish(JSON.parse(value))}catch{finish({ok:false,code:'BRIDGE_FORMAT',message:'La risposta Google non è leggibile. Aggiorna il deployment dello script alla nuova versione.'})}}).withFailureHandler(()=>finish({ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'})).momentiRpcJson(JSON.stringify(m.payload))}\n  catch{finish({ok:false,code:'BRIDGE_ERROR',message:'Il collegamento Google non ha avviato la richiesta. Aggiorna lo script e pubblica una nuova versione del deployment.'})}\n });\n ready();\n})();"
+ return "\n(()=>{'use strict';\n const channel=CHANNEL,origin=ORIGIN,records=new Map();\n const send=data=>{try{window.top.postMessage(JSON.stringify(Object.assign({channel,kind:'momenti-drive'},data)),origin)}catch{}};\n const ready=()=>send({type:'ready',version:3});\n let started=false;const hello=setInterval(()=>{if(!started)ready()},2000);\n function trim(){const now=Date.now();for(const [key,record] of records)if(record.done&&now-record.at>120000)records.delete(key);if(records.size>32)for(const [key,record] of records){if(record.done&&!record.write)records.delete(key);if(records.size<=32)break}}\n window.addEventListener('message',event=>{\n  let m;try{m=typeof event.data==='string'?JSON.parse(event.data):event.data}catch{return}\n  if(event.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request'||typeof m.id!=='string'||m.id.length>100||!m.payload||typeof m.payload!=='object')return;\n  started=true;clearInterval(hello);trim();\n  const previous=records.get(m.id);if(previous){if(previous.done)send(previous.reply);return}\n  const requestId=m.id,record={done:false,at:Date.now(),write:['activate','join','login','setCode','resetCode','rename','publish','delete','comment','deleteComment','like','rotate','removeMember'].includes(m.payload.op)};records.set(requestId,record);\n  function finish(result){record.done=true;record.at=Date.now();record.reply={type:'response',id:requestId,result};send(record.reply);trim()}\n  try{google.script.run.withSuccessHandler(value=>{try{if(typeof value!=='string')throw Error('FORMAT');finish(JSON.parse(value))}catch{finish({ok:false,code:'BRIDGE_FORMAT',message:'La risposta Google non è leggibile. Aggiorna il deployment dello script alla nuova versione.'})}}).withFailureHandler(()=>finish({ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'})).momentiRpcJson(JSON.stringify(m.payload))}\n  catch{finish({ok:false,code:'BRIDGE_ERROR',message:'Il collegamento Google non ha avviato la richiesta. Aggiorna lo script e pubblica una nuova versione del deployment.'})}\n });\n ready();\n})();"
   .replace('CHANNEL',JSON.stringify(channel)).replace('ORIGIN',JSON.stringify(MOMENTI_ORIGIN));
 }
 
@@ -67,10 +72,12 @@ function momentiRpc(request) {
  try {
   if(!request||typeof request!=='object')throw momentError_('INVALID','Richiesta non valida.');
   var op=String(request.op||''),data=request.data||{};
-  if(['activate','join','rename','publish','delete','rotate','removeMember'].indexOf(op)>=0){var lock=LockService.getScriptLock();if(!lock.tryLock(25000))throw momentError_('BUSY','Il diario sta ricevendo altri momenti. Attendi qualche secondo e riprova.');try{return {ok:true,data:momentWrite_(op,data,request.token)}}finally{lock.releaseLock();}}
+  if(op==='capabilities')return {ok:true,data:{version:MOMENTI_SOCIAL_VERSION,accounts:true,social:true}};
+  if(['activate','join','login','setCode','resetCode','rename','publish','delete','comment','deleteComment','like','rotate','removeMember'].indexOf(op)>=0){var lock=LockService.getScriptLock();if(!lock.tryLock(25000))throw momentError_('BUSY','Il diario sta ricevendo altri momenti. Attendi qualche secondo e riprova.');try{MOMENTI_WRITE_LOCKED=true;return {ok:true,data:momentWrite_(op,data,request.token)}}finally{MOMENTI_WRITE_LOCKED=false;lock.releaseLock();}}
   var member=momentMember_(request.token);
   if(op==='feed')return {ok:true,data:momentFeed_(member,data)};
   if(op==='photo')return {ok:true,data:momentPhoto_(member,data)};
+  if(op==='comments')return {ok:true,data:momentComments_(member,data)};
   if(op==='members'){if(member.role!=='owner')throw momentError_('DENIED','Solo l’organizzatore può gestire i partecipanti.');return {ok:true,data:momentRows_('Partecipanti').filter(function(r){return r[5]!=='1'}).map(function(r){return {id:r[0],name:momentParseText_(r[2]),role:r[4]};})};}
   throw momentError_('INVALID','Operazione non disponibile.');
  }catch(error){return {ok:false,code:error.momentCode||'GOOGLE_ERROR',message:error.momentCode?error.message:'Google non ha completato la richiesta. Verifica la configurazione, lo spazio Drive e riprova tra poco.'};}
@@ -86,32 +93,39 @@ function momentSheet_(name){var s=SpreadsheetApp.openById(momentProps_().getProp
 function momentRows_(name){var s=momentSheet_(name);return s.getLastRow()<2?[]:s.getRange(2,1,s.getLastRow()-1,name==='Momenti'?MOMENTI_POST_HEADERS.length:MOMENTI_MEMBER_HEADERS.length).getValues();}
 function momentRev_(){var p=momentProps_();p.setProperty('mom_rev',String(Number(p.getProperty('mom_rev')||0)+1));}
 function momentTrip_(){var p=momentProps_();return {id:p.getProperty('mom_group'),name:p.getProperty('mom_name'),owner_id:p.getProperty('mom_owner')};}
-function momentMember_(token){if(typeof token!=='string'||!/^[a-f0-9]{64}$/.test(token))throw momentError_('ACCESS','Accesso non valido. Riapri il tuo invito.');var hash=momentHash_(token),cache=CacheService.getScriptCache(),key='member:'+hash,cached=cache.get(key);if(cached)return JSON.parse(cached);var row=momentRows_('Partecipanti').find(function(r){return momentSame_(r[1],hash)&&r[5]!=='1'});if(!row)throw momentError_('ACCESS','Accesso revocato o non valido. Chiedi all’organizzatore un nuovo invito.');var result={id:row[0],name:momentParseText_(row[2]),role:row[4],hash:hash};cache.put(key,JSON.stringify(result),30);return result;}
+function momentMember_(token){if(typeof token!=='string'||!/^[a-f0-9]{64}$/.test(token))throw momentError_('ACCESS','Accesso non valido. Riapri il tuo invito.');var hash=momentHash_(token),cache=CacheService.getScriptCache(),key='member:'+hash,cached=cache.get(key);if(cached)return JSON.parse(cached);var members=momentRows_('Partecipanti'),row=members.find(function(r){return momentSame_(r[1],hash)&&r[5]!=='1'});if(!row){var sessions=momentSocialRows_('Sessioni'),session=sessions.find(function(r){return momentSame_(r[0],hash)});if(session)row=members.find(function(r){return r[0]===session[1]&&r[5]!=='1'});if(row)return {id:row[0],name:momentParseText_(row[2]),role:row[4],hash:hash};}if(!row)throw momentError_('ACCESS','Accesso revocato o non valido. Chiedi all’organizzatore un nuovo invito.');var result={id:row[0],name:momentParseText_(row[2]),role:row[4],hash:hash};cache.put(key,JSON.stringify(result),30);return result;}
 function momentRotate_(){var token=momentToken_();momentProps_().setProperty('mom_invite_hash',momentHash_(token));return token;}
 function momentWrite_(op,d,token){
  var p=momentProps_(),members=momentRows_('Partecipanti'),ms=momentSheet_('Partecipanti');
  var accessKey=d.accessKey;if(accessKey!=null&&(typeof accessKey!=='string'||!/^[a-f0-9]{64}$/.test(accessKey)))throw momentError_('INVALID','Accesso del browser non valido.');
  var accessHash=accessKey?momentHash_(accessKey):'',existingAccess=accessKey?members.find(function(r){return momentSame_(r[1],accessHash);}):null;
+ if(op==='login')return momentLogin_(d,token,members);
+ var personalCode=d.personalCode!=null?momentCode_(d.personalCode):null;
  if(op==='activate'){
   if(existingAccess){
    if(existingAccess[0]!==p.getProperty('mom_owner')||existingAccess[4]!=='owner'||existingAccess[5]==='1')throw momentError_('ACCESS','Questo accesso non è disponibile.');
-   return {member:{id:existingAccess[0],name:momentParseText_(existingAccess[2]),role:'owner'},token:accessKey,trip:momentTrip_(),recovered:true};
+   if(personalCode)momentSetCode_(existingAccess[0],personalCode);return {member:{id:existingAccess[0],name:momentParseText_(existingAccess[2]),role:'owner'},token:accessKey,trip:momentTrip_(),hasCode:momentHasCode_(existingAccess[0]),version:3,recovered:true};
   }
   if(typeof d.code!=='string'||!/^[a-f0-9]{64}$/.test(d.code)||!momentSame_(momentHash_(d.code),p.getProperty('mom_activation_hash'))||Number(p.getProperty('mom_activation_expires'))<Date.now())throw momentError_('ACTIVATION','Codice di attivazione non valido, già usato o scaduto. Esegui inizializzaMomenti nell’editor per ottenerne uno nuovo.');
+  if(personalCode)momentCodeAvailable_(personalCode,p.getProperty('mom_owner'));
   var name=momentText_(d.name,40,true),owner=p.getProperty('mom_owner'),memberToken=accessKey||momentToken_(),row=members.findIndex(function(r){return r[0]===owner}),now=new Date().toISOString();
   if(row>=0){CacheService.getScriptCache().remove('member:'+members[row][1]);ms.getRange(row+2,1,1,6).setValues([[owner,momentHash_(memberToken),JSON.stringify(name),members[row][3],'owner','0']]);}else ms.appendRow([owner,momentHash_(memberToken),JSON.stringify(name),now,'owner','0']);
-  var invite=momentRotate_();p.deleteProperty('mom_activation_hash');p.deleteProperty('mom_activation_expires');momentRev_();return {member:{id:owner,name:name,role:'owner'},token:memberToken,trip:momentTrip_(),invite:invite};
+  if(personalCode)momentSetCode_(owner,personalCode);var invite=momentRotate_();p.deleteProperty('mom_activation_hash');p.deleteProperty('mom_activation_expires');momentRev_();return {member:{id:owner,name:name,role:'owner'},token:memberToken,trip:momentTrip_(),hasCode:momentHasCode_(owner),version:3,invite:invite};
  }
  if(op==='join'){
   if(typeof d.invite!=='string'||!/^[a-f0-9]{64}$/.test(d.invite)||!momentSame_(momentHash_(d.invite),p.getProperty('mom_invite_hash')))throw momentError_('INVITE','Invito non valido o sostituito. Chiedi il nuovo collegamento all’organizzatore.');
+  if(personalCode)momentCodeAvailable_(personalCode,existingAccess?existingAccess[0]:null);
   if(existingAccess){
    if(existingAccess[4]!=='member'||existingAccess[5]==='1')throw momentError_('ACCESS','Questo accesso è stato revocato o non è valido.');
-   return {member:{id:existingAccess[0],name:momentParseText_(existingAccess[2]),role:'member'},token:accessKey,trip:momentTrip_(),recovered:true};
+   if(personalCode)momentSetCode_(existingAccess[0],personalCode);return {member:{id:existingAccess[0],name:momentParseText_(existingAccess[2]),role:'member'},token:accessKey,trip:momentTrip_(),hasCode:momentHasCode_(existingAccess[0]),version:3,recovered:true};
   }
   if(members.filter(function(r){return r[5]!=='1'}).length>=MOMENTI_LIMITS.members)throw momentError_('LIMIT','Il gruppo ha raggiunto 30 partecipanti.');
-  var memberToken=accessKey||momentToken_(),id=Utilities.getUuid(),name=momentText_(d.name,40,true);ms.appendRow([id,momentHash_(memberToken),JSON.stringify(name),new Date().toISOString(),'member','0']);momentRev_();return {member:{id:id,name:name,role:'member'},token:memberToken,trip:momentTrip_()};
+  var memberToken=accessKey||momentToken_(),id=Utilities.getUuid(),name=momentText_(d.name,40,true);ms.appendRow([id,momentHash_(memberToken),JSON.stringify(name),new Date().toISOString(),'member','0']);if(personalCode)momentSetCode_(id,personalCode);momentRev_();return {member:{id:id,name:name,role:'member'},token:memberToken,trip:momentTrip_(),hasCode:!!personalCode,version:3};
  }
  var member=momentMember_(token);
+ if(op==='setCode'){momentSetCode_(member.id,momentCode_(d.personalCode));momentRev_();return {hasCode:true};}
+ if(op==='resetCode'){if(member.role!=='owner')throw momentError_('DENIED','Solo l’organizzatore può aiutare a recuperare un profilo.');if(!members.some(function(r){return r[0]===d.id&&r[5]!=='1'}))throw momentError_('INVALID','Partecipante non trovato.');momentSetCode_(d.id,momentCode_(d.personalCode));momentRev_();return {hasCode:true};}
+ if(['comment','deleteComment','like'].indexOf(op)>=0)return momentSocialWrite_(op,d,member);
  if(op==='rename'){var name=momentText_(d.name,40,true),i=members.findIndex(function(r){return r[0]===member.id});ms.getRange(i+2,3).setValue(JSON.stringify(name));CacheService.getScriptCache().remove('member:'+member.hash);momentRev_();return {name:name};}
  if(op==='rotate'){if(member.role!=='owner')throw momentError_('DENIED','Solo l’organizzatore può cambiare l’invito.');return {invite:momentRotate_()};}
  if(op==='removeMember'){if(member.role!=='owner'||d.id===member.id)throw momentError_('DENIED','Puoi rimuovere solo gli altri partecipanti.');var i=members.findIndex(function(r){return r[0]===d.id&&r[5]!=='1'});if(i<0)throw momentError_('INVALID','Partecipante non trovato.');ms.getRange(i+2,6).setValue('1');CacheService.getScriptCache().remove('member:'+members[i][1]);momentRev_();return {invite:momentRotate_()};}
@@ -133,6 +147,82 @@ function momentWrite_(op,d,token){
  throw momentError_('INVALID','Operazione non disponibile.');
 }
 function momentPost_(r){return {id:r[0],author_id:r[1],author_name:momentParseText_(r[2]),caption:momentParseText_(r[3]),photo_path:r[0],captured_at:r[5],created_at:r[6],latitude:r[7]===''?null:Number(r[7]),longitude:r[8]===''?null:Number(r[8]),place_label:momentParseText_(r[9]),source:r[10],size_bytes:Number(r[11])};}
-function momentFeed_(member,d){var p=momentProps_(),revision=p.getProperty('mom_rev');if(d.revision===revision&&!d.before)return {unchanged:true,revision:revision};var rows=momentRows_('Momenti').filter(function(r){return r[12]===''&&(!d.mine||r[1]===member.id)}).map(momentPost_).sort(function(a,b){return b.created_at.localeCompare(a.created_at)||b.id.localeCompare(a.id)});if(d.before){if(typeof d.before.time!=='string'||typeof d.before.id!=='string')throw momentError_('INVALID','Pagina non valida.');rows=rows.filter(function(r){return r.created_at<d.before.time||r.created_at===d.before.time&&r.id<d.before.id;});}var limit=Math.max(1,Math.min(12,Number(d.limit)||12));return {posts:rows.slice(0,limit),hasMore:rows.length>limit,revision:revision,trip:momentTrip_()};}
+function momentFeed_(member,d){
+ var p=momentProps_(),revision=p.getProperty('mom_rev'),profile={id:member.id,name:member.name,role:member.role},hasCode=momentHasCode_(member.id);
+ if(d.revision===revision&&!d.before)return {unchanged:true,revision:revision,version:3,member:profile,hasCode:hasCode};
+ var rows=momentRows_('Momenti').filter(function(r){return r[12]===''&&(!d.mine||r[1]===member.id)}).map(momentPost_).sort(function(a,b){return b.created_at.localeCompare(a.created_at)||b.id.localeCompare(a.id)});
+ if(d.before){if(typeof d.before.time!=='string'||typeof d.before.id!=='string')throw momentError_('INVALID','Pagina non valida.');rows=rows.filter(function(r){return r.created_at<d.before.time||r.created_at===d.before.time&&r.id<d.before.id;});}
+ var limit=Math.max(1,Math.min(12,Number(d.limit)||12)),page=rows.slice(0,limit),social=momentSocialMap_(member,page.map(function(post){return post.id}));
+ page.forEach(function(post){Object.assign(post,social[post.id])});
+ return {posts:page,hasMore:rows.length>limit,revision:revision,trip:momentTrip_(),member:profile,hasCode:hasCode,version:3};
+}
 function momentFile_(id){var p=momentProps_(),file=DriveApp.getFileById(id),parents=file.getParents(),inside=false;while(parents.hasNext())if(parents.next().getId()===p.getProperty('mom_folder'))inside=true;if(!inside)throw momentError_('DENIED','Foto fuori dall’archivio del gruppo.');return file;}
 function momentPhoto_(member,d){var row=momentRows_('Momenti').find(function(r){return r[0]===d.id&&r[12]===''});if(!row)throw momentError_('PHOTO','Il momento non è più disponibile.');var file=momentFile_(row[4]);if(file.isTrashed())throw momentError_('PHOTO','La foto è nel cestino di Drive.');var blob=file.getBlob();return {photo:Utilities.base64Encode(blob.getBytes()),mimeType:'image/jpeg'};}
+
+/* Migration is additive. Old participants, invitations and photo tokens remain valid. */
+function momentSocialSheet_(name){
+ var headers=MOMENTI_SOCIAL_HEADERS[name];if(!headers)throw momentError_('INVALID','Registro non valido.');
+ var book=SpreadsheetApp.openById(momentProps_().getProperty('mom_sheet')),s=book.getSheetByName(name);
+ if(!s||s.getLastRow()===0){var lock=LockService.getScriptLock(),owned=MOMENTI_WRITE_LOCKED;if(!owned&&!lock.tryLock(25000))throw momentError_('BUSY','Attendi un momento e riprova.');try{s=book.getSheetByName(name)||book.insertSheet(name);if(s.getLastRow()===0){s.getRange(1,1,1,headers.length).setValues([headers]).setFontWeight('bold').setBackground('#192b38').setFontColor('#ffffff');s.setFrozenRows(1);s.getRange(1,1,s.getMaxRows(),headers.length).setNumberFormat('@');}}finally{if(!owned)lock.releaseLock();}}
+ return s;
+}
+function momentSocialRows_(name){var s=momentSocialSheet_(name);return s.getLastRow()<2?[]:s.getRange(2,1,s.getLastRow()-1,MOMENTI_SOCIAL_HEADERS[name].length).getValues().map(function(row){return row.map(function(value){return value instanceof Date?value.toISOString():value==null?'':String(value)});});}
+function momentCode_(value){if(typeof value!=='string')throw momentError_('CODE','Scegli un codice di 6 caratteri, con almeno una lettera e un numero.');var code=value.trim().toUpperCase();if(!/^[A-Z0-9]{6}$/.test(code)||!/[A-Z]/.test(code)||!/[0-9]/.test(code))throw momentError_('CODE','Usa esattamente 6 lettere e numeri, con almeno una lettera e un numero.');return code;}
+function momentCodeHash_(code){
+ var p=momentProps_(),secret=p.getProperty('mom_code_secret');if(!secret){secret=momentToken_();p.setProperty('mom_code_secret',secret);}
+ return Utilities.computeHmacSha256Signature('mom-code-v1:'+code,secret).map(function(b){return ('0'+(b&255).toString(16)).slice(-2)}).join('');
+}
+function momentHasCode_(id){return momentSocialRows_('Account').some(function(r){return r[0]===id});}
+function momentCodeAvailable_(code,id){var hash=momentCodeHash_(code);if(momentSocialRows_('Account').some(function(r){return r[0]!==id&&momentSame_(r[1],hash)}))throw momentError_('CODE_TAKEN','Questo codice è già usato: scegline un altro.');return hash;}
+function momentSetCode_(id,code){var hash=momentCodeAvailable_(code,id),rows=momentSocialRows_('Account'),sheet=momentSocialSheet_('Account'),i=rows.findIndex(function(r){return r[0]===id}),row=[id,hash,new Date().toISOString()];if(i>=0)sheet.getRange(i+2,1,1,3).setValues([row]);else sheet.appendRow(row);}
+function momentValidInvite_(invite){return typeof invite==='string'&&/^[a-f0-9]{64}$/.test(invite)&&momentSame_(momentHash_(invite),momentProps_().getProperty('mom_invite_hash'));}
+function momentLogin_(d,token,members){
+ // The invitation is a second secret: a six-character code alone never opens the public endpoint.
+ var invited=momentValidInvite_(d.invite);if(!invited){try{momentMember_(token);invited=true}catch{}}
+ if(!invited)throw momentError_('INVITE','Per recuperare il profilo apri il link d’invito attuale del gruppo.');
+ var p=momentProps_(),attempt;try{attempt=JSON.parse(p.getProperty('mom_login_failures')||'null')}catch{}
+ var now=Date.now();if(!attempt||now-attempt.since>=600000)attempt={since:now,count:0};if(attempt.count>=40)throw momentError_('RATE','Troppi codici errati. Attendi qualche minuto e riprova.');
+ var code=momentCode_(d.personalCode),hash=momentCodeHash_(code),account=momentSocialRows_('Account').find(function(r){return momentSame_(r[1],hash)}),member=account&&members.find(function(r){return r[0]===account[0]&&r[5]!=='1'});
+ if(!member){attempt.count++;p.setProperty('mom_login_failures',JSON.stringify(attempt));throw momentError_('LOGIN','Codice non corretto o profilo non disponibile.');}
+ var access=typeof d.accessKey==='string'&&/^[a-f0-9]{64}$/.test(d.accessKey)?d.accessKey:momentToken_(),accessHash=momentHash_(access),sessions=momentSocialRows_('Sessioni'),existing=sessions.find(function(r){return momentSame_(r[0],accessHash)}),old=members.find(function(r){return momentSame_(r[1],accessHash)});
+ if(existing&&existing[1]!==member[0]||old&&old[0]!==member[0])throw momentError_('ACCESS','Accesso del browser non valido.');
+ if(!existing&&!old){if(sessions.length>=MOMENTI_LIMITS.sessions)throw momentError_('LIMIT','Il registro degli accessi è pieno. Contatta l’organizzatore.');momentSocialSheet_('Sessioni').appendRow([accessHash,member[0],new Date().toISOString()]);}
+ return {member:{id:member[0],name:momentParseText_(member[2]),role:member[4]},token:access,trip:momentTrip_(),hasCode:true,version:3};
+}
+function momentLivePost_(id){if(typeof id!=='string'||!/^[a-f0-9-]{36}$/.test(id))throw momentError_('INVALID','Foto non valida.');var row=momentRows_('Momenti').find(function(r){return r[0]===id&&r[12]===''});if(!row)throw momentError_('INVALID','La foto non è più disponibile.');return row;}
+function momentComment_(r){return {id:r[0],post_id:r[1],author_id:r[2],author_name:momentParseText_(r[3]),text:momentParseText_(r[4]),created_at:r[5]};}
+function momentSocialMap_(member,ids){
+ var map={};ids.forEach(function(id){map[id]={like_count:0,liked:false,comment_count:0,comments:[]}});
+ momentSocialRows_('Like').forEach(function(r){if(map[r[0]]&&r[2]==='1'){map[r[0]].like_count++;if(r[1]===member.id)map[r[0]].liked=true;}});
+ momentSocialRows_('Commenti').forEach(function(r){if(map[r[1]]&&r[6]===''){var info=map[r[1]];info.comment_count++;info.comments.push(momentComment_(r));}});
+ ids.forEach(function(id){map[id].comments.sort(function(a,b){return a.created_at.localeCompare(b.created_at)||a.id.localeCompare(b.id)});map[id].comments=map[id].comments.slice(-2);});
+ return map;
+}
+function momentSocialWrite_(op,d,member){
+ momentLivePost_(d.id);
+ if(op==='like'){
+  if(typeof d.liked!=='boolean')throw momentError_('INVALID','Like non valido.');var rows=momentSocialRows_('Like'),i=rows.findIndex(function(r){return r[0]===d.id&&r[1]===member.id}),sheet=momentSocialSheet_('Like'),row=[d.id,member.id,d.liked?'1':'0',new Date().toISOString()];
+  if(i>=0){if(rows[i][2]!==row[2]){sheet.getRange(i+2,1,1,4).setValues([row]);momentRev_();}}else if(d.liked){if(rows.length>=MOMENTI_LIMITS.likes)throw momentError_('LIMIT','Il registro dei like è pieno.');sheet.appendRow(row);momentRev_();}
+ }
+ if(op==='comment'){
+  if(typeof d.commentId!=='string'||!/^[a-f0-9-]{36}$/.test(d.commentId))throw momentError_('INVALID','Commento non valido.');
+  var text=momentText_(d.text,600,true),rows=momentSocialRows_('Commenti'),old=rows.find(function(r){return r[0]===d.commentId});
+  if(old){if(old[1]!==d.id||old[2]!==member.id||old[6]!=='')throw momentError_('INVALID','Questo commento non può essere inviato.');}
+  else{
+   if(rows.length>=MOMENTI_LIMITS.comments)throw momentError_('LIMIT','Il registro dei commenti è pieno.');
+   var today=Utilities.formatDate(new Date(),'Asia/Tokyo','yyyy-MM-dd');if(rows.filter(function(r){return r[2]===member.id&&Utilities.formatDate(new Date(r[5]),'Asia/Tokyo','yyyy-MM-dd')===today}).length>=MOMENTI_LIMITS.commentsDaily)throw momentError_('LIMIT','Hai raggiunto 60 commenti per oggi.');
+   momentSocialSheet_('Commenti').appendRow([d.commentId,d.id,member.id,JSON.stringify(member.name),JSON.stringify(text),new Date().toISOString(),'']);momentRev_();
+  }
+ }
+ if(op==='deleteComment'){
+  var rows=momentSocialRows_('Commenti'),i=rows.findIndex(function(r){return r[0]===d.commentId&&r[1]===d.id});
+  if(i<0)throw momentError_('INVALID','Commento non trovato.');if(rows[i][2]!==member.id&&member.role!=='owner')throw momentError_('DENIED','Puoi eliminare solo i tuoi commenti.');
+  if(rows[i][6]===''){momentSocialSheet_('Commenti').getRange(i+2,7).setValue(new Date().toISOString());momentRev_();}
+ }
+ return {social:momentSocialMap_(member,[d.id])[d.id]};
+}
+function momentComments_(member,d){
+ momentLivePost_(d.id);var rows=momentSocialRows_('Commenti').filter(function(r){return r[1]===d.id&&r[6]===''}).map(momentComment_).sort(function(a,b){return b.created_at.localeCompare(a.created_at)||b.id.localeCompare(a.id)});
+ if(d.before){if(typeof d.before.time!=='string'||typeof d.before.id!=='string')throw momentError_('INVALID','Pagina non valida.');rows=rows.filter(function(c){return c.created_at<d.before.time||c.created_at===d.before.time&&c.id<d.before.id});}
+ var limit=20;return {comments:rows.slice(0,limit).reverse(),hasMore:rows.length>limit};
+}

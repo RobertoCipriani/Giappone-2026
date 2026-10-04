@@ -336,3 +336,28 @@
  .kind-piedi .walk-inline{font-size:.8rem}
 }
 @media print{.transport-path>li{break-inside:avoid}.kind-piedi .walk-inline{color:#444}}
+
+/* A personal welcome, with a small authentic proverb for each day in Japan. */
+.brand-welcome{font-size:.78rem;font-weight:500;color:#6b7c67;line-height:1.4;overflow-wrap:anywhere}
+.brand-welcome[hidden]{display:none}
+.personal-today{margin:20px 0;padding:21px;border:1px solid #e5e6d7;border-radius:17px;background:linear-gradient(135deg,#fffdf6,#f0f4e8);min-width:0}
+.personal-today-heading{display:flex;align-items:center;gap:14px;justify-content:space-between}
+.personal-today-heading h2{font-size:1.35rem;line-height:1.3;margin:6px 0;overflow-wrap:anywhere}
+.personal-today-heading p{margin:0;color:#7a8572;font-size:.85rem}
+.fortune-seal{width:61px;height:73px;flex:none;display:grid;place-items:center;border:1px solid #d6dec8;border-radius:17px 17px 21px 21px;background:#e6edd9;box-shadow:0 4px 12px #71835910;font-size:1.8rem;cursor:pointer}
+.daily-fortune{margin-top:18px;padding-top:16px;border-top:1px solid #dee5d2}
+.fortune-label{font-size:.67rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:#73805e}
+.fortune-japanese{font-size:1.32rem;line-height:1.7;margin:9px 0 5px;letter-spacing:.08em;color:#344936;overflow-wrap:anywhere}
+.fortune-meaning{margin:0 0 7px;font-size:1rem;line-height:1.5;color:#344936}
+.fortune-reading{margin:0;font-size:.84rem;color:#6f7e60;line-height:1.5}
+.fortune-reading>span{color:#929c86;font-size:.7rem;margin-right:4px}
+.fortune-tip{margin:12px 0 0;font-size:.82rem;line-height:1.5;color:#7d876e}
+.fortune-bottom{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;margin-top:12px}
+.fortune-bottom .text-button{font-size:.75rem;color:#7e8b65;padding:4px 0}
+@media(max-width:760px){.brand-welcome{display:block;font-size:.65rem;max-width:215px}.personal-today{padding:17px;margin:16px 0}.personal-today-heading h2{font-size:1.15rem}.fortune-japanese{font-size:1.13rem}.fortune-seal{width:49px;height:60px;font-size:1.45rem}}
+@media print{.fortune-seal,.fortune-bottom{display:none}.personal-today{break-inside:avoid}}
+
+.brand,.brand>div{min-width:0}
+.brand .flag{flex-shrink:0}
+@media(min-width:761px){.brand-name{display:inline}}
+@media(max-width:760px){.brand-welcome{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
