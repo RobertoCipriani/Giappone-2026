@@ -1,8 +1,8 @@
 {
   "format": "giappone-programma-condiviso-v1",
   "published": true,
-  "revision": "27d7e67a-8929-4e62-9e9d-63a91e045c51",
-  "updatedAt": "2026-10-07T06:25:13.463Z",
+  "revision": "16121464-7318-45c9-82ca-26c2e9ef8098",
+  "updatedAt": "2026-10-07T06:31:05.618Z",
   "editor": "Leonardo",
   "program": {
     "appId": "roberto-giappone-2026",
@@ -4298,23 +4298,6 @@
             "done": false
           },
           {
-            "id": "e14-37",
-            "title": "Check in hotel",
-            "subtitle": "",
-            "emoji": "",
-            "transport": null,
-            "entryType": "activity",
-            "walkDuration": "",
-            "time": "17:00",
-            "kind": "nota",
-            "notes": "",
-            "notesFormat": [],
-            "place": null,
-            "links": [],
-            "bookingId": null,
-            "done": false
-          },
-          {
             "id": "e14-40",
             "title": "hotel ➡️ teamlabs 40min",
             "subtitle": "",
@@ -4579,6 +4562,49 @@
             "walkDuration": "",
             "time": "07:30",
             "kind": "attivita",
+            "notes": "",
+            "notesFormat": [],
+            "place": {
+              "type": "activity",
+              "name": "",
+              "category": "",
+              "price": "",
+              "duration": "",
+              "reservation": "",
+              "address": "",
+              "phone": "",
+              "access": "",
+              "dietary": "",
+              "whatToBring": "",
+              "hoursNote": "",
+              "mapsUrl": "",
+              "website": "",
+              "bookingUrl": "",
+              "sourceUrl": "",
+              "opening": "",
+              "closing": "",
+              "secondOpening": "",
+              "secondClosing": "",
+              "lastEntry": "",
+              "closed": false,
+              "open24": false,
+              "hoursDate": "2026-11-09",
+              "checkedAt": ""
+            },
+            "links": [],
+            "bookingId": null,
+            "done": false
+          },
+          {
+            "id": "e14-37",
+            "title": "Check in Route Inn Asakusabashi",
+            "subtitle": "",
+            "emoji": "",
+            "transport": null,
+            "entryType": "activity",
+            "walkDuration": "",
+            "time": "17:00",
+            "kind": "nota",
             "notes": "",
             "notesFormat": [],
             "place": {
@@ -5806,7 +5832,7 @@
       "notes": "",
       "notesFormat": []
     },
-    "updatedAt": "2026-10-07T06:25:13.463Z",
+    "updatedAt": "2026-10-07T06:31:05.618Z",
     "cityCovers": {}
   }
 }
