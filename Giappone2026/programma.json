@@ -1,8 +1,8 @@
 {
   "format": "giappone-programma-condiviso-v1",
   "published": true,
-  "revision": "16121464-7318-45c9-82ca-26c2e9ef8098",
-  "updatedAt": "2026-10-07T06:31:05.618Z",
+  "revision": "f62d27f1-a834-4a5e-87ce-e0cc59527052",
+  "updatedAt": "2026-10-07T06:36:30.137Z",
   "editor": "Leonardo",
   "program": {
     "appId": "roberto-giappone-2026",
@@ -5341,8 +5341,8 @@
         "notes": "",
         "notesFormat": [],
         "phone": "+818030198118",
-        "checkIn": "",
-        "checkOut": "",
+        "checkIn": "Dalle 16:00",
+        "checkOut": "Entro le 10:00",
         "mapUrl": "https://maps.app.goo.gl/4xpeTm3oU6Er4eUK8",
         "status": "booked",
         "owner": "Antonella 2 ott",
@@ -5832,7 +5832,7 @@
       "notes": "",
       "notesFormat": []
     },
-    "updatedAt": "2026-10-07T06:31:05.618Z",
+    "updatedAt": "2026-10-07T06:36:30.137Z",
     "cityCovers": {}
   }
 }
