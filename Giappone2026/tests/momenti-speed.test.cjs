@@ -14,7 +14,7 @@ let checks=0;const check=(name,ok)=>{assert.ok(ok,name);checks++};
   window.speedRPC=async payload=>{
    speedCalls.push({op:payload.op,id:payload.data?.id,token:payload.token});
    if(speedRevoked&&payload.op!=='capabilities'){const e=Error('Access revoked');e.code='ACCESS';throw e}
-   if(payload.op==='feed'){await new Promise(r=>setTimeout(r,speedFeedDelay));return {posts:structuredClone(speedPosts),hasMore:false,revision:'r1',version:3,hasCode:true,member:{id:payload.token==='a'.repeat(64)?'account-a':'account-b',name:'Fixture guest',role:'member'}}}
+   if(payload.op==='feed'){const snapshot=structuredClone(speedPosts);await new Promise(r=>setTimeout(r,speedFeedDelay));return {posts:snapshot,hasMore:false,revision:'r1',version:3,hasCode:true,member:{id:payload.token==='a'.repeat(64)?'account-a':'account-b',name:'Fixture guest',role:'member'}}}
    if(payload.op==='photo'){if(speedPhotoHold)await new Promise(r=>speedHeld.push(r));else await new Promise(r=>setTimeout(r,speedDelay));return {photo:jpeg,mimeType:'image/jpeg'}}
    if(payload.op==='publish'){const post={...speedPosts[0],id:payload.data.id,photo_path:payload.data.id,author_id:'account-a'};speedPosts.unshift(post);return {post}}
    if(payload.op==='stays'){const e=Error('Synthetic old private service');e.code='INVALID';throw e}
@@ -47,9 +47,9 @@ let checks=0;const check=(name,ok)=>{assert.ok(ok,name);checks++};
  check('Reload verifies the feed before restoring photos',await page.evaluate(()=>speedCalls.some(c=>c.op==='feed')));
  await page.locator('.main-tabs [data-view="moments"]').click();await page.waitForFunction(()=>document.querySelectorAll('.moment-photo.loaded').length===2);
  await page.evaluate(()=>{window.fixtureJPEG=window.__jpeg||''});await page.evaluate(jpeg=>window.fixtureJPEG=jpeg,jpeg);
- const uploadsBefore=await page.evaluate(()=>speedCalls.filter(c=>c.op==='photo').length);await page.evaluate(()=>SPEED_QA.publish());
+ const uploadsBefore=await page.evaluate(()=>speedCalls.filter(c=>c.op==='photo').length);await page.evaluate(()=>{speedFeedDelay=180;void SPEED_QA.feed()});await page.evaluate(()=>SPEED_QA.publish());
  check('Confirmed publication reuses the upload bytes',await page.evaluate(()=>speedCalls.filter(c=>c.op==='photo').length)===uploadsBefore);
- check('Published photo is already in memory',await page.evaluate(()=>SPEED_QA.photos()===3));
+ check('Published photo is already in memory',await page.evaluate(()=>SPEED_QA.photos()===3));await page.waitForTimeout(450);check('An older poll cannot hide a just-published moment',await page.evaluate(()=>document.querySelectorAll('[data-moment-id]').length===3));await page.evaluate(()=>speedFeedDelay=0);
  const originalSession=await page.evaluate(()=>SPEED_QA.session());
  check('Different account cannot decrypt the cache',await page.evaluate(async session=>await JAPAN_MOMENT_CACHE.get({...session,member:'different',token:'d'.repeat(64)},'photo-0')===null,originalSession));
  check('Different session key cannot decrypt the cache',await page.evaluate(async session=>await JAPAN_MOMENT_CACHE.get({...session,token:'c'.repeat(64)},'photo-1')===null,originalSession));
