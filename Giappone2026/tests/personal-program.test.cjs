@@ -1,0 +1,38 @@
+'use strict';
+const fs=require('fs'),vm=require('vm'),assert=require('assert/strict'),path=require('path');
+const scope={window:{addEventListener(){}},document:{addEventListener(){}},setTimeout(){},setInterval(){},URL};
+vm.createContext(scope);vm.runInContext(fs.readFileSync(path.join(__dirname,'../alloggi.js'),'utf8'),scope);
+const api=scope.window.JAPAN_STAYS;
+const hotels=[{id:'main',title:'Main Garden Hotel',type:'Hotel/Casa',checkIn:'15:00',checkOut:'10:00'},{id:'own',title:'River Hotel',type:'Hotel/Casa',checkIn:'16:00',checkOut:'11:00',mapUrl:'https://www.google.com/maps/search/?api=1&query=River'},{id:'next',title:'Forest Hotel',type:'Hotel/Casa'}];
+const model={participants:[{id:'guest-a',name:'Alpha',aliases:[],memberIds:[]}],reservations:hotels,days:[{date:'2026-10-29',hotel:'main',stays:[{bookingId:'own',guestIds:['guest-a']}]},{date:'2026-10-30',hotel:'next',stays:[{bookingId:'next',guestIds:['guest-a']}]},{date:'2026-10-31',hotel:null,stays:[]}]};
+const profile={id:'account-a',name:'Alpha',travelPersonId:'guest-a'};
+let count=0;const check=(n,v)=>{assert.ok(v,n);count++};
+const original=JSON.stringify(model),event=(title,extra={})=>({id:'event-a',time:'15:00',title,subtitle:'Contatta la casa per il trasporto',notes:'Check in 15:00; Check out 10:00',notesFormat:[],links:['https://example.com/original'],entryType:'activity',...extra});
+for(const title of ['Main Garden Hotel','Check in Main Garden Hotel','Rientro in Hotel','Check in casa','Check in al Musashi Sakaen']){
+ const e=event(title),before=JSON.stringify(e),v=api.projectEvent(e,model.days[0],model,profile);
+ check('Correct own hotel: '+title,v.title.includes('River Hotel')&&!v.title.includes('Main Garden'));
+ check('Own facts and map replace stale information: '+title,v.personalHotel.checkOut==='11:00'&&!v.notes&&v.links[0]===hotels[1].mapUrl);
+ check('Canonical event stays intact: '+title,JSON.stringify(e)===before&&v.id===e.id&&v.time===e.time);
+}
+const arrival=api.projectEvent(event('Station ➡️ hotel 40min',{entryType:'transport',transport:{legs:[{from:'Station',to:'Main Garden Hotel',line:'Old line',stops:'12',duration:'40 min',cost:'500',direction:'Old direction'}],duration:'40 min',totalCost:'500'}}),model.days[0],model,profile);
+check('Arrival destination has the personal hotel',arrival.title==='Station ➡️ River Hotel'&&arrival.transport.legs[0].to==='River Hotel');
+check('Route facts cannot refer to the other hotel',!arrival.transport.legs[0].duration&&!arrival.transport.legs[0].line&&!arrival.transport.legs[0].stops&&!arrival.transport.duration&&!arrival.transport.totalCost&&!arrival.title.includes('40'));
+check('Route warns that the journey must be checked',arrival.subtitle.includes('verificare'));
+const checkout=api.projectEvent(event('Check out hotel',{time:'09:00'}),model.days[1],model,profile);
+check('Checkout on a moving day uses previous night',checkout.personalHotel.id==='own');
+const departure=api.projectEvent(event('hotel → station 40 min',{time:'08:00',entryType:'transport'}),model.days[1],model,profile);
+check('Morning departure uses previous night hotel',departure.title==='River Hotel → station');
+const last=api.projectEvent(event('Check-out Hotel',{time:'10:00'}),model.days[2],model,profile);
+check('Final checkout works without a lodging that evening',last.personalHotel.id==='next');
+const lunch=event('Cena a casa',{entryType:'restaurant',notes:'Meet together'});
+check('Shared dinner is not replaced by a hotel visit',api.projectEvent(lunch,model.days[0],model,profile)===lunch);
+const other=event('Temple visit');check('Unrelated activities retain descriptions and maps',api.projectEvent(other,model.days[0],model,profile)===other);
+check('Unknown identity never guesses a hotel',api.projectEvent(event('Hotel'),model.days[0],model,{id:'unknown',name:'Unknown'})?.title==='Hotel');
+check('Logged out projection exposes no private stay',api.eventForView(event('Hotel'),model.days[0],model).title==='Hotel');
+check('Public programme was not mutated',JSON.stringify(model)===original);
+const jpModel={...model,reservations:[...hotels,{id:'jp',title:'お宿一の華',type:'Hotel/Casa'}]};
+const rail=event('新宿 → 東京',{entryType:'transport',transport:{legs:[{from:'新宿',to:'東京',line:'Shared rail'}]}});
+check('Japanese station names are not mistaken for an unrelated hotel',api.projectEvent(rail,model.days[0],jpModel,profile)===rail);
+const meal=event('Cena al Main Garden Hotel',{place:{type:'restaurant'}});
+check('Restaurant inside a hotel stays a shared meal',api.projectEvent(meal,model.days[0],model,profile)===meal);
+console.log('PASS '+count+' personal programme checks');

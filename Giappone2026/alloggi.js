@@ -6,13 +6,68 @@ const text=(v,max)=>{if(typeof v!=='string'||v.length>max)throw Error('Un’info
 const list=(v,max,length)=>{if(v==null)return [];if(!Array.isArray(v)||v.length>max)throw Error('Elenco partecipanti non valido.');return [...new Set(v.map(s=>text(s,length)).filter(Boolean))]};
 let hooks,privateData=null,privateAccount='',fetchAccount='',privatePerson='',canEdit=false,loading=false,error='',generation=0,lastFetch=0,pending=null;
 const clone=o=>JSON.parse(JSON.stringify(o));
-function changed(){window.dispatchEvent(new CustomEvent('japan-stays-changed'))}
+function clearHotelDialog(){const el=document.querySelector('#today-event-dialog');if(el?.querySelector('[data-personal-hotel]')){el.close();el.replaceChildren()}}
+function changed(){if(!authorized())clearHotelDialog();window.dispatchEvent(new CustomEvent('japan-stays-changed'))}
 function authorized(){return !!privateData&&privateAccount===window.JAPAN_MOMENTS?.profile?.()?.id}
 function modelFor(model){
  if(!authorized())return {...model,participants:[]};
  const reservations=[...model.reservations];for(const b of privateData.reservations){const i=reservations.findIndex(x=>x.id===b.id);if(i<0)reservations.push(b);else reservations[i]=b;}
  return {...model,participants:privateData.participants,reservations,days:model.days.map(d=>{const night=privateData.nights.find(n=>n.date===d.date);return {...d,...(night?{stays:night.stays}:{})}})};
 }
+
+// Projection for reading only: the shared itinerary and its editor stay canonical.
+function projectEvent(event,day,model,profile){
+ if(!day||!profile)return event;
+ const title=String(event.title||'');if(event.entryType==='restaurant'||event.place?.type==='restaurant'||/^\s*(?:colazione|pranzo|cena)\b/i.test(title))return event;
+ const hotelWord=/\b(?:hotel|albergo|alloggio|cottage)\b/i;
+ const departing=/check[ -]?out|partenza da|lasciamo|uscita da/i.test(title)||(/\bhotel\b\s*(?:➡️?|→|⇄)/i.test(title)&&(!event.time||event.time<'12:00'));
+ const previous=model.days.filter(d=>d.date<day.date).sort((a,b)=>b.date.localeCompare(a.date))[0];
+ const night=departing&&previous?previous:model.days.find(d=>d.date===day.date)||day;
+ const own=rows(night,model,profile).find(r=>r.mine)?.booking;
+ if(!own)return event;
+ const primary=model.reservations.find(b=>b.id===night.hotel),known=model.reservations.filter(b=>b.type==='Hotel/Casa');
+ const hotelKey=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[^\p{L}\p{N}]/gu,''),key=hotelKey(title),named=known.find(b=>hotelKey(b.title).length>2&&key.includes(hotelKey(b.title)));
+ const hotelVisit=hotelWord.test(title)||!!named||(/check[ -]?(?:in|out)/i.test(title)&&!/\b(?:volo|flight|aeroporto|airport|airways|airlines?)\b/i.test(title))||known.some(b=>b.id===event.bookingId);
+ const transport=event.entryType==='transport'||/^trasporto$/i.test(event.kind||'')||(event.transport?.legs?.length>0);
+ const legHotel=l=>hotelWord.test([l.from,l.to].join(' '))||known.some(b=>[l.from,l.to].some(v=>v&&hotelKey(b.title).length>2&&hotelKey(v)===hotelKey(b.title)));
+ if(!hotelVisit&&!(transport&&event.transport?.legs?.some(legHotel)))return event;
+ const differs=!!primary&&primary.id!==own.id;
+ const replace=v=>{
+  let result=String(v||'');
+  for(const b of [...known].sort((a,b)=>b.title.length-a.title.length))if(b.title&&hotelKey(b.title).length>2)result=result.split(b.title).join('\u0001');
+  return result.replace(/\b(?:hotel|albergo|alloggio|cottage)(?!\s*\/)[^➡→⇄\n]*?(?=\s*(?:➡️?|→|⇄)|$)/ig,own.title).replace(/check[ -]?in (?:al |alla )?(?:musashi sakae?n|casa)/i,'Check-in · '+own.title).replaceAll('\u0001',own.title);
+ };
+ const map=own.mapUrl||'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(own.title+' '+(own.address||'Japan'));
+ if(transport){
+  const strip=v=>differs?String(v||'').replace(/\b\d+\s*(?:min(?:uti)?|h(?:\s*\d+\s*min)?)\b/ig,'').trim():v;
+  const legs=(event.transport?.legs||[]).map(l=>{
+   if(!legHotel(l))return {...l};
+   const updated={...l,from:replace(l.from),to:replace(l.to)};
+   if(differs)for(const k of ['mode','line','direction','stops','duration','cost','platform','departure','arrival','via','notes'])updated[k]='';
+   return updated;
+  });
+  return {...event,personalHotelRoute:true,title:replace(strip(title)),subtitle:differs?'Percorso da verificare per il tuo alloggio':event.subtitle,
+   transport:event.transport?{...event.transport,legs,...(differs?{duration:'',totalCost:'',notes:''}:{})}:event.transport,
+   notes:differs?'L’alloggio è quello associato al tuo profilo. Verifica il percorso e i tempi dalla tua struttura; l’orario del programma resta quello condiviso.':event.notes,
+   notesFormat:differs?[]:event.notesFormat,links:differs?[map]:event.links};
+ }
+ const prefix=/check[ -]?out/i.test(title)?'Check-out':/check[ -]?in/i.test(title)?'Check-in':/rientro|ritorno/i.test(title)?'Rientro':/deposit/i.test(title)?'Deposito bagagli':/partenza|lasciamo/i.test(title)?'Partenza':/\bverso\b|andiamo|arrivo|raggiung/i.test(title)?'Arrivo': '';
+ return {...event,title:(prefix?prefix+' · ':'')+own.title,subtitle:differs?(/deposit|bagagli|bust/i.test(event.subtitle||'')?event.subtitle:'Il tuo alloggio'):event.subtitle,
+  bookingId:null,notes:'',notesFormat:[],links:[map],place:null,personalHotel:own,
+  personalHotelNotes:!differs&&!/check[ -]?in|check[ -]?out/i.test(event.notes||'')?event.notes:''};
+}
+function eventForView(event,day,publicModel){
+ const profile=currentProfile();if(!profile)return event;
+ if(event.entryType==='restaurant'||event.place?.type==='restaurant'||/^\s*(?:colazione|pranzo|cena)\b/i.test(event.title||''))return event;
+ const projected=authorized()?projectEvent(event,day,modelFor(publicModel),profile):event;
+ if(projected!==event)return projected;
+ const hotel=/\b(?:hotel|albergo|alloggio|cottage)\b/i,related=hotel.test(event.title||'')||(/check[ -]?(?:in|out)/i.test(event.title||'')&&!/\b(?:volo|flight|aeroporto|airport|airways|airlines?)\b/i.test(event.title||''))||publicModel.reservations.some(b=>b.type==='Hotel/Casa'&&(b.id===event.bookingId||normal(b.title).length>4&&normal(event.title).includes(normal(b.title))))||(event.transport?.legs||[]).some(l=>hotel.test([l.from,l.to].join(' ')));
+ if(!related)return event;
+ const message=authorized()?'Scegli il tuo nome nella sezione «Dove dormiamo» per vedere la struttura corretta.':loading?'Stiamo collegando il tuo alloggio al programma.':'Il tuo alloggio sarà visibile quando il collegamento privato sarà disponibile.';
+ return {...event,title:event.entryType==='transport'?'Spostamento da / verso il tuo alloggio':'Il tuo alloggio',subtitle:message,personalHotelPending:true,place:null,bookingId:null,notes:'',notesFormat:[],links:[],transport:null};
+}
+function eventDetails(event){return event.personalHotel?hotelInfo(event.personalHotel)+(event.personalHotelNotes?hooks.detailsText(event.personalHotelNotes,event.notesFormat):''):''}
+
 function currentProfile(){const p=window.JAPAN_MOMENTS?.profile?.();return p?{...p,travelPersonId:p.travelPersonId||privatePerson}:null}
 function cleanConfig(raw){
  if(!raw||raw.version!==1||!Number.isSafeInteger(raw.revision)||raw.revision<1||!Array.isArray(raw.reservations)||raw.reservations.length>100||!Array.isArray(raw.nights)||raw.nights.length>100)throw Error('Gli alloggi ricevuti non sono validi.');
@@ -26,7 +81,7 @@ function cleanConfig(raw){
  const dates=new Set(),nights=raw.nights.map(n=>{if(!n||!/^\d{4}-\d{2}-\d{2}$/.test(n.date)||dates.has(n.date))throw Error('Notte non valida.');dates.add(n.date);return {date:n.date,stays:validateStays(n.stays,participants,reservations)||[]}});
  return {version:1,revision:raw.revision,participants,reservations,nights};
 }
-function reset(){generation++;privateData=null;privateAccount='';fetchAccount='';privatePerson='';canEdit=false;loading=false;pending=null;lastFetch=0;error='';document.querySelector('#private-stay-editor')?.close();document.querySelector('#private-stay-editor')?.remove();document.querySelector('#stay-identity-dialog')?.remove();}
+function reset(){clearHotelDialog();generation++;privateData=null;privateAccount='';fetchAccount='';privatePerson='';canEdit=false;loading=false;pending=null;lastFetch=0;error='';document.querySelector('#private-stay-editor')?.close();document.querySelector('#private-stay-editor')?.remove();document.querySelector('#stay-identity-dialog')?.remove();}
 async function refresh(force=false){
  const p=window.JAPAN_MOMENTS?.profile?.();if(!p){if(privateData||loading){reset();changed()}return;}
  if(pending)return pending;if(!force&&Date.now()-lastFetch<60000)return;
@@ -142,5 +197,5 @@ document.addEventListener('submit',e=>{if(e.target.id==='private-stay-form'){e.p
 window.addEventListener('japan-moments-identity',()=>{const p=window.JAPAN_MOMENTS?.profile?.();if(!p||privateAccount&&privateAccount!==p.id||fetchAccount&&fetchAccount!==p.id){reset();changed();}if(p)void refresh();});
 window.addEventListener('online',()=>{if(hooks)void refresh(true)});
 document.addEventListener('visibilitychange',()=>{if(hooks&&!document.hidden&&!document.querySelector('dialog[open]'))void refresh()});
-window.JAPAN_STAYS={validatePeople,validateStays,resolve,rows,identityHTML,nightlyHTML,stayEditor,readEditor,peopleEditor,readPeopleEditor,cleanConfig,overviewHTML,refresh,currentIdentityHTML:()=>hooks&&authorized()?identityHTML(modelFor(hooks.get())):'',install:h=>{hooks=h;setTimeout(()=>void refresh(),0);setInterval(()=>{if(!document.hidden&&!document.querySelector('dialog[open]'))void refresh()},60000)}};
+window.JAPAN_STAYS={projectEvent,eventForView,eventDetails,validatePeople,validateStays,resolve,rows,identityHTML,nightlyHTML,stayEditor,readEditor,peopleEditor,readPeopleEditor,cleanConfig,overviewHTML,refresh,currentIdentityHTML:()=>hooks&&authorized()?identityHTML(modelFor(hooks.get())):'',install:h=>{hooks=h;setTimeout(()=>void refresh(),0);setInterval(()=>{if(!document.hidden&&!document.querySelector('dialog[open]'))void refresh()},60000)}};
 })();
