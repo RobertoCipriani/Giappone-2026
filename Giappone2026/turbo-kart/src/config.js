@@ -46,7 +46,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "traveler"
   },
   {
     "id": "roberto",
@@ -63,7 +64,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "hero"
   },
   {
     "id": "leonardo",
@@ -74,13 +76,14 @@ export const CHARACTERS = [
     "accent": 16772561,
     "skin": 16764057,
     "hat": "cap",
-    "body": "traveler",
+    "body": "pope",
     "stats": {
       "speed": 3,
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "pope"
   },
   {
     "id": "francesco",
@@ -91,13 +94,14 @@ export const CHARACTERS = [
     "accent": 16772561,
     "skin": 16764057,
     "hat": "cap",
-    "body": "traveler",
+    "body": "creature",
     "stats": {
       "speed": 3,
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "creature"
   },
   {
     "id": "andrea",
@@ -108,13 +112,14 @@ export const CHARACTERS = [
     "accent": 16772561,
     "skin": 16764057,
     "hat": "cap",
-    "body": "traveler",
+    "body": "muscular",
     "stats": {
       "speed": 3,
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "muscular"
   },
   {
     "id": "antonella",
@@ -131,7 +136,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "white"
   },
   {
     "id": "erika",
@@ -148,7 +154,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "traveler"
   },
   {
     "id": "gabriele",
@@ -165,7 +172,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "octo"
   },
   {
     "id": "giorgia-s",
@@ -182,7 +190,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "white"
   },
   {
     "id": "giorgia-i",
@@ -199,7 +208,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "traveler"
   },
   {
     "id": "manuel",
@@ -210,13 +220,14 @@ export const CHARACTERS = [
     "accent": 16772561,
     "skin": 16764057,
     "hat": "cap",
-    "body": "hero",
+    "body": "round",
     "stats": {
       "speed": 3,
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "round"
   },
   {
     "id": "lorenzo",
@@ -233,7 +244,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "traveler"
   },
   {
     "id": "federico",
@@ -250,7 +262,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "traveler"
   },
   {
     "id": "valerio",
@@ -267,7 +280,8 @@ export const CHARACTERS = [
       "accel": 3,
       "handling": 3,
       "weight": 3
-    }
+    },
+    "defaultBody": "traveler"
   }
 ];
 

@@ -2,10 +2,10 @@
 // createTrack(scene, renderer) -> Track
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { bus } from './events.js?v=20261011-journey';
-import * as TX from './track-textures.js?v=20261011-journey';
-import { createEnvironment } from './japan-world.js?v=20261011-journey';
-import {stageAt,coursePoints} from './japan-courses.js?v=20261011-journey';
+import { bus } from './events.js?v=20261011-piloti';
+import * as TX from './track-textures.js?v=20261011-piloti';
+import { createEnvironment } from './japan-world.js?v=20261011-piloti';
+import {stageAt,coursePoints} from './japan-courses.js?v=20261011-piloti';
 
 const TRACK_NAME = 'Palm Cove Circuit';
 const SCALE = 1.15;

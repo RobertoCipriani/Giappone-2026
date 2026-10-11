@@ -303,10 +303,10 @@ function momentStayActive_(member){
 // Private Grand Tour records and skins. Stored in the existing Momenti workbook/Drive.
 var KART_VERSION='japan-v1';
 var KART_ROSTER=[
- ['kitsu','Kitsu',0,'traveler'],['roberto','Robanana',250,'hero'],['leonardo','Leonardrift',300,'traveler'],
- ['francesco','FranTokyo',350,'traveler'],['andrea','AndreTornado',400,'traveler'],['antonella','Antornella',450,'white'],
+ ['kitsu','Kitsu',0,'traveler'],['roberto','Robanana',250,'hero'],['leonardo','Leonardrift',300,'pope'],
+ ['francesco','FranTokyo',350,'creature'],['andrea','AndreTornado',400,'muscular'],['antonella','Antornella',450,'white'],
  ['erika','Erikart',500,'traveler'],['gabriele','Gabbracoli',750,'octo'],['giorgia-s','Giorgiaku S.',550,'white'],
- ['giorgia-i','Giorgiaku I.',550,'traveler'],['manuel','Manu Turbo',600,'hero'],['lorenzo','Lorenzen',650,'traveler'],
+ ['giorgia-i','Giorgiaku I.',550,'traveler'],['manuel','Manu Turbo',600,'round'],['lorenzo','Lorenzen',650,'traveler'],
  ['federico','FedeFuga',700,'traveler'],['valerio','Valerazzo',800,'traveler']
 ];
 var KART_HEADERS={KartProfili:['autore_id','stato_JSON','aggiornato_UTC'],KartGare:['id','autore_id','nome_JSON','versione','circuito','classe','giri','skin','tempo','giro_migliore','posizione','pubblicato_UTC'],KartSkin:['id','soprannome_JSON','corpo','crop_JSON','foto_Drive_id','aggiornato_UTC']};
@@ -356,7 +356,7 @@ function momentKartWrite_(op,d,token){
  if(op==='kartBuy'){var ch=KART_ROSTER.find(function(x){return x[0]===d.id});if(!ch)throw momentError_('INVALID','Skin non disponibile.');if(state.owned.indexOf(d.id)&gt;=0)return {state:state};if(state.coins&lt;ch[2])throw momentError_('COINS','Non hai ancora abbastanza monete.');state.coins-=ch[2];state.owned.push(d.id);momentKartSave_(member,record);return {state:state};}
  if(op==='kartSkinSave'){
   if(!momentKartEditor_(member))throw momentError_('DENIED','Solo Roberto e gli organizzatori autorizzati possono modificare le skin condivise.');var character=KART_ROSTER.find(function(x){return x[0]===d.id&amp;&amp;x[0]!=='kitsu'});if(!character)throw momentError_('INVALID','Skin non disponibile.');
-  var nickname=momentText_(d.nickname,24,true);if(/[&lt;&gt;"\u0000-\u001f]/.test(nickname)||['traveler','white','hero','octo'].indexOf(d.body)&lt;0||!Array.isArray(d.crop)||d.crop.length!==3||d.crop.some(function(x){return typeof x!=='number'||!isFinite(x)})||d.crop[0]&lt;1||d.crop[0]&gt;5||d.crop[1]&lt;0||d.crop[1]&gt;1||d.crop[2]&lt;0||d.crop[2]&gt;1)throw momentError_('INVALID','Soprannome o ritaglio non validi.');
+  var nickname=momentText_(d.nickname,24,true);if(/[&lt;&gt;"\u0000-\u001f]/.test(nickname)||['traveler','white','hero','octo','muscular','round','creature','pope'].indexOf(d.body)&lt;0||!Array.isArray(d.crop)||d.crop.length!==3||d.crop.some(function(x){return typeof x!=='number'||!isFinite(x)})||d.crop[0]&lt;1||d.crop[0]&gt;5||d.crop[1]&lt;0||d.crop[1]&gt;1||d.crop[2]&lt;0||d.crop[2]&gt;1)throw momentError_('INVALID','Soprannome o ritaglio non validi.');
   var skins=momentKartRows_('KartSkin'),index=skins.findIndex(function(r){return r[0]===d.id}),previous=index&lt;0?null:skins[index],fileId=previous?previous[4]:'',file=null;
   if(d.photo!=null){if(typeof d.photo!=='string'||d.photo.length&gt;466668||! /^[A-Za-z0-9+/]+={0,2}$/.test(d.photo))throw momentError_('PHOTO','Foto non leggibile.');var bytes=Utilities.base64Decode(d.photo);if(bytes.length&gt;350000||bytes.length&lt;4||(bytes[0]&amp;255)!==255||(bytes[1]&amp;255)!==216||(bytes[2]&amp;255)!==255)throw momentError_('PHOTO','Usa una foto JPEG sotto 350 KB.');file=DriveApp.getFolderById(momentProps_().getProperty('mom_folder')).createFile(Utilities.newBlob(bytes,'image/jpeg','Kart-skin-'+d.id+'.jpg'));fileId=file.getId();}
   var values=[d.id,JSON.stringify(nickname),d.body,JSON.stringify(d.crop),fileId,new Date().toISOString()],s=momentKartSheet_('KartSkin');try{if(index&lt;0)s.appendRow(values);else s.getRange(index+2,1,1,6).setValues([values]);SpreadsheetApp.flush()}catch(e){if(file)try{file.setTrashed(true)}catch{}throw e}if(file&amp;&amp;previous&amp;&amp;previous[4])try{momentFile_(previous[4]).setTrashed(true)}catch{}return {saved:true};

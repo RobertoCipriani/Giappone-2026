@@ -1,7 +1,7 @@
 // Agent 4 — Camera: spring-damped chase camera with drift swing, speed FOV, shake and cinematic modes.
 import * as THREE from 'three';
-import { bus } from './events.js?v=20261011-journey';
-import { PHYSICS } from './config.js?v=20261011-journey';
+import { bus } from './events.js?v=20261011-piloti';
+import { PHYSICS } from './config.js?v=20261011-piloti';
 
 const PI = Math.PI;
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);

@@ -5,3 +5,5 @@
 /* Left thumb: steering plus drift/item. Right thumb: pedals only. */
 @media(orientation:landscape){.trip-drive{justify-content:flex-start;gap:14px}.trip-drive .trip-pedals{margin-left:auto}.trip-drive .trip-actions{gap:8px}.trip-controls[data-steering="swipe"] .trip-drive .trip-steer{display:none}.trip-controls[data-steering="swipe"] .trip-drive .trip-actions{margin-left:16px}.trip-swipe{bottom:77px;height:48%;width:43%}.hud-minimap{left:auto;right:125px;bottom:70px}}
 @media(prefers-reduced-motion:reduce){.journey-dialog *{animation:none!important;transition:none!important}}
+
+.journey-garage img.journey-costume-preview{border-radius:14px;object-fit:contain;background:#ffffff10}

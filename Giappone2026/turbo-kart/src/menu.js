@@ -1,6 +1,6 @@
 // Title screen, character select (with difficulty / laps options + controls help), pause menu, gamepad navigation.
-import { bus } from './events.js?v=20261011-journey';
-import { CHARACTERS, GAME_TITLE } from './config.js?v=20261011-journey';
+import { bus } from './events.js?v=20261011-piloti';
+import { CHARACTERS, GAME_TITLE } from './config.js?v=20261011-piloti';
 
 const hex = (c) => '#' + (c >>> 0).toString(16).padStart(6, '0').slice(-6);
 const DIFFS = ['easy', 'normal', 'hard'];

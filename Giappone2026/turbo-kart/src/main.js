@@ -4,16 +4,17 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { bus } from './events.js?v=20261011-journey';
-import { CHARACTERS, RACE, PHYSICS } from './config.js?v=20261011-journey';
-import { RaceManager } from './race.js?v=20261011-journey';
-import { HUD } from './hud.js?v=20261011-journey';
-import { Menu } from './menu.js?v=20261011-journey';
-import { AudioEngine } from './audio.js?v=20261011-journey';
-import {Journey} from './journey.js?v=20261011-journey';
-import {stageAt} from './japan-courses.js?v=20261011-journey';
-import {customizeDriver} from './trip-avatars.js?v=20261011-journey';
-import { mountTouch } from '../trip-touch.js?v=20261011-journey';
+import { bus } from './events.js?v=20261011-piloti';
+import { CHARACTERS, RACE, PHYSICS } from './config.js?v=20261011-piloti';
+import { RaceManager } from './race.js?v=20261011-piloti';
+import { HUD } from './hud.js?v=20261011-piloti';
+import { Menu } from './menu.js?v=20261011-piloti';
+import { AudioEngine } from './audio.js?v=20261011-piloti';
+import {Journey} from './journey.js?v=20261011-piloti';
+import {stageAt} from './japan-courses.js?v=20261011-piloti';
+import {customizeDriver} from './trip-avatars.js?v=20261011-piloti';
+import {portraitFor} from './avatar-costumes.js?v=20261011-piloti';
+import { mountTouch } from '../trip-touch.js?v=20261011-piloti';
 
 // ---------------------------------------------------------------------------------------------
 // Error isolation: one failing subsystem must never freeze the loop. Log once per error type.
@@ -76,8 +77,8 @@ window.addEventListener('resize', onResize);
 const mods = {};
 async function loadModules() {
   const specs = {
-    track: './track.js?v=20261011-journey', kart: './kart.js?v=20261011-journey', ai: './ai.js?v=20261011-journey', input: './input.js?v=20261011-journey',
-    items: './items.js?v=20261011-journey', effects: './effects.js?v=20261011-journey', models: './models.js?v=20261011-journey', camera: './camera.js?v=20261011-journey',
+    track: './track.js?v=20261011-piloti', kart: './kart.js?v=20261011-piloti', ai: './ai.js?v=20261011-piloti', input: './input.js?v=20261011-piloti',
+    items: './items.js?v=20261011-piloti', effects: './effects.js?v=20261011-piloti', models: './models.js?v=20261011-piloti', camera: './camera.js?v=20261011-piloti',
   };
   await Promise.all(Object.entries(specs).map(async ([k, p]) => {
     try { mods[k] = await import(p); } catch (e) { console.error(`[main] failed to load ${p}`, e); }
@@ -564,12 +565,12 @@ async function boot() {
   await loadModules();
   if (mods.input && mods.input.InputController) input = safe('input.ctor', () => new mods.input.InputController());
   if (mods.models && mods.models.createCharacterPortrait) {
-    const fn = (c) => mods.models.createCharacterPortrait(c);
+    const fn = (c) => c.photoURL || portraitFor(c) || mods.models.createCharacterPortrait(c);
     safe('portraits', () => menu.setPortraitProvider(fn));
     hud.setPortraitProvider(fn);
   }
   journey=new Journey({menu,hud,onStage:()=>{if(state==='title'||state==='select')buildAttract()},onChange:()=>{disposeWorld();goToTitle()}});
-  journey.portrait=mods.models?.createCharacterPortrait;
+  journey.portrait=c=>portraitFor(c)||mods.models?.createCharacterPortrait(c);
   const courseLabel=document.createElement('div');courseLabel.className='journey-circuit-label';document.body.appendChild(courseLabel);bus.on('game:state',d=>{courseLabel.textContent=['intro','countdown','racing','paused'].includes(d.state)?stageAt(world?.stage||0).name:''});
   mountTouch({getInput:()=>input, getState:()=>state, pause, resume, audio});
   buildAttract();
