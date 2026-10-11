@@ -325,7 +325,8 @@ function restoreReading(state){
  const anchor=state.anchor==='today-focus'?main.querySelector('[data-today-focus]'):[...main.querySelectorAll('[data-event]')].find(el=>el.dataset.event===state.anchor);
  if(anchor){const past=anchor.closest('.past-timeline');if(past)past.open=true}if(anchor&&anchor.getClientRects().length){const diff=anchor.getBoundingClientRect().top-state.offset;if(Math.abs(diff)>1)window.scrollTo({top:Math.max(0,window.scrollY+diff),behavior:'auto'})}
 }
-function gameHTML(){return '<section class="game-section" aria-label="Kitsu e fuggi"><iframe id="kitsu-game" src="anteprima-gioco/?embed=1&v=3" title="Kitsu e fuggi: il gioco del viaggio" allow="autoplay" loading="eager"></iframe></section>'}
+function gameHTML(){return '<section class="game-section" aria-label="Turbo Kart Rally"><div class="game-toolbar"><strong>Turbo Kart Rally</strong><button type="button" data-action="expand-game" aria-pressed="false">⛶ Ingrandisci</button></div><iframe id="kitsu-game" src="turbo-kart/?v=20261011-touch" title="Turbo Kart Rally: corse con i kart" allow="autoplay; fullscreen" loading="eager"></iframe></section>'}
+document.addEventListener('click',e=>{const button=e.target.closest('[data-action="expand-game"]');if(!button)return;const box=button.closest('.game-section'),expanded=box.classList.toggle('game-expanded');button.textContent=expanded?'✕ Riduci':'⛶ Ingrandisci';button.setAttribute('aria-pressed',expanded);document.body.classList.toggle('game-expanded-open',expanded)});
 
 let renderedView=null,renderedDay=null;
 function focusToday(){const target=main.querySelector('[data-today-focus]');if(target&&target.getBoundingClientRect().top>window.innerHeight*.55)target.scrollIntoView({block:'start',behavior:scrollBehavior()})}
@@ -390,6 +391,7 @@ function render(){
  if(renderedView==='game'&&view==='game'){updatePersonalWelcome();return}
  try{document.querySelector('#kitsu-game')?.contentWindow?.KitsuEmbedded?.leave()}catch{}
  document.body.classList.toggle('playing-kitsu',view==='game');
+ if(view!=='game')document.body.classList.remove('game-expanded-open');
  window.JAPAN_MOTION?.settle();
  updatePersonalWelcome();selected=Math.max(0,Math.min(selected,model.days.length-1));const previousDay=model.days.findIndex(d=>d.id===renderedDay),sameView=renderedView===view,dayChanged=sameView&&view==='program'&&renderedDay!==model.days[selected]?.id,reading=sameView?readingState():null,keepYenFocus=sameView&&document.activeElement?.id==='yen-amount';rememberView();main.className='view-'+view;
  main.innerHTML=(['bookings','stays','budget','info','phrases'].includes(view)?'<button class="text-button info-back" data-view="more">‹ Info</button>':'')+(editing&&!['moments','more','phrases','game'].includes(view)?'<div class="editing-banner">Bozza organizzatori · Pubblica per tutti dopo le modifiche.</div>':'')+({program:programHTML,today:todayHTML,overview:overviewHTML,game:gameHTML,moments:window.JAPAN_MOMENTS.render,more:moreHTML,bookings:bookingsHTML,stays:staysHTML,budget:budgetHTML,info:infoHTML,phrases:window.JAPAN_PHRASES.render}[view]||programHTML)();
