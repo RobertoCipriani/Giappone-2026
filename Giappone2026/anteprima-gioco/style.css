@@ -2,3 +2,12 @@
 
 /* 3D edition */
 #world3d{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}#world{background:transparent}.home-heading{position:relative;isolation:isolate}.home-heading:before{content:"";position:absolute;inset:-32px -24px -15px;z-index:-1;background:radial-gradient(ellipse,#ffefd4a1,transparent 72%)}.home-heading h2{color:#154a47;text-shadow:0 2px 0 #fff2c973,0 6px 22px #fff4d54d}.home-heading p{color:#315e55;font-weight:550}.edition{color:#3d7867}.hud{padding:10px 12px 9px;margin:-10px -12px 0;border-radius:17px;background:linear-gradient(180deg,#fff4dcd9,#fff4dc85);backdrop-filter:blur(10px)}.run-bottom{color:#244c3d}.hint{background:#fff5e8f5;color:#294f3e}.music-note{background:#ece9d7;border-radius:13px;padding:13px 15px;font-size:10px!important}.is-running .grain{box-shadow:inset 0 0 42px #264c371a}.home-foot{font-size:6.5px}.home-bottom{background:#fff7e8ee}.topbar{color:#1d4a40}.device{background:#b8dcd7}
+
+/* Embedded game uses the trip app navigation and its available viewport. */
+html.embedded,html.embedded body{height:100%;min-height:0;overflow:hidden}
+.embedded .studio{display:block;width:100%;height:100%;min-height:0;padding:0;margin:0}
+.embedded .editorial{display:none}
+.embedded .device{width:100%;height:100%;min-height:0;max-height:none;max-width:none;border:0;border-radius:0;margin:0;box-shadow:none}
+.embedded .topbar{padding-top:14px}
+.embedded .home-foot{padding-bottom:10px}
+@media(max-height:650px){.embedded .home-heading{top:16%}.embedded .home-heading h2{font-size:clamp(38px,10vw,58px)}.embedded .home-bottom{bottom:14px}.embedded .home-foot{margin-top:9px}.embedded .stage-label{margin-bottom:12px}}
