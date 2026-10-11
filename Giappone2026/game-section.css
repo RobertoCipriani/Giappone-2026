@@ -1,4 +1,5 @@
 /* Six compact tabs; game assets are requested only when this view opens. */
+
 .game-section{max-width:480px;margin:0 auto;height:min(790px,calc(100dvh - 180px));min-height:470px;overflow:hidden;border:1px solid var(--line);border-radius:24px;background:#172f36;box-shadow:var(--shadow)}
 .game-section iframe{width:100%;height:100%;display:block;border:0;background:#172f36}
 .playing-kitsu .app-footer{display:none}
@@ -7,3 +8,5 @@
 @media print{.view-game{display:none}}
 
 .game-section{max-width:1040px;display:flex;flex-direction:column;height:min(780px,calc(100dvh - 180px))}.game-toolbar{height:36px;flex-shrink:0;padding:0 12px;display:flex;align-items:center;justify-content:space-between;color:#fff;font-size:12px;background:#111b2e}.game-toolbar button{color:#ffd23f;padding:6px 0}.game-section iframe{flex:1;min-height:0;height:0}.game-section.game-expanded{position:fixed;inset:0;z-index:1000;border:0;border-radius:0;max-width:none;width:100%;height:100dvh;min-height:0;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body.game-expanded-open{overflow:hidden}@media(max-width:760px){.game-section{height:calc(100dvh - 155px - env(safe-area-inset-bottom));min-height:0}}@media(max-height:500px){main.view-game{padding-top:4px}.game-section{height:calc(100dvh - 115px);min-height:0}}
+
+@media(orientation:portrait){.game-section.game-expanded{inset:auto;left:50%;top:50%;width:100dvh;height:100dvw;transform:translate(-50%,-50%) rotate(90deg);padding:0 max(12px,env(safe-area-inset-top)) 0 max(12px,env(safe-area-inset-bottom));background:#111b2e}}

@@ -10,7 +10,7 @@ import { RaceManager } from './race.js';
 import { HUD } from './hud.js';
 import { Menu } from './menu.js';
 import { AudioEngine } from './audio.js';
-import { mountTouch } from '../trip-touch.js';
+import { mountTouch } from '../trip-touch.js?v=20261011-controls';
 
 // ---------------------------------------------------------------------------------------------
 // Error isolation: one failing subsystem must never freeze the loop. Log once per error type.
@@ -73,7 +73,7 @@ window.addEventListener('resize', onResize);
 const mods = {};
 async function loadModules() {
   const specs = {
-    track: './track.js', kart: './kart.js', ai: './ai.js', input: './input.js',
+    track: './track.js', kart: './kart.js', ai: './ai.js', input: './input.js?v=20261011-controls',
     items: './items.js', effects: './effects.js', models: './models.js', camera: './camera.js',
   };
   await Promise.all(Object.entries(specs).map(async ([k, p]) => {

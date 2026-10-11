@@ -50,6 +50,7 @@ export class InputController {
     this.target = target;
     this.keys = new Set();
     this.touch = new Set();
+    this.touchSteer = null;
     this.latch = Object.create(null);      // action -> pending press for consumePressed
     this.itemEdge = false;                  // pending press for getInput().item
     this.gpHeld = Object.create(null);      // action -> bool
@@ -106,6 +107,11 @@ export class InputController {
     if (held && !this.touch.has(action)) { this.latch[action] = true; if(action === "item") this.itemEdge = true; }
     if(held) this.touch.add(action); else this.touch.delete(action);
     this.lastDevice = "touch";
+  }
+
+  setTouchSteer(value) {
+    this.touchSteer = value === null ? null : Math.max(-1, Math.min(1, value));
+    this.lastDevice = 'touch';
   }
 
   _keyHeld(action) {
@@ -188,7 +194,9 @@ export class InputController {
     this._lastTime = t;
 
     const kbTarget = (this._keyHeld('right') ? 1 : 0) - (this._keyHeld('left') ? 1 : 0);
-    if (this.gpSteer !== 0) {
+    if (this.touchSteer !== null) {
+      this.steer = this.touchSteer;
+    } else if (this.gpSteer !== 0) {
       this.steer = this.gpSteer;
     } else {
       let s = this.steer;
@@ -218,6 +226,7 @@ export class InputController {
   /** Clear all held/latched state (e.g. when pausing or switching screens). */
   reset() {
     this.touch.clear();
+    this.touchSteer = null;
     this.keys.clear();
     for (const k in this.latch) this.latch[k] = false;
     this.itemEdge = false;
