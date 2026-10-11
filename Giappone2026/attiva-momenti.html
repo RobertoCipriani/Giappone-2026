@@ -73,7 +73,7 @@ function doGet(e) {
  return HtmlService.createHtmlOutput(html).setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 function momentBridgeCode_(channel) {
- return "\n(()=&gt;{'use strict';\n const channel=CHANNEL,origin=ORIGIN,records=new Map();\n const send=data=&gt;{try{window.top.postMessage(JSON.stringify(Object.assign({channel,kind:'momenti-drive'},data)),origin)}catch{}};\n const ready=()=&gt;send({type:'ready',version:3});\n let started=false;const hello=setInterval(()=&gt;{if(!started)ready()},2000);\n function trim(){const now=Date.now();for(const [key,record] of records)if(record.done&amp;&amp;now-record.at&gt;120000)records.delete(key);if(records.size&gt;32)for(const [key,record] of records){if(record.done&amp;&amp;!record.write)records.delete(key);if(records.size&lt;=32)break}}\n window.addEventListener('message',event=&gt;{\n  let m;try{m=typeof event.data==='string'?JSON.parse(event.data):event.data}catch{return}\n  if(event.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request'||typeof m.id!=='string'||m.id.length&gt;100||!m.payload||typeof m.payload!=='object')return;\n  started=true;clearInterval(hello);trim();\n  const previous=records.get(m.id);if(previous){if(previous.done)send(previous.reply);return}\n  const requestId=m.id,record={done:false,at:Date.now(),write:['activate','join','login','setCode','resetCode','rename','publish','delete','comment','deleteComment','like','rotate','removeMember'].includes(m.payload.op)};records.set(requestId,record);\n  function finish(result){record.done=true;record.at=Date.now();record.reply={type:'response',id:requestId,result};send(record.reply);trim()}\n  try{google.script.run.withSuccessHandler(value=&gt;{try{if(typeof value!=='string')throw Error('FORMAT');finish(JSON.parse(value))}catch{finish({ok:false,code:'BRIDGE_FORMAT',message:'La risposta Google non è leggibile. Aggiorna il deployment dello script alla nuova versione.'})}}).withFailureHandler(()=&gt;finish({ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'})).momentiRpcJson(JSON.stringify(m.payload))}\n  catch{finish({ok:false,code:'BRIDGE_ERROR',message:'Il collegamento Google non ha avviato la richiesta. Aggiorna lo script e pubblica una nuova versione del deployment.'})}\n });\n ready();\n})();"
+ return "\n(()=&gt;{'use strict';\n const channel=CHANNEL,origin=ORIGIN,records=new Map();\n const send=data=&gt;{try{window.top.postMessage(JSON.stringify(Object.assign({channel,kind:'momenti-drive'},data)),origin)}catch{}};\n const ready=()=&gt;send({type:'ready',version:3});\n let started=false;const hello=setInterval(()=&gt;{if(!started)ready()},2000);\n function trim(){const now=Date.now();for(const [key,record] of records)if(record.done&amp;&amp;now-record.at&gt;120000)records.delete(key);if(records.size&gt;32)for(const [key,record] of records){if(record.done&amp;&amp;!record.write)records.delete(key);if(records.size&lt;=32)break}}\n window.addEventListener('message',event=&gt;{\n  let m;try{m=typeof event.data==='string'?JSON.parse(event.data):event.data}catch{return}\n  if(event.origin!==origin||!m||m.channel!==channel||m.kind!=='momenti-drive'||m.type!=='request'||typeof m.id!=='string'||m.id.length&gt;100||!m.payload||typeof m.payload!=='object')return;\n  started=true;clearInterval(hello);trim();\n  const previous=records.get(m.id);if(previous){if(previous.done)send(previous.reply);return}\n  const requestId=m.id,record={done:false,at:Date.now(),write:['activate','join','login','setCode','resetCode','rename','publish','delete','comment','deleteComment','like','rotate','removeMember','saveStays'].includes(m.payload.op)};records.set(requestId,record);\n  function finish(result){record.done=true;record.at=Date.now();record.reply={type:'response',id:requestId,result};send(record.reply);trim()}\n  try{google.script.run.withSuccessHandler(value=&gt;{try{if(typeof value!=='string')throw Error('FORMAT');finish(JSON.parse(value))}catch{finish({ok:false,code:'BRIDGE_FORMAT',message:'La risposta Google non è leggibile. Aggiorna il deployment dello script alla nuova versione.'})}}).withFailureHandler(()=&gt;finish({ok:false,code:'GOOGLE_ERROR',message:'Google non ha completato la richiesta. Riprova tra poco.'})).momentiRpcJson(JSON.stringify(m.payload))}\n  catch{finish({ok:false,code:'BRIDGE_ERROR',message:'Il collegamento Google non ha avviato la richiesta. Aggiorna lo script e pubblica una nuova versione del deployment.'})}\n });\n ready();\n})();"
   .replace('CHANNEL',JSON.stringify(channel)).replace('ORIGIN',JSON.stringify(MOMENTI_ORIGIN));
 }
 
@@ -90,9 +90,10 @@ function momentiRpc(request) {
  try {
   if(!request||typeof request!=='object')throw momentError_('INVALID','Richiesta non valida.');
   var op=String(request.op||''),data=request.data||{};
-  if(op==='capabilities')return {ok:true,data:{version:MOMENTI_SOCIAL_VERSION,accounts:true,social:true}};
-  if(['activate','join','login','setCode','resetCode','rename','publish','delete','comment','deleteComment','like','rotate','removeMember'].indexOf(op)&gt;=0){var lock=LockService.getScriptLock();if(!lock.tryLock(25000))throw momentError_('BUSY','Il diario sta ricevendo altri momenti. Attendi qualche secondo e riprova.');try{MOMENTI_WRITE_LOCKED=true;return {ok:true,data:momentWrite_(op,data,request.token)}}finally{MOMENTI_WRITE_LOCKED=false;lock.releaseLock();}}
+  if(op==='capabilities')return {ok:true,data:{version:MOMENTI_SOCIAL_VERSION,accounts:true,social:true,privateStays:true}};
+  if(['activate','join','login','setCode','resetCode','rename','publish','delete','comment','deleteComment','like','rotate','removeMember','saveStays'].indexOf(op)&gt;=0){var lock=LockService.getScriptLock();if(!lock.tryLock(25000))throw momentError_('BUSY','Il diario sta ricevendo altri momenti. Attendi qualche secondo e riprova.');try{MOMENTI_WRITE_LOCKED=true;return {ok:true,data:momentWrite_(op,data,request.token)}}finally{MOMENTI_WRITE_LOCKED=false;lock.releaseLock();}}
   var member=momentMember_(request.token);
+  if(op==='stays')return {ok:true,data:momentStayRead_(member)};
   if(op==='feed')return {ok:true,data:momentFeed_(member,data)};
   if(op==='photo')return {ok:true,data:momentPhoto_(member,data)};
   if(op==='comments')return {ok:true,data:momentComments_(member,data)};
@@ -114,6 +115,7 @@ function momentTrip_(){var p=momentProps_();return {id:p.getProperty('mom_group'
 function momentMember_(token){if(typeof token!=='string'||!/^[a-f0-9]{64}$/.test(token))throw momentError_('ACCESS','Accesso non valido. Riapri il tuo invito.');var hash=momentHash_(token),cache=CacheService.getScriptCache(),key='member:'+hash,cached=cache.get(key);if(cached)return JSON.parse(cached);var members=momentRows_('Partecipanti'),row=members.find(function(r){return momentSame_(r[1],hash)&amp;&amp;r[5]!=='1'});if(!row){var sessions=momentSocialRows_('Sessioni'),session=sessions.find(function(r){return momentSame_(r[0],hash)});if(session)row=members.find(function(r){return r[0]===session[1]&amp;&amp;r[5]!=='1'});if(row)return {id:row[0],name:momentParseText_(row[2]),role:row[4],hash:hash};}if(!row)throw momentError_('ACCESS','Accesso revocato o non valido. Chiedi all’organizzatore un nuovo invito.');var result={id:row[0],name:momentParseText_(row[2]),role:row[4],hash:hash};cache.put(key,JSON.stringify(result),30);return result;}
 function momentRotate_(){var token=momentToken_();momentProps_().setProperty('mom_invite_hash',momentHash_(token));return token;}
 function momentWrite_(op,d,token){
+ if(op==='saveStays')return momentStayWrite_(d,token);
  var p=momentProps_(),members=momentRows_('Partecipanti'),ms=momentSheet_('Partecipanti');
  var accessKey=d.accessKey;if(accessKey!=null&amp;&amp;(typeof accessKey!=='string'||!/^[a-f0-9]{64}$/.test(accessKey)))throw momentError_('INVALID','Accesso del browser non valido.');
  var accessHash=accessKey?momentHash_(accessKey):'',existingAccess=accessKey?members.find(function(r){return momentSame_(r[1],accessHash);}):null;
@@ -243,6 +245,75 @@ function momentComments_(member,d){
  momentLivePost_(d.id);var rows=momentSocialRows_('Commenti').filter(function(r){return r[1]===d.id&amp;&amp;r[6]===''}).map(momentComment_).sort(function(a,b){return b.created_at.localeCompare(a.created_at)||b.id.localeCompare(a.id)});
  if(d.before){if(typeof d.before.time!=='string'||typeof d.before.id!=='string')throw momentError_('INVALID','Pagina non valida.');rows=rows.filter(function(c){return c.created_at&lt;d.before.time||c.created_at===d.before.time&amp;&amp;c.id&lt;d.before.id});}
  var limit=20;return {comments:rows.slice(0,limit).reverse(),hasMore:rows.length&gt;limit};
+}
+
+
+// Private accommodation data stays in the existing, unshared Momenti workbook.
+// These helpers are private Apps Script functions and cannot be called by google.script.run.
+function momentStaySheet_(){
+ var s=SpreadsheetApp.openById(momentProps_().getProperty('mom_sheet')).getSheetByName('AlloggiPrivati');
+ if(!s||s.getLastRow()&lt;3)throw momentError_('STAYS_NOT_READY','Gli alloggi privati non sono ancora configurati.');
+ return s;
+}
+function momentStayConfig_(){
+ var cells=momentStaySheet_().getRange(2,1,2,2).getValues();
+ if(cells[0][0]!=='config'||cells[1][0]!=='autorizzazioni')throw momentError_('STAYS_NOT_READY','Il registro alloggi non è completo.');
+ try{return {config:JSON.parse(cells[0][1]),permissions:JSON.parse(cells[1][1])};}
+ catch(error){throw momentError_('STAYS_NOT_READY','Controlla il registro privato degli alloggi.');}
+}
+function momentStayEditor_(member,permissions){return member.role==='owner'||Array.isArray(permissions.editors)&amp;&amp;permissions.editors.indexOf(member.id)&gt;=0;}
+function momentStayPerson_(member,people){
+ var bound=people.find(function(p){return (p.memberIds||[]).indexOf(member.id)&gt;=0;});if(bound)return bound.id;
+ var normalize=function(s){return String(s||'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');},name=normalize(member.name);
+ if(!name)return '';var matches=people.filter(function(p){return [p.name].concat(p.aliases||[]).some(function(a){return normalize(a)===name;});});
+ if(matches.length===1)return matches[0].id;if(matches.length&gt;1||name.length&lt;3)return '';
+ matches=people.filter(function(p){return [p.name].concat(p.aliases||[]).some(function(a){return normalize(a).indexOf(name)===0;});});return matches.length===1?matches[0].id:'';
+}
+function momentStayRead_(member){
+ member=momentStayActive_(member);
+ var stored=momentStayConfig_(),copy=JSON.parse(JSON.stringify(stored.config)),person=momentStayPerson_(member,copy.participants);
+ copy.participants=copy.participants.map(function(p){return {id:p.id,name:p.name,aliases:p.aliases||[],memberIds:[]};});
+ return {memberId:member.id,personId:person,canEdit:momentStayEditor_(member,stored.permissions),config:copy};
+}
+function momentStayValidate_(raw,previous){
+ function fail(){throw momentError_('INVALID','Controlla nomi, strutture e assegnazioni degli alloggi.');}
+ function text(v,max,required){if(v==null)v='';if(typeof v!=='string'||v.length&gt;max||required&amp;&amp;!v.trim())fail();return v.trim();}
+ function list(v,max,len){if(!Array.isArray(v)||v.length&gt;max)fail();return v.map(function(x){return text(x,len,true);}).filter(function(x,i,a){return a.indexOf(x)===i;});}
+ function date(v){return /^\d{4}-\d{2}-\d{2}$/.test(v)&amp;&amp;!isNaN(Date.parse(v+'T12:00:00Z'))&amp;&amp;new Date(v+'T12:00:00Z').toISOString().slice(0,10)===v;}
+ function url(v,map){v=text(v,6000);if(!v)return '';if(!/^https:\/\/[^\s]+$/i.test(v))fail();var host=v.match(/^https:\/\/([^/?#]+)/i)[1].toLowerCase();if(host.indexOf('@')&gt;=0||host.indexOf(':')&gt;=0)fail();if(map&amp;&amp;host!=='maps.app.goo.gl'&amp;&amp;host!=='goo.gl'&amp;&amp;!/(^|\.)google\.[a-z.]+$/.test(host))fail();return v;}
+ if(!raw||typeof raw!=='object'||Array.isArray(raw)||raw.version!==1||!Array.isArray(raw.participants)||raw.participants.length&gt;50||!raw.participants.length||!Array.isArray(raw.reservations)||raw.reservations.length&gt;100||!Array.isArray(raw.nights)||raw.nights.length&gt;100)fail();
+ var ids={},old={};previous.participants.forEach(function(p){old[p.id]=p;});
+ var people=raw.participants.map(function(p){if(!p||typeof p!=='object')fail();var id=text(p.id,100,true);if(ids[id]||!old[id])fail();ids[id]=true;return {id:id,name:text(p.name,80,true),aliases:list(p.aliases||[],30,80),memberIds:(old[id].memberIds||[]).slice()};});
+ // Existing account bindings remain server-owned; the browser cannot grant editor rights.
+ if(people.length!==previous.participants.length)fail();
+ var bookings={},reservations=raw.reservations.map(function(b){if(!b||typeof b!=='object')fail();var id=text(b.id,100,true);if(bookings[id])fail();bookings[id]=true;var result={id:id,title:text(b.title,200,true),type:'Hotel/Casa'};
+ ['phone','checkIn','checkOut','date','endDate','address','notes','payment','owner','deadline','status'].forEach(function(k){result[k]=text(b[k],k==='notes'?5000:k==='address'?1000:250);});
+ if(result.date&amp;&amp;!date(result.date)||result.endDate&amp;&amp;(!date(result.endDate)||result.date&amp;&amp;result.endDate&lt;=result.date))fail();
+ result.mapUrl=url(b.mapUrl,true);result.sourceUrl=url(b.sourceUrl,false);result.links=(b.links||[]).map(function(v){return url(v,false);});if(result.links.length&gt;20)fail();
+ ['price','total','people'].forEach(function(k){if(b[k]==null||b[k]==='')result[k]=null;else {if(typeof b[k]!=='number'||!isFinite(b[k])||b[k]&lt;0||b[k]&gt;1000000)fail();result[k]=b[k];}});
+ // Notes are plain text in private editor. Existing formatting is retained only if unchanged.
+ var prior=previous.reservations.find(function(x){return x.id===id;});result.notesFormat=prior&amp;&amp;prior.notes===result.notes?prior.notesFormat||[]:[];return result;
+ });
+ var dates={},nights=raw.nights.map(function(n){if(!n||!date(n.date)||dates[n.date]||!Array.isArray(n.stays)||n.stays.length&gt;20)fail();dates[n.date]=true;var assigned={},used={};
+ return {date:n.date,stays:n.stays.map(function(s){if(!s||typeof s!=='object')fail();var bookingId=text(s.bookingId,100,true);if(!bookings[bookingId]||used[bookingId])fail();used[bookingId]=true;var guests=list(s.guestIds||[],50,100);guests.forEach(function(g){if(!ids[g]||assigned[g])fail();assigned[g]=true;});return {bookingId:bookingId,guestIds:guests,note:text(s.note,2000)};})};
+ });
+ var result={version:1,revision:Number(previous.revision||0)+1,participants:people,reservations:reservations,nights:nights};
+ if(JSON.stringify(result).length&gt;48000)fail();return result;
+}
+function momentStayWrite_(data,token){
+ // Server authentication is required, including when the UI has management mode enabled.
+ var member=momentStayActive_(momentMember_(token)),stored=momentStayConfig_();
+ if(!momentStayEditor_(member,stored.permissions))throw momentError_('DENIED','Solo gli organizzatori possono modificare gli alloggi.');
+ if(Number(data.expectedRevision)!==Number(stored.config.revision))throw momentError_('CONFLICT','Gli alloggi sono cambiati. Aggiorna e riprova per non sovrascrivere le modifiche degli altri.');
+ var next=momentStayValidate_(data.config,stored.config);
+ momentStaySheet_().getRange(2,2,1,2).setValues([[JSON.stringify(next),new Date().toISOString()]]);
+ return momentStayRead_(member);
+}
+function momentStayActive_(member){
+ // Recheck revocation even when the regular Momenti member cache is still warm.
+ var row=momentRows_('Partecipanti').find(function(r){return r[0]===member.id&amp;&amp;String(r[5])!=='1';});
+ if(!row)throw momentError_('ACCESS','Accesso revocato. Accedi di nuovo a Momenti.');
+ return {id:row[0],name:momentParseText_(row[2]),role:row[4]};
 }
 </pre></details>
 <h2 id="inizializza">3. Fai creare cartella e registro</h2><div class="note"><strong>Se nel menu vedi soltanto doGet e momentiRpc:</strong> stai usando il codice precedente. Copia nuovamente il codice dal pulsante di questa guida, seleziona tutto il contenuto di Codice.gs e sostituiscilo. Salva con Ctrl+S e, se serve, ricarica l’editor. Nel menu deve comparire <strong>inizializzaMomenti</strong>, senza trattino basso finale. Esegui questa funzione con l’account proprietario e autorizza Google quando richiesto.</div>
