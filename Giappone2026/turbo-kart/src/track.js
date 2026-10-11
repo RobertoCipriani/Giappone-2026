@@ -2,9 +2,10 @@
 // createTrack(scene, renderer) -> Track
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { bus } from './events.js';
-import * as TX from './track-textures.js';
-import { createEnvironment } from './environment.js';
+import { bus } from './events.js?v=20261011-journey';
+import * as TX from './track-textures.js?v=20261011-journey';
+import { createEnvironment } from './japan-world.js?v=20261011-journey';
+import {stageAt,coursePoints} from './japan-courses.js?v=20261011-journey';
 
 const TRACK_NAME = 'Palm Cove Circuit';
 const SCALE = 1.15;
@@ -65,7 +66,8 @@ function smoothCircular(arr, radius, passes = 1) {
   return src;
 }
 
-export function createTrack(scene, renderer) {
+export function createTrack(scene, renderer, options={}) {
+  const stage=stageAt(options.stage),TRACK_NAME=stage.name;
   const root = new THREE.Group();
   root.name = 'track';
   scene.add(root);
@@ -73,7 +75,7 @@ export function createTrack(scene, renderer) {
   const track = {};
 
   // ------------------------------------------------------------------ centerline
-  const pts = CP.map(([x, y, z]) => new THREE.Vector3(x * SCALE, y, z * SCALE));
+  const pts = coursePoints(CP,stage).map(([x, y, z]) => new THREE.Vector3(x * SCALE, y, z * SCALE));
   const curve = new THREE.CatmullRomCurve3(pts, true, 'centripetal', 0.5);
   curve.arcLengthDivisions = 6000;
   curve.updateArcLengths();
@@ -698,7 +700,7 @@ export function createTrack(scene, renderer) {
 
   // ------------------------------------------------------------------ environment
   const layout = {
-    N, ds, length, px, py, pz, rx, rz, tx, tz, head, kS, wallL, wallR, bridge, halfWidth: HALF_W,
+    stage, N, ds, length, px, py, pz, rx, rz, tx, tz, head, kS, wallL, wallR, bridge, halfWidth: HALF_W,
     nearest: (x, z, noFallback = false) => { const i = nearestGrid(x, z, noFallback); return { i, d2: _nd2 }; },
     lake: LAKE, waterLevel: WATER_LEVEL,
     bounds: { minX, maxX, minZ, maxZ },
@@ -708,7 +710,7 @@ export function createTrack(scene, renderer) {
 
   // ------------------------------------------------------------------ Track object
   Object.assign(track, {
-    name: TRACK_NAME,
+    name: TRACK_NAME, stage:stage.id,
     curve,
     length,
     roadWidth: HALF_W * 2,

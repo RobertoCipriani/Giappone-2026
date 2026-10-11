@@ -1,12 +1,12 @@
 // Items: item boxes, roulette, projectiles & hazards. See ARCHITECTURE.md §3.
 import * as THREE from 'three';
-import { PHYSICS, ITEMS } from './config.js';
-import { bus } from './events.js';
+import { PHYSICS, ITEMS } from './config.js?v=20261011-journey';
+import { bus } from './events.js?v=20261011-journey';
 
 // models.js is owned by another agent; load it defensively so a missing/broken module never breaks items.
 let createItemModelFn = null;
 try {
-  const mod = await import('./models.js');
+  const mod = await import('./models.js?v=20261011-journey');
   if (typeof mod.createItemModel === 'function') createItemModelFn = mod.createItemModel;
 } catch (err) {
   console.warn('[items] models.js unavailable, using fallback item meshes', err?.message || err);

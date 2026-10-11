@@ -4,13 +4,16 @@ import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
-import { bus } from './events.js';
-import { CHARACTERS, RACE, PHYSICS } from './config.js';
-import { RaceManager } from './race.js';
-import { HUD } from './hud.js';
-import { Menu } from './menu.js';
-import { AudioEngine } from './audio.js';
-import { mountTouch } from '../trip-touch.js?v=20261011-controls';
+import { bus } from './events.js?v=20261011-journey';
+import { CHARACTERS, RACE, PHYSICS } from './config.js?v=20261011-journey';
+import { RaceManager } from './race.js?v=20261011-journey';
+import { HUD } from './hud.js?v=20261011-journey';
+import { Menu } from './menu.js?v=20261011-journey';
+import { AudioEngine } from './audio.js?v=20261011-journey';
+import {Journey} from './journey.js?v=20261011-journey';
+import {stageAt} from './japan-courses.js?v=20261011-journey';
+import {customizeDriver} from './trip-avatars.js?v=20261011-journey';
+import { mountTouch } from '../trip-touch.js?v=20261011-journey';
 
 // ---------------------------------------------------------------------------------------------
 // Error isolation: one failing subsystem must never freeze the loop. Log once per error type.
@@ -73,8 +76,8 @@ window.addEventListener('resize', onResize);
 const mods = {};
 async function loadModules() {
   const specs = {
-    track: './track.js', kart: './kart.js', ai: './ai.js', input: './input.js?v=20261011-controls',
-    items: './items.js', effects: './effects.js', models: './models.js', camera: './camera.js',
+    track: './track.js?v=20261011-journey', kart: './kart.js?v=20261011-journey', ai: './ai.js?v=20261011-journey', input: './input.js?v=20261011-journey',
+    items: './items.js?v=20261011-journey', effects: './effects.js?v=20261011-journey', models: './models.js?v=20261011-journey', camera: './camera.js?v=20261011-journey',
   };
   await Promise.all(Object.entries(specs).map(async ([k, p]) => {
     try { mods[k] = await import(p); } catch (e) { console.error(`[main] failed to load ${p}`, e); }
@@ -96,7 +99,7 @@ function fallbackKartModel(character) {
 }
 function makeKartModel(character) {
   if (mods.models && mods.models.createKartModel) {
-    try { return mods.models.createKartModel(character); } catch (e) { report('models.createKartModel', e); }
+    try { return customizeDriver(mods.models.createKartModel(character),character); } catch (e) { report('models.createKartModel', e); }
   }
   return fallbackKartModel(character);
 }
@@ -143,6 +146,7 @@ const menu = new Menu(uiRoot, {
   onScreen: (s) => { setState(s === 'select' ? 'select' : 'title'); },
 });
 let input = null;
+let journey=null;
 
 // ---------------------------------------------------------------------------------------------
 // Game state
@@ -171,11 +175,12 @@ const RACE_STATES = new Set(['intro', 'countdown', 'racing', 'finished']);
 // ---------------------------------------------------------------------------------------------
 function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = (Math.random() * (i + 1)) | 0; [a[i], a[j]] = [a[j], a[i]]; } return a; }
 
-function buildWorld({ mode, characterIndex = 0, difficulty = 'normal', laps = RACE.laps }) {
+function buildWorld({ mode, characterIndex = 0, difficulty = 'normal', laps = RACE.laps, stage=journey?.stage||0 }) {
   if (!mods.track || !mods.track.createTrack) throw new Error('track.js unavailable');
   if (!mods.kart || !mods.kart.Kart) throw new Error('kart.js unavailable');
   const w = { mode, difficulty, laps, karts: [], ais: [], playerAI: null, player: null, scene: new THREE.Scene() };
-  w.track = mods.track.createTrack(w.scene, renderer);
+  w.track = mods.track.createTrack(w.scene, renderer,{stage});
+  w.stage=stage;
 
   // roster: attract mode = every character in order (kart index == character index)
   let chars;
@@ -291,6 +296,9 @@ function goToTitle() {
 }
 
 function startRace(settings) {
+  if(journey&&!journey.available(settings.characterIndex??lastSettings.characterIndex))return;
+  settings={...settings,stage:journey?.stage||0};
+  journey?.begin({...lastSettings,...settings});
   lastSettings = { ...lastSettings, ...settings };
   hud.hide(); hud.hideResults();
   menu.showLoading('GET READY!');
@@ -371,6 +379,7 @@ bus.on('race:end', (d) => {
   if (!world || world.mode !== 'race') return;
   resultsShown = true;
   const results = (d && d.results) || world.race.computeResults();
+  const reward=journey?.finish(results.find(r=>r.isPlayer));
   if (state === 'paused') resume();
   setTimeout(() => {
     if (!world || !resultsShown) return;
@@ -380,6 +389,8 @@ bus.on('race:end', (d) => {
       onRestart: () => startRace(lastSettings),
       onMenu: () => goToTitle(),
     });
+    if(reward){const panel=hud.resultsEl.querySelector('.res-panel'),info=document.createElement('div');info.className='journey-reward';info.textContent='+'+reward.xp+' XP · +'+reward.coins+' monete'+(reward.first?' · nuova gara sbloccata!':'');panel.querySelector('.res-sub').after(info);const next=document.createElement('button');next.className='btn journey-next';next.textContent='PROSSIMA TAPPA';next.onclick=()=>{journey.stage=reward.next;journey.paint();hud.hideResults();startRace(lastSettings)};panel.querySelector('.res-buttons').appendChild(next)}
+    setState('results');
   }, 200);
 });
 
@@ -405,7 +416,7 @@ window.addEventListener('keydown', (e) => {
 canvas.addEventListener('click', () => { if (state === 'intro') beginCountdown(); });
 document.addEventListener('visibilitychange', () => { if(document.hidden){pause();input?.reset();audio.ctx?.suspend().catch(()=>{})} });
 window.addEventListener('blur',()=>{pause();input?.reset();audio.ctx?.suspend().catch(()=>{})});
-window.KitsuEmbedded=Object.freeze({leave:()=>{if(leaving)return;leaving=true;pause();input?.reset();audio.dispose();}});
+window.KitsuEmbedded=Object.freeze({leave:()=>{if(leaving)return;leaving=true;pause();input?.reset();journey?.dispose();audio.dispose();}});
 window.addEventListener('pagehide',()=>window.KitsuEmbedded.leave());
 
 // ---------------------------------------------------------------------------------------------
@@ -557,6 +568,9 @@ async function boot() {
     safe('portraits', () => menu.setPortraitProvider(fn));
     hud.setPortraitProvider(fn);
   }
+  journey=new Journey({menu,hud,onStage:()=>{if(state==='title'||state==='select')buildAttract()},onChange:()=>{disposeWorld();goToTitle()}});
+  journey.portrait=mods.models?.createCharacterPortrait;
+  const courseLabel=document.createElement('div');courseLabel.className='journey-circuit-label';document.body.appendChild(courseLabel);bus.on('game:state',d=>{courseLabel.textContent=['intro','countdown','racing','paused'].includes(d.state)?stageAt(world?.stage||0).name:''});
   mountTouch({getInput:()=>input, getState:()=>state, pause, resume, audio});
   buildAttract();
   menu.showTitle();
@@ -572,7 +586,7 @@ window.__game = {
   get state() { return state; },
   get world() { return world; },
   get mods() { return mods; },
-  audio, hud, menu, renderer, camera, bus,
+  audio, hud, menu, renderer, camera, bus, get journey(){return journey;},
   startRace: (s = {}) => startRace({ ...lastSettings, ...s }),
   goToTitle,
   skipIntro: () => beginCountdown(),

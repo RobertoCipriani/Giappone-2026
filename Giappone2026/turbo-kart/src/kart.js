@@ -1,9 +1,9 @@
 // Arcade kart physics: heading + forward speed with lateral grip, hop-drift with 3-level mini-turbos,
 // boosts, jump ramps, walls, slopes, hits, star/shrink, start-line rocket boost and Lakitu-style respawn.
 import * as THREE from 'three';
-import { PHYSICS } from './config.js';
-import { bus } from './events.js';
-import { InputController } from './input.js';
+import { PHYSICS } from './config.js?v=20261011-journey';
+import { bus } from './events.js?v=20261011-journey';
+import { InputController } from './input.js?v=20261011-journey';
 
 const TAU = Math.PI * 2;
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);

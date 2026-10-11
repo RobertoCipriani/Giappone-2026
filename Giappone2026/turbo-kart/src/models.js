@@ -4,7 +4,7 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { CHARACTERS } from './config.js';
+import { CHARACTERS } from './config.js?v=20261011-journey';
 
 const PI = Math.PI;
 const TAU = PI * 2;

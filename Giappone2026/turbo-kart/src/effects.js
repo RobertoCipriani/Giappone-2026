@@ -1,7 +1,7 @@
 // Visual effects: pooled particles (Points + InstancedMesh), fireballs, rings, hit stars, speed lines.
 // See ARCHITECTURE.md §3. No per-frame allocations in update().
 import * as THREE from 'three';
-import { bus } from './events.js';
+import { bus } from './events.js?v=20261011-journey';
 
 const ADD_COUNT = 5000;     // additive glow / spark particles
 const SMOKE_COUNT = 2200;   // alpha-blended smoke / dust particles

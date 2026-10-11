@@ -1,6 +1,6 @@
 // Title screen, character select (with difficulty / laps options + controls help), pause menu, gamepad navigation.
-import { bus } from './events.js';
-import { CHARACTERS, GAME_TITLE } from './config.js';
+import { bus } from './events.js?v=20261011-journey';
+import { CHARACTERS, GAME_TITLE } from './config.js?v=20261011-journey';
 
 const hex = (c) => '#' + (c >>> 0).toString(16).padStart(6, '0').slice(-6);
 const DIFFS = ['easy', 'normal', 'hard'];
@@ -128,7 +128,7 @@ export class Menu {
         <div class="card-portrait"><img alt="" style="display:none"><span class="initial">${ch.name[0]}</span></div>
         <div class="card-name">${ch.name}</div>
         <div class="card-stats">${STAT_KEYS.map(([k, , sh]) => `<div class="st"><span>${sh}</span>${statBar(ch.stats[k])}</div>`).join('')}</div>`;
-      card.addEventListener('mouseenter', () => { if (this.screen === 'select') { this.zone = 'grid'; this._setChar(i); } });
+      card.addEventListener('mouseenter', () => { if(matchMedia('(pointer:coarse)').matches)return; if (this.screen === 'select') { this.zone = 'grid'; this._setChar(i); } });
       card.addEventListener('click', () => { if (this.screen === 'select') { this._setChar(i); this._confirmChar(); } });
       card.addEventListener('dblclick', () => { if (this.screen === 'select') this._start(); });
       return { card, img: card.querySelector('img'), initial: card.querySelector('.initial') };
@@ -144,7 +144,7 @@ export class Menu {
     };
     this.optEls = [...s.querySelectorAll('.opts [data-i]')];
     this.optEls.forEach((o, i) => {
-      o.addEventListener('mouseenter', () => { if (this.screen === 'select') { this.zone = 'opts'; this.optIndex = i; this._refreshFocus(); } });
+      o.addEventListener('mouseenter', () => { if(matchMedia('(pointer:coarse)').matches)return; if (this.screen === 'select') { this.zone = 'opts'; this.optIndex = i; this._refreshFocus(); } });
       if (i < 2) {
         o.querySelector('.l').addEventListener('click', (e) => { e.stopPropagation(); this.zone = 'opts'; this.optIndex = i; this._changeOpt(-1); });
         o.querySelector('.r').addEventListener('click', (e) => { e.stopPropagation(); this.zone = 'opts'; this.optIndex = i; this._changeOpt(1); });
@@ -170,7 +170,7 @@ export class Menu {
       </div>`;
     this.pauseBtns = [...p.querySelectorAll('.btn')];
     this.pauseBtns.forEach((b, i) => {
-      b.addEventListener('mouseenter', () => { if (this.pauseIndex !== i) { this.pauseIndex = i; this._refreshPause(); bus.emit('ui:move'); } });
+      b.addEventListener('mouseenter', () => { if(matchMedia('(pointer:coarse)').matches)return; if (this.pauseIndex !== i) { this.pauseIndex = i; this._refreshPause(); bus.emit('ui:move'); } });
       b.addEventListener('click', () => this._pauseAct(b.dataset.a));
     });
   }
@@ -252,6 +252,7 @@ export class Menu {
   }
   _start() {
     if (this.screen !== 'select') return;
+    if(document.querySelector('.journey-dialog[open]'))return;
     try { localStorage.setItem('tkr-settings', JSON.stringify({ charIndex: this.charIndex, diffIndex: this.diffIndex, lapsIndex: this.lapsIndex })); } catch (e) { /* ignore */ }
     bus.emit('ui:confirm');
     this.h.onStart && this.h.onStart(this.settings);
@@ -274,6 +275,7 @@ export class Menu {
 
   // ------------------------------------------------------------------ input
   _key(e) {
+    if(document.querySelector('.journey-dialog[open]'))return;
     const c = e.code;
     const isEnter = c === 'Enter' || c === 'NumpadEnter' || c === 'Space';
     if (this.screen === 'title') {

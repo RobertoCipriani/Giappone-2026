@@ -1,7 +1,7 @@
 // In-race HUD: DOM/CSS overlay in #ui-root plus a couple of small canvases (minimap, speedometer, item icons).
-import { bus } from './events.js';
-import { ITEMS, CHARACTERS } from './config.js';
-import { formatTime } from './race.js';
+import { bus } from './events.js?v=20261011-journey';
+import { ITEMS, CHARACTERS } from './config.js?v=20261011-journey';
+import { formatTime } from './race.js?v=20261011-journey';
 
 const hex = (c) => '#' + (c >>> 0).toString(16).padStart(6, '0').slice(-6);
 export const ordinal = (n) => {

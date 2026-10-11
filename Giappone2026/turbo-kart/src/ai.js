@@ -1,8 +1,8 @@
 // AI driver: racing-line pursuit with PD steering, curvature-aware speed control, drift mini-turbos,
 // lane personalities, hazard/kart avoidance, tactical item use, rubber-banding and stuck recovery.
 import * as THREE from 'three';
-import { DIFFICULTY, PHYSICS } from './config.js';
-import { bus } from './events.js';
+import { DIFFICULTY, PHYSICS } from './config.js?v=20261011-journey';
+import { bus } from './events.js?v=20261011-journey';
 
 const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 const fin = (v) => Number.isFinite(v);

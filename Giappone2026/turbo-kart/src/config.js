@@ -31,14 +31,244 @@ export const PHYSICS = {
 // stats are 1..5. speed -> top speed, accel -> acceleration, handling -> turn rate/drift,
 // weight -> bump resolution (heavier pushes lighter).
 export const CHARACTERS = [
-  { id: 'blaze',  name: 'Blaze',  color: 0xe53935, accent: 0xffffff, skin: 0xffcc99, hat: 'cap',     stats: { speed: 3, accel: 3, handling: 3, weight: 3 } },
-  { id: 'zippy',  name: 'Zippy',  color: 0x43a047, accent: 0xffffff, skin: 0xffcc99, hat: 'cap',     stats: { speed: 3, accel: 4, handling: 3, weight: 2 } },
-  { id: 'bella',  name: 'Bella',  color: 0xf06292, accent: 0xfff176, skin: 0xffe0bd, hat: 'crown',   stats: { speed: 2, accel: 4, handling: 5, weight: 2 } },
-  { id: 'toadly', name: 'Toadly', color: 0x1e88e5, accent: 0xffffff, skin: 0xffe0bd, hat: 'mushroom',stats: { speed: 2, accel: 5, handling: 4, weight: 1 } },
-  { id: 'rex',    name: 'Rex',    color: 0x2e7d32, accent: 0xff8f00, skin: 0x9ccc65, hat: 'horns',   stats: { speed: 5, accel: 1, handling: 2, weight: 5 } },
-  { id: 'grumbo', name: 'Grumbo', color: 0xfdd835, accent: 0x6a1b9a, skin: 0xffcc99, hat: 'cap',     stats: { speed: 4, accel: 2, handling: 2, weight: 4 } },
-  { id: 'koopz',  name: 'Koopz',  color: 0x00acc1, accent: 0xfff9c4, skin: 0xaed581, hat: 'shell',   stats: { speed: 3, accel: 3, handling: 4, weight: 2 } },
-  { id: 'dotty',  name: 'Dotty',  color: 0x8e24aa, accent: 0xffeb3b, skin: 0xffe0bd, hat: 'bow',     stats: { speed: 2, accel: 4, handling: 4, weight: 1 } },
+  {
+    "id": "kitsu",
+    "name": "Kitsu",
+    "defaultName": "Kitsu",
+    "price": 0,
+    "color": 14388035,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "roberto",
+    "name": "Robanana",
+    "defaultName": "Robanana",
+    "price": 250,
+    "color": 13588031,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "hero",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "leonardo",
+    "name": "Leonardrift",
+    "defaultName": "Leonardrift",
+    "price": 300,
+    "color": 5544320,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "francesco",
+    "name": "FranTokyo",
+    "defaultName": "FranTokyo",
+    "price": 350,
+    "color": 7046603,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "andrea",
+    "name": "AndreTornado",
+    "defaultName": "AndreTornado",
+    "price": 400,
+    "color": 14656334,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "antonella",
+    "name": "Antornella",
+    "defaultName": "Antornella",
+    "price": 450,
+    "color": 13351135,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "white",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "erika",
+    "name": "Erikart",
+    "defaultName": "Erikart",
+    "price": 500,
+    "color": 14780845,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "gabriele",
+    "name": "Gabbracoli",
+    "defaultName": "Gabbracoli",
+    "price": 750,
+    "color": 8754877,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "octo",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "giorgia-s",
+    "name": "Giorgiaku S.",
+    "defaultName": "Giorgiaku S.",
+    "price": 550,
+    "color": 12750484,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "white",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "giorgia-i",
+    "name": "Giorgiaku I.",
+    "defaultName": "Giorgiaku I.",
+    "price": 550,
+    "color": 8762791,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "manuel",
+    "name": "Manu Turbo",
+    "defaultName": "Manu Turbo",
+    "price": 600,
+    "color": 10529870,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "hero",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "lorenzo",
+    "name": "Lorenzen",
+    "defaultName": "Lorenzen",
+    "price": 650,
+    "color": 7376808,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "federico",
+    "name": "FedeFuga",
+    "defaultName": "FedeFuga",
+    "price": 700,
+    "color": 12423530,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  },
+  {
+    "id": "valerio",
+    "name": "Valerazzo",
+    "defaultName": "Valerazzo",
+    "price": 800,
+    "color": 8944804,
+    "accent": 16772561,
+    "skin": 16764057,
+    "hat": "cap",
+    "body": "traveler",
+    "stats": {
+      "speed": 3,
+      "accel": 3,
+      "handling": 3,
+      "weight": 3
+    }
+  }
 ];
 
 export const ITEMS = ['mushroom', 'triple_mushroom', 'banana', 'green_shell', 'red_shell', 'star', 'lightning', 'blue_shell'];

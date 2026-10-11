@@ -1,7 +1,7 @@
 // RaceManager: grid, countdown, laps (with checkpoint guard), standings, finish, wrong-way detection.
 import * as THREE from 'three';
-import { bus } from './events.js';
-import { RACE } from './config.js';
+import { bus } from './events.js?v=20261011-journey';
+import { RACE } from './config.js?v=20261011-journey';
 
 const _fwd = new THREE.Vector3();
 

@@ -1,7 +1,7 @@
 // Player input: keyboard (KEYS from config, by event.code) + Gamepad API.
 // getInput() returns the kart.input shape; `item` is edge-triggered (true for one frame per press).
 // consumePressed(action) returns true exactly once per press (keyboard or gamepad).
-import { KEYS } from './config.js';
+import { KEYS } from './config.js?v=20261011-journey';
 
 // Extra UI actions (menus may use these); gameplay actions come from KEYS.
 const EXTRA_KEYS = {
